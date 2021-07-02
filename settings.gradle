@@ -1,0 +1,15 @@
+rootProject.name = "WordsPhrases"
+
+include ':app'
+include ':navigation'
+include ':core'
+include ':core-ui'
+include ':add-word-impl'
+include ':add-word-api'
+include ':home-impl'
+include ':home-api'
+include ':remote-api'
+include ':remote-impl'
+include ':translation-api'
+include ':translation-impl'
+include ':entity'

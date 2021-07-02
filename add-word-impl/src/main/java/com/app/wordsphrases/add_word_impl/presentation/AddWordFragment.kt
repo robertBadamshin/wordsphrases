@@ -1,0 +1,129 @@
+package com.app.wordsphrases.add_word_impl.presentation
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.ProgressBar
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.app.wordsphrases.add_word_impl.R
+import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.add_word_impl.presentation.ui.TranslationsAdapter
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationsViewState
+import com.bumptech.glide.Glide
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.textfield.TextInputLayout
+import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
+
+class AddWordFragment : MvpAppCompatFragment(), AddWordView {
+
+    private val presenter by moxyPresenter { AddWordComponent.get().addWordPresenter }
+
+    private lateinit var arrowBackImageView: ImageView
+    private lateinit var translateButton: Button
+    private lateinit var translationRecyclerView: RecyclerView
+    private lateinit var translationTextInputLayout: TextInputLayout
+    private lateinit var translationProgress: ProgressBar
+    private lateinit var bottomAppBar: BottomAppBar
+    private lateinit var wordImageView: ImageView
+
+    private val translationsAdapter by lazy { TranslationsAdapter() }
+
+    private val takePhoto = registerForActivityResult(
+        ActivityResultContracts.TakePicturePreview()
+    ) { bitmap ->
+        wordImageView.setImageBitmap(bitmap)
+        wordImageView.isVisible = true
+    }
+
+    private val pickPhoto = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+        Glide.with(requireContext()).load(uri).into(wordImageView)
+        wordImageView.isVisible = true
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        return inflater.inflate(R.layout.fragment_translation, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arrowBackImageView = view.findViewById(R.id.image_view_arrow_back)
+        arrowBackImageView.setOnClickListener { requireActivity().onBackPressed() }
+
+        translationTextInputLayout = view.findViewById(R.id.text_input_layout_text_to_translate)
+
+        translateButton = view.findViewById(R.id.button_translate)
+        translateButton.setOnClickListener {
+            val textToTranslate = translationTextInputLayout.editText?.text.toString()
+            presenter.onTranslateClick(textToTranslate)
+        }
+
+        translationRecyclerView = view.findViewById(R.id.recycler_view_translations)
+        translationRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        translationRecyclerView.adapter = translationsAdapter
+        val dividerItemDecoration = DividerItemDecoration(
+            requireContext(),
+            RecyclerView.VERTICAL,
+        )
+        translationRecyclerView.addItemDecoration(dividerItemDecoration)
+
+        translationProgress = view.findViewById(R.id.translation_progress)
+
+        bottomAppBar = view.findViewById(R.id.bottom_app_bar_add_word)
+        bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            val itemId = menuItem.itemId
+
+            when (itemId) {
+                R.id.item_take_photo -> dispatchTakePicture()
+                R.id.item_pick_photo -> dispatchPickPicture()
+                else -> throw IllegalAccessException("no such item")
+            }
+
+            return@setOnMenuItemClickListener true
+        }
+
+        wordImageView = view.findViewById(R.id.image_view_word_image)
+    }
+
+    override fun showTranslations(viewState: TranslationsViewState) {
+        when (viewState) {
+            is TranslationsViewState.Success -> {
+                translationProgress.isVisible = false
+                translationsAdapter.items = viewState.translations
+            }
+            is TranslationsViewState.Loading -> {
+                translationProgress.isVisible = true
+            }
+            is TranslationsViewState.Error -> {
+                translationProgress.isVisible = false
+                // show error
+            }
+            is TranslationsViewState.Empty -> {
+                translationProgress.isVisible = false
+                translationsAdapter.items = null
+            }
+        }
+    }
+
+    private fun dispatchTakePicture() {
+        takePhoto.launch(null)
+    }
+
+    private fun dispatchPickPicture() {
+        pickPhoto.launch("image/*")
+    }
+}

@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonMoxyModule.gradle'
+apply from: '../applyApiModules.gradle'
+apply from: '../commonUiModule.gradle'
+
+apply plugin: 'kotlin-kapt'
+
+
+dependencies {
+
+    implementation project(":navigation")
+    implementation project(":core-ui")
+    implementation project(":core")
+    implementation project(":entity")
+}

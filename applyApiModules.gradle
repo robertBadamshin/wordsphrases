@@ -1,0 +1,9 @@
+apply from: '../commonBase.gradle'
+
+dependencies {
+
+    implementation project(':add-word-api')
+    implementation project(':home-api')
+    implementation project(':remote-api')
+    implementation project(':translation-api')
+}

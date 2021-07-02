@@ -1,0 +1,15 @@
+package com.app.wordsphrases.add_word_impl.domain
+
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
+import com.app.wordsphrases.entity.RequestStateWrapper
+import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+
+class GetTranslations @Inject constructor(
+    private val addWordRepository: AddWordRepository,
+) {
+
+    operator fun invoke(): Flow<RequestStateWrapper<List<String>>?> {
+        return addWordRepository.getTranslations()
+    }
+}
