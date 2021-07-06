@@ -39,6 +39,10 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
     private val takePhoto = registerForActivityResult(
         ActivityResultContracts.TakePicturePreview()
     ) { bitmap ->
+        if (bitmap == null) {
+            return@registerForActivityResult
+        }
+
         wordImageView.setImageBitmap(bitmap)
         wordImageView.isVisible = true
     }
@@ -46,6 +50,10 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
     private val pickPhoto = registerForActivityResult(
         ActivityResultContracts.GetContent()
     ) { uri ->
+        if (uri == null) {
+            return@registerForActivityResult
+        }
+        
         Glide.with(requireContext()).load(uri).into(wordImageView)
         wordImageView.isVisible = true
     }
