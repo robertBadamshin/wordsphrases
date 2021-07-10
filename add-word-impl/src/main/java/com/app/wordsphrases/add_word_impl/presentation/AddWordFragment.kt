@@ -14,10 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.add_word_impl.domain.entity.WordImage
 import com.app.wordsphrases.add_word_impl.presentation.ui.TranslationsAdapter
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationsViewState
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputLayout
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -33,6 +35,7 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
     private lateinit var translationProgress: ProgressBar
     private lateinit var bottomAppBar: BottomAppBar
     private lateinit var wordImageView: ImageView
+    private lateinit var fabAddWord: FloatingActionButton
 
     private val translationsAdapter by lazy { TranslationsAdapter() }
 
@@ -43,8 +46,8 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
             return@registerForActivityResult
         }
 
-        wordImageView.setImageBitmap(bitmap)
-        wordImageView.isVisible = true
+        val image = WordImage.BitmapWordImage(bitmap)
+        presenter.onImageSelected(image)
     }
 
     private val pickPhoto = registerForActivityResult(
@@ -53,9 +56,9 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         if (uri == null) {
             return@registerForActivityResult
         }
-        
-        Glide.with(requireContext()).load(uri).into(wordImageView)
-        wordImageView.isVisible = true
+
+        val image = WordImage.FileWordImage(uri)
+        presenter.onImageSelected(image)
     }
 
     override fun onCreateView(
@@ -105,6 +108,9 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         }
 
         wordImageView = view.findViewById(R.id.image_view_word_image)
+
+        fabAddWord = view.findViewById(R.id.fab_add_word)
+        fabAddWord.setOnClickListener {  }
     }
 
     override fun showTranslations(viewState: TranslationsViewState) {
@@ -125,6 +131,14 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
                 translationsAdapter.items = null
             }
         }
+    }
+
+    override fun setImage(image: WordImage) {
+        when (image) {
+            is WordImage.FileWordImage -> Glide.with(requireContext()).load(image.uri).into(wordImageView)
+            is WordImage.BitmapWordImage -> wordImageView.setImageBitmap(image.bitmap)
+        }
+        wordImageView.isVisible = true
     }
 
     private fun dispatchTakePicture() {

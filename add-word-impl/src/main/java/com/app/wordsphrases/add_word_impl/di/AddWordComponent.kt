@@ -10,6 +10,9 @@ import dagger.Component
 @Component(
     dependencies = [
         AppComponent::class,
+    ],
+    modules = [
+        AddWordModule::class,
     ]
 )
 interface AddWordComponent {

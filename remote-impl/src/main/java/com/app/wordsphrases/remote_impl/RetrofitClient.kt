@@ -1,8 +1,7 @@
 package com.app.wordsphrases.remote_impl
 
-import com.app.wordsphrases.remote_impl.converter.ServerResponseConverter
+import com.app.wordsphrases.remote_impl.converter.ResultWrapperResponseGsonConverter
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
 
@@ -13,7 +12,7 @@ object RetrofitClient {
             retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
                // .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ServerResponseConverter())
+                .addConverterFactory(ResultWrapperResponseGsonConverter())
                 .build()
         }
         return retrofit!!

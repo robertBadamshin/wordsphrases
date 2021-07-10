@@ -18,10 +18,7 @@ class OnTranslateTextClick @Inject constructor(
     suspend operator fun invoke(text: String) {
         addWordRepository.setTranslations(RequestLoadingStateWrapper())
 
-        val resultWrapper = ResultWrapper.createSuccess(TranslationResult(
-            translations = listOf("firstTranslate", "secondTranslate")
-        ))
-        delay(1000)
+        val resultWrapper = translateText(text = text)
 
         if (resultWrapper.isSuccess) {
             val translationResult = resultWrapper.requireData()
