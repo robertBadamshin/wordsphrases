@@ -4,10 +4,7 @@ import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
-import com.app.wordsphrases.entity.ResultWrapper
 import com.app.wordsphrases.translation_api.TranslateText
-import com.app.wordsphrases.translation_api.domain.TranslationResult
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class OnTranslateTextClick @Inject constructor(

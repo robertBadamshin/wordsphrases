@@ -6,7 +6,6 @@ import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.presentation.MainPresenter
 import com.app.wordsphrases.home_impl.di.HomeApiModule
 import com.app.wordsphrases.add_word_impl.di.AddWordApiModule
-import com.app.wordsphrases.remote_impl.RemoteApi
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
 import com.app.wordsphrases.translation_impl.di.TranslationApiBindsModule
 import com.app.wordsphrases.translation_impl.di.TranslationApiModule

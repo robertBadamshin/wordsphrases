@@ -1,7 +1,7 @@
 package com.app.wordsphrases.add_word_impl.navigation
 
 import com.app.wordsphrases.navigation.NavigationScreen
-import com.app.wordsphrases.translation_api.AddWordRouter
+import com.app.wordsphrases.add_word_api.AddWordRouter
 import com.app.wordsphrases.add_word_impl.presentation.AddWordFragment
 import javax.inject.Inject
 

@@ -4,11 +4,9 @@ import com.app.wordsphrases.entity.ResultWrapper
 import com.app.wordsphrases.remote_impl.ResultWrapperRemote
 import com.app.wordsphrases.remote_impl.exception.ServerException
 import com.google.gson.Gson
-import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
 import java.lang.reflect.ParameterizedType
 import java.lang.reflect.Type

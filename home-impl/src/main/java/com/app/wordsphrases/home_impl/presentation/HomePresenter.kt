@@ -1,6 +1,6 @@
 package com.app.wordsphrases.home_impl.presentation
 
-import com.app.wordsphrases.translation_api.AddWordRouter
+import com.app.wordsphrases.add_word_api.AddWordRouter
 import moxy.MvpPresenter
 import javax.inject.Inject
 

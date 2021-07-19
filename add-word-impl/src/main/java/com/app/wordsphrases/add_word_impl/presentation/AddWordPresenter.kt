@@ -6,8 +6,6 @@ import com.app.wordsphrases.add_word_impl.domain.OnTranslateTextClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.entity.WordImage
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
-import com.app.wordsphrases.translation_api.TranslateText
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach

@@ -1,4 +1,4 @@
-package com.app.wordsphrases.translation_api
+package com.app.wordsphrases.add_word_api
 
 interface AddWordApi {
 

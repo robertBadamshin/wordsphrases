@@ -1,4 +1,4 @@
-package com.app.wordsphrases.remote_impl
+package com.app.wordsphrases.remote_api
 
 import retrofit2.Retrofit
 
