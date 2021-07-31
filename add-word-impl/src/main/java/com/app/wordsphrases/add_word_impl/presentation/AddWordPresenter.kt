@@ -1,11 +1,16 @@
 package com.app.wordsphrases.add_word_impl.presentation
 
+import com.app.wordsphrases.add_word_impl.domain.AddWord
+import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
 import com.app.wordsphrases.add_word_impl.domain.GetImage
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.OnTranslateTextClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.entity.WordImage
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
+import com.app.wordsphrases.entity.RequestErrorStateWrapper
+import com.app.wordsphrases.entity.RequestLoadingStateWrapper
+import com.app.wordsphrases.entity.RequestSuccessStateWrapper
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -20,6 +25,8 @@ class AddWordPresenter @Inject constructor(
     private val translationsUiMapper: TranslationsUiMapper,
     private val setImage: SetImage,
     private val getImage: GetImage,
+    private val getAddWordResult: GetAddWordResult,
+    private val addWord: AddWord,
 ) : MvpPresenter<AddWordView>() {
 
     override fun onFirstViewAttach() {
@@ -32,6 +39,23 @@ class AddWordPresenter @Inject constructor(
 
         getImage()
             .onEach { image -> viewState.setImage(image) }
+            .launchIn(presenterScope)
+
+        getAddWordResult()
+            .onEach { wrapper ->
+                when (wrapper) {
+                    is RequestSuccessStateWrapper -> {
+                        viewState.showMessage("Success")
+                        // TODO add routing
+                    }
+                    is RequestErrorStateWrapper -> {
+                        viewState.showMessage("Error")
+                    }
+                    is RequestLoadingStateWrapper -> {
+                        // TODO nothing
+                    }
+                }
+            }
             .launchIn(presenterScope)
     }
 
@@ -49,9 +73,9 @@ class AddWordPresenter @Inject constructor(
         setImage(image)
     }
 
-    fun onAddWordClicked(text: String?, translation: String?) {
+    fun onAddWordClicked(text: String, translation: String) {
         presenterScope.launch {
-
+            addWord(text = text, translation = translation)
         }
     }
 }

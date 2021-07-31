@@ -4,6 +4,7 @@ import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
+import com.app.wordsphrases.entity.mapData
 import com.app.wordsphrases.translation_api.TranslateText
 import javax.inject.Inject
 
@@ -19,7 +20,10 @@ class OnTranslateTextClick @Inject constructor(
         if (resultWrapper.isSuccess) {
             val translationResult = resultWrapper.requireData()
             val resultSuccessWrapper = RequestSuccessStateWrapper(translationResult.translations)
-            addWordRepository.setTranslations(resultSuccessWrapper)
+            val translations = resultSuccessWrapper.mapData { data ->
+                data.map { translationItem -> translationItem.text }
+            }
+            addWordRepository.setTranslations(translations)
         } else {
             val exception = resultWrapper.requireException()
             val resultErrorWrapper = RequestErrorStateWrapper<List<String>>(exception)

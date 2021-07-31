@@ -2,6 +2,9 @@ package com.app.wordsphrases.add_word_impl.domain
 
 import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.add_word_impl.domain.entity.Word
+import com.app.wordsphrases.entity.RequestErrorStateWrapper
+import com.app.wordsphrases.entity.RequestSuccessStateWrapper
+import com.app.wordsphrases.entity.mapData
 import kotlinx.coroutines.flow.firstOrNull
 import javax.inject.Inject
 
@@ -12,8 +15,8 @@ class AddWord @Inject constructor(
 
     suspend operator fun invoke(text: String, translation: String) {
         val image = getImage().firstOrNull()
-
         val result = addWordRepository.addWord(text, translation, image)
+
         if (result.isSuccess) {
             val addWordResult = result.requireData()
             val word = Word(
@@ -23,9 +26,11 @@ class AddWord @Inject constructor(
                 translation = translation,
                 imageUrl = addWordResult.imageUrl
             )
-
+            addWordRepository.setAddWordResult(RequestSuccessStateWrapper(data = Unit))
         } else {
-
+            addWordRepository.setAddWordResult(RequestErrorStateWrapper(throwable = result.requireException()))
         }
+
+
     }
 }

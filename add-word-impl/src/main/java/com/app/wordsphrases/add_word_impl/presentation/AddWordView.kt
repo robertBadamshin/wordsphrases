@@ -11,4 +11,6 @@ interface AddWordView : MvpView {
     fun showTranslations(viewState: TranslationsViewState)
 
     fun setImage(image: WordImage)
+
+    fun showMessage(message: String)
 }

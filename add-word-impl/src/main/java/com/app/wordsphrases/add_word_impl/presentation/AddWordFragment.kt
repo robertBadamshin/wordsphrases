@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -110,7 +111,7 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         wordImageView = view.findViewById(R.id.image_view_word_image)
 
         fabAddWord = view.findViewById(R.id.fab_add_word)
-        fabAddWord.setOnClickListener {  }
+        fabAddWord.setOnClickListener { presenter.onAddWordClicked("wordToTranslate", "translation") }
     }
 
     override fun showTranslations(viewState: TranslationsViewState) {
@@ -139,6 +140,10 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
             is WordImage.BitmapWordImage -> wordImageView.setImageBitmap(image.bitmap)
         }
         wordImageView.isVisible = true
+    }
+
+    override fun showMessage(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     private fun dispatchTakePicture() {
