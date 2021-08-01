@@ -1,6 +1,8 @@
 package com.app.wordsphrases.add_word_impl.di
 
 import com.app.wordsphrases.add_word_api.AddWordRouter
+import com.app.wordsphrases.add_word_api.SaveWord
+import com.app.wordsphrases.add_word_impl.domain.SaveWordImpl
 import com.app.wordsphrases.add_word_impl.navigation.AddWordRouterImpl
 import dagger.Binds
 import dagger.Module
@@ -9,5 +11,8 @@ import dagger.Module
 interface AddWordApiModule {
 
     @Binds
-    fun bind(impl: AddWordRouterImpl): AddWordRouter
+    fun bindAddWordRouter(impl: AddWordRouterImpl): AddWordRouter
+
+    @Binds
+    fun bindSaveWord(impl: SaveWordImpl): SaveWord
 }

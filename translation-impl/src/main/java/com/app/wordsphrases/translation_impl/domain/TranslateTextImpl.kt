@@ -1,5 +1,6 @@
 package com.app.wordsphrases.translation_impl.domain
 
+import android.util.Log
 import com.app.wordsphrases.entity.ResultWrapper
 import com.app.wordsphrases.translation_api.TranslateText
 import com.app.wordsphrases.translation_api.domain.TranslationResult
@@ -19,6 +20,7 @@ class TranslateTextImpl @Inject constructor(
                 val formattedResult = formatTranslations(result)
                 ResultWrapper.createSuccess(formattedResult)
             } catch (exception: Exception) {
+                Log.e("error", "error", exception)
                 ResultWrapper.createFailure(exception)
             }
         }

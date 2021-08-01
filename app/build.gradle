@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply from: '../commonDaggerModule.gradle'
 apply from: '../commonMoxyModule.gradle'
 apply from: '../commonRetrofitModule.gradle'
+apply from: '../commonRoomModule.gradle'
 
 android {
     compileSdkVersion 30

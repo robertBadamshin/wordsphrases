@@ -6,4 +6,5 @@ apply plugin: 'kotlin-kapt'
 dependencies {
 
     implementation project(":navigation")
+    implementation project(":entity")
 }

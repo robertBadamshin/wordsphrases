@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.add_word_impl.domain.entity.WordImage
+import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.presentation.ui.TranslationsAdapter
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationsViewState
 import com.bumptech.glide.Glide
@@ -134,7 +134,7 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         }
     }
 
-    override fun setImage(image: WordImage) {
+    override fun setImage(image: WordImage?) {
         when (image) {
             is WordImage.FileWordImage -> Glide.with(requireContext()).load(image.uri).into(wordImageView)
             is WordImage.BitmapWordImage -> wordImageView.setImageBitmap(image.bitmap)

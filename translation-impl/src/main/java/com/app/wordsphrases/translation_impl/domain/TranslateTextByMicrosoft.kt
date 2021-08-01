@@ -1,10 +1,11 @@
 package com.app.wordsphrases.translation_impl.domain
 
 import com.app.wordsphrases.translation_api.domain.TranslationResult
+import com.app.wordsphrases.translation_impl.data.entity.TranslationItemRemote
 import com.app.wordsphrases.translation_impl.data.entity.TranslationResultRemote
 import com.app.wordsphrases.translation_impl.data.entity.toDomainEntity
-import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -13,7 +14,7 @@ import java.io.IOException
 import java.util.ArrayList
 import javax.inject.Inject
 
-private const val subscriptionKey = "4746fa19982a4066ad4847687e81e7d8"
+private const val subscriptionKey = "aa7e0d04bfba4658a6ed362782768bc0"
 private const val endpoint = "https://api-eur.cognitive.microsofttranslator.com"
 private const val url = "$endpoint/dictionary/lookup?api-version=3.0&from=en&to=ru"
 
@@ -24,12 +25,12 @@ class TranslateTextByMicrosoft @Inject constructor() {
 
     @Throws(IOException::class)
     operator fun invoke(text: String): TranslationResult {
-        val mediaType = MediaType.parse("application/json")
+        /*val mediaType = MediaType.parse("application/json")
         val body = RequestBody.create(
             mediaType,
             "[{\"Text\": \"$text\"}]"
         )
-        val request: Request = Request.Builder()
+        val request = Request.Builder()
             .url(url)
             .post(body)
             .addHeader("Ocp-Apim-Subscription-Key", subscriptionKey)
@@ -38,7 +39,17 @@ class TranslateTextByMicrosoft @Inject constructor() {
 
         val responseString = response.body()!!.string()
         val type = object : TypeToken<ArrayList<TranslationResultRemote>>() {}.type
-        val resultRemote = gson.fromJson<List<TranslationResultRemote>>(responseString, type)
-        return resultRemote.first().toDomainEntity()
+        val resultRemote = gson.fromJson<List<TranslationResultRemote>>(responseString, type)*/
+
+        val translationResultRemote = TranslationResultRemote(
+            translations = listOf(
+                TranslationItemRemote(
+                    text = "translation",
+                    confidence = 0.5f,
+                )
+            )
+        )
+        //return resultRemote.first().toDomainEntity()
+        return translationResultRemote.toDomainEntity()
     }
 }

@@ -1,12 +1,14 @@
 package com.app.wordsphrases.add_word_impl.presentation
 
-import com.app.wordsphrases.add_word_impl.domain.AddWord
+import com.app.wordsphrases.add_word_api.SaveWord
+import com.app.wordsphrases.add_word_impl.domain.SaveWordImpl
 import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
 import com.app.wordsphrases.add_word_impl.domain.GetImage
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.OnTranslateTextClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
-import com.app.wordsphrases.add_word_impl.domain.entity.WordImage
+import com.app.wordsphrases.add_word_api.WordImage
+import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
@@ -26,7 +28,7 @@ class AddWordPresenter @Inject constructor(
     private val setImage: SetImage,
     private val getImage: GetImage,
     private val getAddWordResult: GetAddWordResult,
-    private val addWord: AddWord,
+    private val onSaveWordClick: OnSaveWordClick,
 ) : MvpPresenter<AddWordView>() {
 
     override fun onFirstViewAttach() {
@@ -75,7 +77,7 @@ class AddWordPresenter @Inject constructor(
 
     fun onAddWordClicked(text: String, translation: String) {
         presenterScope.launch {
-            addWord(text = text, translation = translation)
+            onSaveWordClick(text = text, translation = translation)
         }
     }
 }

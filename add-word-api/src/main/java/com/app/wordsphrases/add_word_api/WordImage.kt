@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.domain.entity
+package com.app.wordsphrases.add_word_api
 
 import android.graphics.Bitmap
 import android.net.Uri
