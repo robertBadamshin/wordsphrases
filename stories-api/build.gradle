@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+
+
+dependencies {
+
+    implementation project(":navigation")
+    implementation project(":entity")
+}

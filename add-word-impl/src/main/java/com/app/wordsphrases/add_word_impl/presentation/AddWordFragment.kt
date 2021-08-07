@@ -111,7 +111,7 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         wordImageView = view.findViewById(R.id.image_view_word_image)
 
         fabAddWord = view.findViewById(R.id.fab_add_word)
-        fabAddWord.setOnClickListener { presenter.onAddWordClicked("wordToTranslate", "translation") }
+        fabAddWord.setOnClickListener { presenter.onAddWordClicked("myWord", "myWorld") }
     }
 
     override fun showTranslations(viewState: TranslationsViewState) {

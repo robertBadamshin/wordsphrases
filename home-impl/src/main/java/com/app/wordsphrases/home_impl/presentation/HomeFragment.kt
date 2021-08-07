@@ -36,4 +36,15 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
     override fun openScreen(screen: NavigationScreen) {
         (requireActivity() as MainRouter).startScreen(screen)
     }
+
+    override fun setHomeScreen(screen: NavigationScreen) {
+        start(screen)
+    }
+
+    private fun start(screen: NavigationScreen) {
+        childFragmentManager.beginTransaction()
+            .add(R.id.fragment_container_home, screen.fragment)
+            .addToBackStack("tempKey")
+            .commit()
+    }
 }

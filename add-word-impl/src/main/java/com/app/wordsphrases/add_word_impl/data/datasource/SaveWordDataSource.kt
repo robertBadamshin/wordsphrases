@@ -3,7 +3,7 @@ package com.app.wordsphrases.add_word_impl.data.datasource
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
-import com.app.wordsphrases.add_word_impl.data.entity.WordDbEntity
+import com.app.wordsphrases.entity.word.WordDbEntity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 
 class SaveWordDataSource @Inject constructor(
-    private val wordDao: WordDao,
+    private val insertWordDao: InsertWordDao,
     // TODO avoid context
     private val context: Context,
 ) {
@@ -40,7 +40,7 @@ class SaveWordDataSource @Inject constructor(
     }
 
     fun saveWord(word: WordDbEntity): Long {
-        wordDao.insertWord(word)
+        insertWordDao.insertWord(word)
         // TODO make params
         return 1
     }

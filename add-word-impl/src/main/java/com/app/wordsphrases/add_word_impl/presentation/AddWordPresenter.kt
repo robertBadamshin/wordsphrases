@@ -78,6 +78,7 @@ class AddWordPresenter @Inject constructor(
     fun onAddWordClicked(text: String, translation: String) {
         presenterScope.launch {
             onSaveWordClick(text = text, translation = translation)
+
         }
     }
 }

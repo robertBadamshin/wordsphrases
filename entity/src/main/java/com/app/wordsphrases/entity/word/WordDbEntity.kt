@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.data.entity
+package com.app.wordsphrases.entity.word
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,3 +12,13 @@ data class WordDbEntity(
     val imageUrl: String?,
     val createdAt: Long,
 )
+
+fun WordDbEntity.toDomainEntity(): Word {
+    return Word(
+        id = id,
+        createdAt = createdAt,
+        word = word,
+        translation = translation,
+        imageUrl = imageUrl,
+    )
+}

@@ -4,7 +4,7 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.data.datasource.SaveWordDataSource
-import com.app.wordsphrases.add_word_impl.data.entity.WordDbEntity
+import com.app.wordsphrases.entity.word.WordDbEntity
 import com.app.wordsphrases.entity.ResultWrapper
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

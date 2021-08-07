@@ -25,7 +25,7 @@ class TranslateTextByMicrosoft @Inject constructor() {
 
     @Throws(IOException::class)
     operator fun invoke(text: String): TranslationResult {
-        /*val mediaType = MediaType.parse("application/json")
+        val mediaType = MediaType.parse("application/json")
         val body = RequestBody.create(
             mediaType,
             "[{\"Text\": \"$text\"}]"
@@ -39,17 +39,8 @@ class TranslateTextByMicrosoft @Inject constructor() {
 
         val responseString = response.body()!!.string()
         val type = object : TypeToken<ArrayList<TranslationResultRemote>>() {}.type
-        val resultRemote = gson.fromJson<List<TranslationResultRemote>>(responseString, type)*/
+        val resultRemote = gson.fromJson<List<TranslationResultRemote>>(responseString, type)
 
-        val translationResultRemote = TranslationResultRemote(
-            translations = listOf(
-                TranslationItemRemote(
-                    text = "translation",
-                    confidence = 0.5f,
-                )
-            )
-        )
-        //return resultRemote.first().toDomainEntity()
-        return translationResultRemote.toDomainEntity()
+        return resultRemote.first().toDomainEntity()
     }
 }

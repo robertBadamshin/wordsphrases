@@ -10,4 +10,7 @@ interface HomeView: MvpView {
 
     @OneExecution
     fun openScreen(screen: NavigationScreen)
+
+    @OneExecution
+    fun setHomeScreen(screen: NavigationScreen)
 }

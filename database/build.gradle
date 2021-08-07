@@ -1,9 +1,0 @@
-apply plugin: 'com.android.library'
-apply from: '../commonBase.gradle'
-apply from: '../commonRoomModule.gradle'
-apply from: '../commonDaggerModule.gradle'
-apply from: '../applyApiModules.gradle'
-
-dependencies {
-
-}

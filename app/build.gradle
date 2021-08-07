@@ -56,4 +56,7 @@ dependencies {
     implementation project(':remote-impl')
     implementation project(':translation-impl')
     implementation project(':translation-api')
+    implementation project(':stories-impl')
+    implementation project(':stories-api')
+    implementation project(':entity')
 }
