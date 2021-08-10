@@ -1,14 +1,14 @@
-package com.app.wordsphrases.add_word_impl.presentation
+package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
-import com.app.wordsphrases.add_word_api.SaveWord
-import com.app.wordsphrases.add_word_impl.domain.SaveWordImpl
+import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
 import com.app.wordsphrases.add_word_impl.domain.GetImage
+import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslation
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
+import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.domain.OnTranslateTextClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
-import com.app.wordsphrases.add_word_api.WordImage
-import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
+import com.app.wordsphrases.add_word_impl.domain.SetSelectedTranslation
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
@@ -29,6 +29,8 @@ class AddWordPresenter @Inject constructor(
     private val getImage: GetImage,
     private val getAddWordResult: GetAddWordResult,
     private val onSaveWordClick: OnSaveWordClick,
+    private val setSelectedTranslation: SetSelectedTranslation,
+    private val getSelectedTranslation: GetSelectedTranslation,
 ) : MvpPresenter<AddWordView>() {
 
     override fun onFirstViewAttach() {
@@ -59,6 +61,10 @@ class AddWordPresenter @Inject constructor(
                 }
             }
             .launchIn(presenterScope)
+
+        getSelectedTranslation()
+            .onEach { translation -> viewState.showSelectedTranslation(translation) }
+            .launchIn(presenterScope)
     }
 
     fun onTranslateClick(textToTranslate: String?) {
@@ -75,10 +81,15 @@ class AddWordPresenter @Inject constructor(
         setImage(image)
     }
 
-    fun onAddWordClicked(text: String, translation: String) {
+    fun onAddWordClicked(text: String) {
         presenterScope.launch {
-            onSaveWordClick(text = text, translation = translation)
-
+            // TODO save text in domain?
+            onSaveWordClick(text = text)
+            viewState.closeScreen()
         }
+    }
+
+    fun onTranslationSelected(translation: String) {
+        setSelectedTranslation(translation)
     }
 }

@@ -1,6 +1,7 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_impl.presentation.AddWordPresenter
+import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.AddWordPresenter
+import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core.di.FeatureScope
@@ -27,4 +28,6 @@ interface AddWordComponent {
     }
 
     val addWordPresenter: AddWordPresenter
+
+    val enterWordPresenter: EnterWordPresenter
 }

@@ -13,6 +13,7 @@ import javax.inject.Inject
 class WordRepository @Inject constructor() {
 
     private val translationsFlow = MutableStateFlow<RequestStateWrapper<List<String>>?>(null)
+    private val selectedTranslationFlow = MutableStateFlow<String?>(null)
     private val wordImageFlow = MutableStateFlow<WordImage?>(null)
     private val creationResultFlow = MutableSharedFlow<RequestStateWrapper<Unit>>()
 
@@ -42,5 +43,21 @@ class WordRepository @Inject constructor() {
 
     fun getCreationResult(): Flow<RequestStateWrapper<Unit>> {
         return creationResultFlow
+    }
+
+    fun setSelectedTranslation(translation: String) {
+        selectedTranslationFlow.value = translation
+    }
+
+    fun clearSelectedTranslation() {
+        selectedTranslationFlow.value = null
+    }
+
+    fun getSelectedTranslation(): Flow<String?> {
+        return selectedTranslationFlow
+    }
+
+    fun requireSelectedTranslation(): String {
+        return selectedTranslationFlow.value!!
     }
 }

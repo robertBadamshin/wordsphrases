@@ -9,13 +9,16 @@ import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegate
 
 object TranslationWordDelegateAdapter {
 
-    operator fun invoke(): AdapterDelegate<List<AnyDiffItem>> {
+    operator fun invoke(
+        onItemClick: (String) -> Unit
+    ): AdapterDelegate<List<AnyDiffItem>> {
         return adapterDelegate<TranslationUiModel, AnyDiffItem>(R.layout.item_translation_text) {
 
             val translationTextView: TextView = findViewById(R.id.text_view_translation_text)
 
             bind {
                 translationTextView.text = item.text
+                translationTextView.setOnClickListener { onItemClick(item.text) }
             }
         }
     }

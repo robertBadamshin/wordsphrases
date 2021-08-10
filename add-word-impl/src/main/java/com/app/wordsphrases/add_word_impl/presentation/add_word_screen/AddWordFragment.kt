@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.presentation
+package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
@@ -18,6 +19,7 @@ import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.presentation.ui.TranslationsAdapter
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationsViewState
+import com.app.wordsphrases.navigation.MainRouter
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,8 +39,13 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
     private lateinit var bottomAppBar: BottomAppBar
     private lateinit var wordImageView: ImageView
     private lateinit var fabAddWord: FloatingActionButton
+    private lateinit var selectedTranslationTextView: TextView
 
-    private val translationsAdapter by lazy { TranslationsAdapter() }
+    private val translationsAdapter by lazy {
+        TranslationsAdapter(
+            onItemClick = { translation -> presenter.onTranslationSelected(translation) }
+        )
+    }
 
     private val takePhoto = registerForActivityResult(
         ActivityResultContracts.TakePicturePreview()
@@ -111,16 +118,24 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         wordImageView = view.findViewById(R.id.image_view_word_image)
 
         fabAddWord = view.findViewById(R.id.fab_add_word)
-        fabAddWord.setOnClickListener { presenter.onAddWordClicked("myWord", "myWorld") }
+        fabAddWord.setOnClickListener {
+            val word = translationTextInputLayout.editText!!.text.toString()
+            presenter.onAddWordClicked(word)
+        }
+
+        selectedTranslationTextView = view.findViewById(R.id.text_view_selected_translation)
     }
 
     override fun showTranslations(viewState: TranslationsViewState) {
+        selectedTranslationTextView.isVisible = false
+
         when (viewState) {
             is TranslationsViewState.Success -> {
                 translationProgress.isVisible = false
                 translationsAdapter.items = viewState.translations
             }
             is TranslationsViewState.Loading -> {
+                translationsAdapter.items = null
                 translationProgress.isVisible = true
             }
             is TranslationsViewState.Error -> {
@@ -134,12 +149,24 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
         }
     }
 
+    override fun showSelectedTranslation(translation: String) {
+        selectedTranslationTextView.text = translation
+        selectedTranslationTextView.isVisible = true
+
+        translationRecyclerView.isVisible = false
+        translationsAdapter.items = null
+    }
+
     override fun setImage(image: WordImage?) {
         when (image) {
             is WordImage.FileWordImage -> Glide.with(requireContext()).load(image.uri).into(wordImageView)
             is WordImage.BitmapWordImage -> wordImageView.setImageBitmap(image.bitmap)
         }
         wordImageView.isVisible = true
+    }
+
+    override fun closeScreen() {
+        (requireActivity() as MainRouter).closeScreen(this)
     }
 
     override fun showMessage(message: String) {
