@@ -21,6 +21,7 @@ import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.navigation.MainRouter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -73,8 +74,11 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
         (requireActivity() as MainRouter).closeScreen(this)
     }
 
-    override fun showMessage(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    override fun showMessage(messageRes: Int) {
+        Snackbar
+            .make(requireView(), messageRes, Snackbar.LENGTH_SHORT)
+            .setAnchorView(translateWordFab)
+            .show()
     }
 
     override fun showTranslationProgress() {
@@ -87,10 +91,24 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     override fun setTranslateButtonEnabled() {
         translateWordFab.imageTintList = ColorStateList.valueOf(whiteColor)
+        translateWordFab.isClickable = true
     }
 
     override fun setTranslateButtonDisabled() {
         translateWordFab.imageTintList = ColorStateList.valueOf(disabledColor)
+        translateWordFab.isClickable = false
+    }
+
+    override fun openTranslationScreen() {
+        TODO("Not yet implemented")
+    }
+
+    override fun showTranslateButton() {
+        translateWordFab.isVisible = true
+    }
+
+    override fun hideTranslateButton() {
+        translateWordFab.isVisible = false
     }
 
     private fun configureInsets(view: View) {
