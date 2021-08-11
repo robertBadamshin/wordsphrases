@@ -47,4 +47,14 @@ class EnterWordPresenter @Inject constructor(
             onTranslateTextClick(textToTranslate)
         }
     }
+
+    fun onWordChanged(text: String) {
+        viewState.hideTranslationProgress()
+
+        if (text.isEmpty()) {
+            viewState.setTranslateButtonDisabled()
+        } else {
+            viewState.setTranslateButtonEnabled()
+        }
+    }
 }

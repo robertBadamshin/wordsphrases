@@ -28,6 +28,8 @@ class MainActivity : MvpAppCompatActivity(), MainView, MainRouter {
 
         mainContainer = findViewById(R.id.main_container)
 
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowInsetsControllerCompat(window, mainContainer)
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
