@@ -16,7 +16,7 @@ class WordRepository @Inject constructor() {
     private val selectedTranslationFlow = MutableStateFlow<String?>(null)
     private val wordImageFlow = MutableStateFlow<WordImage?>(null)
     private val creationResultFlow = MutableSharedFlow<RequestStateWrapper<Unit>>()
-    private val wordTextFlow = MutableStateFlow<String?>(null)
+    private val wordTextFlow = MutableSharedFlow<String?>(replay = 1)
 
     fun getTranslations(): Flow<RequestStateWrapper<List<String>>?> {
         return translationsFlow
@@ -63,7 +63,7 @@ class WordRepository @Inject constructor() {
     }
 
     fun setWordText(text: String?) {
-        wordTextFlow.value = text
+        wordTextFlow.tryEmit(text)
     }
 
     fun getWordText(): Flow<String?> {

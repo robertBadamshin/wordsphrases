@@ -1,5 +1,6 @@
 package com.app.wordsphrases.stories_impl.presentation
 
+import com.app.wordsphrases.add_word_api.EnterWordStarter
 import com.app.wordsphrases.stories_impl.domain.use_case.GetCurrentWord
 import com.app.wordsphrases.stories_impl.domain.use_case.MoveToNextWord
 import com.app.wordsphrases.stories_impl.domain.use_case.SubscribeForWords
@@ -10,6 +11,7 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class StoriesPresenter @Inject constructor(
@@ -17,6 +19,8 @@ class StoriesPresenter @Inject constructor(
     private val wordUiMapper: WordUiMapper,
     private val subscribeForWords: SubscribeForWords,
     private val moveToNextWord: MoveToNextWord,
+    private val enterWordStarter: EnterWordStarter,
+    private val router: Router,
 ) : MvpPresenter<StoriesView>() {
 
     override fun onFirstViewAttach() {
@@ -34,5 +38,10 @@ class StoriesPresenter @Inject constructor(
 
     fun onNextWordClick() {
         moveToNextWord()
+    }
+
+    fun openEnterWord() {
+        val screen = enterWordStarter.getScreen()
+        router.navigateTo(screen)
     }
 }

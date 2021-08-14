@@ -10,7 +10,9 @@
       <map>
         <entry key="add-word-impl/src/main/res/layout/fragment_enter_word.xml" value="0.16388044579533942" />
         <entry key="add-word-impl/src/main/res/layout/fragment_translation.xml" value="0.12092391304347826" />
+        <entry key="home-impl/src/main/res/drawable/ic_plus.xml" value="0.20625" />
         <entry key="home-impl/src/main/res/layout/fragment_home.xml" value="0.12092391304347826" />
+        <entry key="stories-impl/src/main/res/layout/fragment_stories.xml" value="0.16388044579533942" />
       </map>
     </option>
   </component>

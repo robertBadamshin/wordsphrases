@@ -25,8 +25,6 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
 
     private val homePresenter by moxyPresenter { HomeComponent.get().homePresenter }
 
-    private lateinit var addWordButton: FloatingActionButton
-
     private val nestedPagesRouter: Router by lazy { appComponent.router }
     private val navigatorHolder: NavigatorHolder by lazy { appComponent.navigatorHolder }
     private val navigator: Navigator by lazy {
@@ -73,13 +71,6 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        addWordButton = view.findViewById(R.id.floating_button_add_word)
-        addWordButton.setOnClickListener { homePresenter.openEnterWord() }
     }
 
     override fun onResume() {

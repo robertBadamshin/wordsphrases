@@ -10,6 +10,7 @@ import com.app.wordsphrases.navigation.NavigationScreen
 import com.app.wordsphrases.stories_impl.R
 import com.app.wordsphrases.stories_impl.di.StoriesComponent
 import com.app.wordsphrases.stories_impl.ui.model.WordUiModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -20,6 +21,7 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     private lateinit var wordTextView: TextView
     private lateinit var translationTextView: TextView
     private lateinit var containerView: View
+    private lateinit var addWordButton: FloatingActionButton
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +37,9 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
         translationTextView = view.findViewById(R.id.text_view_translation_text_stories)
         containerView = view.findViewById(R.id.container_stories)
         containerView.setOnClickListener { storiesPresenter.onNextWordClick() }
+
+        addWordButton = view.findViewById(R.id.floating_button_add_word)
+        addWordButton.setOnClickListener { storiesPresenter.openEnterWord() }
     }
 
     override fun openScreen(screen: NavigationScreen) {
