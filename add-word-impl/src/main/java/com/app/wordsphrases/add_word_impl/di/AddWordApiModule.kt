@@ -1,9 +1,9 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_api.AddWordRouter
+import com.app.wordsphrases.add_word_api.EnterWordRouter
 import com.app.wordsphrases.add_word_api.SaveWord
 import com.app.wordsphrases.add_word_impl.domain.SaveWordImpl
-import com.app.wordsphrases.add_word_impl.navigation.AddWordRouterImpl
+import com.app.wordsphrases.add_word_impl.navigation.EnterWordRouterImpl
 import dagger.Binds
 import dagger.Module
 
@@ -11,8 +11,8 @@ import dagger.Module
 interface AddWordApiModule {
 
     @Binds
-    fun bindAddWordRouter(impl: AddWordRouterImpl): AddWordRouter
+    fun enterWordRouter(impl: EnterWordRouterImpl): EnterWordRouter
 
     @Binds
-    fun bindSaveWord(impl: SaveWordImpl): SaveWord
+    fun saveWord(impl: SaveWordImpl): SaveWord
 }

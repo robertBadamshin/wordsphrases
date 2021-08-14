@@ -12,4 +12,6 @@ dependencies {
 
     implementation project(":core")
     implementation project(":navigation")
+
+    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
 }

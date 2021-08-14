@@ -7,7 +7,6 @@ import dagger.Component
 
 @Component(
     modules = [
-        HomeApiModule::class,
     ],
     dependencies = [
         AppComponent::class,

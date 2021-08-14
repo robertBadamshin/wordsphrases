@@ -5,6 +5,7 @@ apply from: '../commonMoxyModule.gradle'
 apply from: '../commonRetrofitModule.gradle'
 apply from: '../commonRoomModule.gradle'
 apply from: '../commonUiModule.gradle'
+apply from: '../commonBase.gradle'
 
 android {
     compileSdkVersion 30

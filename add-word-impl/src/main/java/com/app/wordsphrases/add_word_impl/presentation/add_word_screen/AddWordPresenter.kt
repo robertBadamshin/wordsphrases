@@ -6,7 +6,7 @@ import com.app.wordsphrases.add_word_impl.domain.GetImage
 import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslation
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
-import com.app.wordsphrases.add_word_impl.domain.OnTranslateTextClick
+import com.app.wordsphrases.add_word_impl.domain.SetWordText
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.SetSelectedTranslation
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 class AddWordPresenter @Inject constructor(
     private val getTranslations: GetTranslations,
-    private val onTranslateTextClick: OnTranslateTextClick,
+    private val setWordText: SetWordText,
     private val translationsUiMapper: TranslationsUiMapper,
     private val setImage: SetImage,
     private val getImage: GetImage,
@@ -73,7 +73,7 @@ class AddWordPresenter @Inject constructor(
                 return@launch
             }
 
-            onTranslateTextClick(textToTranslate)
+            setWordText(textToTranslate)
         }
     }
 

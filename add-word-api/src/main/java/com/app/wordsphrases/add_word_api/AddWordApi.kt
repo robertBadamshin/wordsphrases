@@ -2,7 +2,7 @@ package com.app.wordsphrases.add_word_api
 
 interface AddWordApi {
 
-    val addWordRouter: AddWordRouter
+    val enterWordRouter: EnterWordRouter
 
     val saveWord: SaveWord
 }

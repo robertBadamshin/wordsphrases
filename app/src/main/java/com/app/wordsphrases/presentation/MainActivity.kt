@@ -37,17 +37,16 @@ class MainActivity : MvpAppCompatActivity(), MainView, MainRouter {
 
     override fun start(screen: NavigationScreen) {
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container, screen.fragment)
-            .addToBackStack("tempKey")
+            .replace(R.id.fragment_container, screen.fragment)
             .commit()
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 
     override fun startScreen(screen: NavigationScreen) {
         start(screen)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 
     override fun closeScreen(fragment: Fragment) {
