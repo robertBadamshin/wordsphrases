@@ -4,5 +4,7 @@ interface AddWordApi {
 
     val enterWordStarter: EnterWordStarter
 
+    val selectTranslationStarter: SelectTranslationStarter
+
     val saveWord: SaveWord
 }

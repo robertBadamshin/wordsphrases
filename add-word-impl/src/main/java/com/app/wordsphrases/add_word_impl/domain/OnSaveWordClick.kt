@@ -10,13 +10,16 @@ class OnSaveWordClick @Inject constructor(
     private val wordRepository: WordRepository,
     private val saveWord: SaveWord,
     private val getCurrentImage: GetCurrentImage,
-    private val requireSelectedTranslation: RequireSelectedTranslation,
+    private val getCurrentWordText: GetCurrentWordText,
+    private val getSelectedTranslations: GetSelectedTranslations,
 ) {
 
-    suspend operator fun invoke(text: String) {
+    suspend operator fun invoke() {
         val image = getCurrentImage()
-        val translation = requireSelectedTranslation()
-        val result = saveWord(text, translation, image)
+        val wordText = getCurrentWordText()
+        val selectedTranslations = getSelectedTranslations()
+
+        val result = saveWord(wordText, "translation", image)
 
         if (result.isSuccess) {
             wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))

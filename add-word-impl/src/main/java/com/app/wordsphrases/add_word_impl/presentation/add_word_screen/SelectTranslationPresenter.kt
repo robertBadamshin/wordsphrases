@@ -2,47 +2,53 @@ package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
+import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetImage
-import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslation
+import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
+import com.app.wordsphrases.add_word_impl.domain.GetSuccessfulTranslations
 import com.app.wordsphrases.add_word_impl.domain.SetWordText
 import com.app.wordsphrases.add_word_impl.domain.SetImage
-import com.app.wordsphrases.add_word_impl.domain.SetSelectedTranslation
+import com.app.wordsphrases.add_word_impl.domain.ToggleTranslationSelection
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
+import com.app.wordsphrases.translation_api.domain.Translation
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
-class AddWordPresenter @Inject constructor(
-    private val getTranslations: GetTranslations,
-    private val setWordText: SetWordText,
+class SelectTranslationPresenter @Inject constructor(
+    private val getCurrentWordText: GetCurrentWordText,
     private val translationsUiMapper: TranslationsUiMapper,
     private val setImage: SetImage,
+    // TODO cut out image
     private val getImage: GetImage,
     private val getAddWordResult: GetAddWordResult,
     private val onSaveWordClick: OnSaveWordClick,
-    private val setSelectedTranslation: SetSelectedTranslation,
-    private val getSelectedTranslation: GetSelectedTranslation,
+    private val router: Router,
+    private val getSuccessfulTranslations: GetSuccessfulTranslations,
+    private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
+    private val toggleTranslationSelection: ToggleTranslationSelection,
 ) : MvpPresenter<AddWordView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getTranslations()
-            .map { wrapper -> translationsUiMapper.map(wrapper) }
-            .onEach { state -> viewState.showTranslations(state) }
-            .launchIn(presenterScope)
-
-        getImage()
-            .onEach { image -> viewState.setImage(image) }
+        combine(
+            getSuccessfulTranslations(),
+            getSelectedTranslationsIds(),
+        ) { translations, ids ->
+            translationsUiMapper.map(translations = translations, selectedIds = ids)
+        }
+            .onEach { uiModels -> viewState.showTranslations(uiModels) }
             .launchIn(presenterScope)
 
         getAddWordResult()
@@ -62,18 +68,9 @@ class AddWordPresenter @Inject constructor(
             }
             .launchIn(presenterScope)
 
-        getSelectedTranslation()
-            .onEach { translation -> viewState.showSelectedTranslation(translation) }
-            .launchIn(presenterScope)
-    }
-
-    fun onTranslateClick(textToTranslate: String?) {
         presenterScope.launch {
-            if (textToTranslate.isNullOrEmpty()) {
-                return@launch
-            }
-
-            setWordText(textToTranslate)
+            val wordText = getCurrentWordText()
+            viewState.setWordText(wordText)
         }
     }
 
@@ -81,15 +78,14 @@ class AddWordPresenter @Inject constructor(
         setImage(image)
     }
 
-    fun onAddWordClicked(text: String) {
+    fun onAddWordClicked() {
         presenterScope.launch {
-            // TODO save text in domain?
-            onSaveWordClick(text = text)
-            viewState.closeScreen()
+            onSaveWordClick()
+            router.backTo(null)
         }
     }
 
-    fun onTranslationSelected(translation: String) {
-        setSelectedTranslation(translation)
+    fun onToggleTranslationSelection(id: Int) {
+        toggleTranslationSelection(id = id)
     }
 }

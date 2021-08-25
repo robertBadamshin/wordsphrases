@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.AddWordPresenter
+import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.SelectTranslationPresenter
 import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
@@ -20,14 +20,25 @@ interface AddWordComponent {
 
     companion object {
 
+        private var component: AddWordComponent? = null
+
         fun get(): AddWordComponent {
-            return DaggerAddWordComponent.builder()
-                .appComponent(appComponent)
-                .build()
+            return synchronized(this) {
+                val component = component
+                if (component != null) {
+                    component
+                } else {
+                    val newComponent = DaggerAddWordComponent.builder()
+                        .appComponent(appComponent)
+                        .build()
+                    Companion.component = newComponent
+                    newComponent
+                }
+            }
         }
     }
 
-    val addWordPresenter: AddWordPresenter
+    val selectTranslationPresenter: SelectTranslationPresenter
 
     val enterWordPresenter: EnterWordPresenter
 }

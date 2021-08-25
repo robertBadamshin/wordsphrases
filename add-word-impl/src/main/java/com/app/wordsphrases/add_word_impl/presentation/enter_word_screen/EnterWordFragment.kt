@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,7 +18,6 @@ import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.navigation.MainRouter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
@@ -70,8 +68,14 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
         configureInsets(view)
     }
 
-    override fun closeScreen() {
-        (requireActivity() as MainRouter).closeScreen(this)
+    override fun onResume() {
+        super.onResume()
+        presenter.showKeyboard()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.hideKeyboard()
     }
 
     override fun showMessage(messageRes: Int) {
@@ -99,16 +103,22 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
         translateWordFab.isClickable = false
     }
 
-    override fun openTranslationScreen() {
-        TODO("Not yet implemented")
-    }
-
     override fun showTranslateButton() {
         translateWordFab.isVisible = true
     }
 
     override fun hideTranslateButton() {
         translateWordFab.isVisible = false
+    }
+
+    override fun showKeyboard() {
+        ViewCompat.getWindowInsetsController(textToTranslateEditText)?.show(WindowInsetsCompat.Type.ime())
+        textToTranslateEditText.requestFocus()
+    }
+
+    override fun hideKeyboard() {
+        ViewCompat.getWindowInsetsController(textToTranslateEditText)?.hide(WindowInsetsCompat.Type.ime())
+        textToTranslateEditText.clearFocus()
     }
 
     private fun configureInsets(view: View) {

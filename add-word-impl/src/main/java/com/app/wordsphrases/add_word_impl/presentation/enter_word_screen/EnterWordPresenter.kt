@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
+import com.app.wordsphrases.add_word_api.SelectTranslationStarter
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.SetWordText
@@ -8,17 +9,21 @@ import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyExce
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
+import com.app.wordsphrases.translation_api.domain.Translation
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class EnterWordPresenter @Inject constructor(
     private val setWordText: SetWordText,
     private val getTranslations: GetTranslations,
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
+    private val selectTranslationStarter: SelectTranslationStarter,
+    private val router: Router,
 ) : MvpPresenter<EnterWordView>() {
 
     override fun onFirstViewAttach() {
@@ -26,6 +31,8 @@ class EnterWordPresenter @Inject constructor(
 
         subscribeForTranslations()
         subscribeForTranslation()
+
+        viewState.showKeyboard()
     }
 
     private fun subscribeForTranslations() {
@@ -36,13 +43,14 @@ class EnterWordPresenter @Inject constructor(
                         viewState.hideTranslationProgress()
                         viewState.showTranslateButton()
 
-                        viewState.openTranslationScreen()
+                        val screen = selectTranslationStarter.getScreen()
+                        router.navigateTo(screen)
                     }
                     is RequestErrorStateWrapper -> {
                         viewState.hideTranslationProgress()
                         viewState.showTranslateButton()
 
-                        showErrorMessage(wrapper)
+                        showErrorMessage(wrapper.throwable)
                     }
                     is RequestLoadingStateWrapper -> {
                         viewState.showTranslationProgress()
@@ -59,8 +67,8 @@ class EnterWordPresenter @Inject constructor(
         }
     }
 
-    private fun showErrorMessage(wrapper: RequestErrorStateWrapper<List<String>>) {
-        val messageRes = when (wrapper.throwable) {
+    private fun showErrorMessage(throwable: Throwable) {
+        val messageRes = when (throwable) {
             is TranslationsEmptyException -> R.string.are_not_able_to_translate
             else -> R.string.error_happened
         }
@@ -81,5 +89,13 @@ class EnterWordPresenter @Inject constructor(
         } else {
             viewState.setTranslateButtonEnabled()
         }
+    }
+
+    fun hideKeyboard() {
+        viewState.hideKeyboard()
+    }
+
+    fun showKeyboard() {
+        viewState.showKeyboard()
     }
 }

@@ -9,7 +9,7 @@ data class TranslationResultRemote(
 )
 
 fun TranslationResultRemote.toDomainEntity(): TranslationResult {
-    val translations = translations.map { translation -> translation.toDomainEntity() }
+    val translations = translations.mapIndexed { index, translation -> translation.toDomainEntity(id = index) }
     return TranslationResult(
         translations = translations,
     )

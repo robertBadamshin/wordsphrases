@@ -29,6 +29,8 @@
             android:hint="@string/enter_word_or_phrase"
             android:maxLength="40"
             android:maxLines="1"
+            android:inputType="text"
+            android:background="@null"
             android:textColor="@color/black_87"
             android:textColorHint="@color/black_38"
             android:textSize="24dp"

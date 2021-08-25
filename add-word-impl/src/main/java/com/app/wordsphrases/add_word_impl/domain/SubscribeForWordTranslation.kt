@@ -1,6 +1,7 @@
 package com.app.wordsphrases.add_word_impl.domain
 
 import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.translation_api.domain.Translation
 import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyException
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
@@ -41,17 +42,14 @@ class SubscribeForWordTranslation @Inject constructor(
             }
     }
 
-    private suspend fun handleSuccessResponse(
+    private fun handleSuccessResponse(
         resultWrapper: ResultWrapper<TranslationResult>,
-    ): RequestStateWrapper<List<String>> {
+    ): RequestStateWrapper<List<Translation>> {
         val translationResult = resultWrapper.requireData()
         return if (translationResult.translations.isEmpty()) {
             RequestErrorStateWrapper(TranslationsEmptyException())
         } else {
-            val resultSuccessWrapper = RequestSuccessStateWrapper(translationResult.translations)
-            resultSuccessWrapper.mapData { data ->
-                data.map { translationItem -> translationItem.text }
-            }
+            return RequestSuccessStateWrapper(translationResult.translations)
         }
     }
 }

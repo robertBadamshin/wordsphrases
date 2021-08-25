@@ -1,13 +1,14 @@
 package com.app.wordsphrases.add_word_impl.domain
 
 import com.app.wordsphrases.add_word_impl.data.WordRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class SetSelectedTranslation @Inject constructor(
+class GetSelectedTranslationsIds @Inject constructor(
     private val wordRepository: WordRepository,
 ) {
 
-    operator fun invoke(translation: String) {
-        wordRepository.setSelectedTranslation(translation)
+    operator fun invoke(): Flow<Set<Int>> {
+        return wordRepository.getSelectedTranslationsIds()
     }
 }

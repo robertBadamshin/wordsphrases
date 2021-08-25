@@ -9,13 +9,15 @@ import com.app.wordsphrases.entity.ResultWrapper
 import com.app.wordsphrases.entity.mapData
 import com.app.wordsphrases.translation_api.TranslateText
 import com.app.wordsphrases.translation_api.domain.TranslationResult
+import kotlinx.coroutines.flow.first
+import java.lang.IllegalStateException
 import javax.inject.Inject
 
-class SetWordText @Inject constructor(
+class GetCurrentWordText @Inject constructor(
     private val wordRepository: WordRepository,
 ) {
 
-    operator suspend fun invoke(text: String) {
-        wordRepository.setWordText(text)
+    operator fun invoke(): String {
+        return wordRepository.getCurrentWordText()
     }
 }
