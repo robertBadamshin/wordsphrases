@@ -13,7 +13,7 @@ import dagger.Component
         AppComponent::class,
     ],
     modules = [
-        AddWordModule::class,
+        WordsDatabaseModule::class,
     ]
 )
 interface AddWordComponent {

@@ -6,5 +6,5 @@ interface AddWordApi {
 
     val selectTranslationStarter: SelectTranslationStarter
 
-    val saveWord: SaveWord
+    val getWords: GetWords
 }

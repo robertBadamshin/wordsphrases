@@ -7,9 +7,11 @@ import javax.inject.Inject
 class WordUiMapper @Inject constructor() {
 
     fun map(word: Word): WordUiModel {
+        val translationText = word.translations.joinToString(separator = ", ")
+
         return WordUiModel(
             word = word.word,
-            translation = word.translation,
+            translation = translationText,
         )
     }
 }

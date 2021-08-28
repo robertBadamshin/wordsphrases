@@ -17,12 +17,12 @@ class SaveWordRepository @Inject constructor(
     private val context: Context,
 ) {
 
-    suspend fun addWord(text: String, translation: String, image: WordImage?): ResultWrapper<Unit> {
+    suspend fun addWord(text: String, translations: List<String>, image: WordImage?): ResultWrapper<Unit> {
         val imageString = sameImageToFileSystem(image)
 
         val wordDbEntity = WordDbEntity(
             word = text,
-            translation = translation,
+            translations = translations,
             imageUrl = imageString,
             createdAt = System.currentTimeMillis(),
         )

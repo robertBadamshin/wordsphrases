@@ -1,6 +1,5 @@
 package com.app.wordsphrases.add_word_impl.domain
 
-import com.app.wordsphrases.add_word_api.SaveWord
 import com.app.wordsphrases.add_word_impl.data.WordRepository
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
@@ -18,8 +17,9 @@ class OnSaveWordClick @Inject constructor(
         val image = getCurrentImage()
         val wordText = getCurrentWordText()
         val selectedTranslations = getSelectedTranslations()
+        val selectedTranslationsTexts = selectedTranslations.map { translation -> translation.text }
 
-        val result = saveWord(wordText, "translation", image)
+        val result = saveWord(wordText, selectedTranslationsTexts, image)
 
         if (result.isSuccess) {
             wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))

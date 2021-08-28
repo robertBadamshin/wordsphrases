@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.data.datasource
+package com.app.wordsphrases.add_word_impl.data.datasource
 
 import androidx.room.Dao
 import androidx.room.Query

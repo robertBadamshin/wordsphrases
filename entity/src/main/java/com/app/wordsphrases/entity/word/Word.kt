@@ -4,6 +4,6 @@ data class Word(
     val id: Int,
     val createdAt: Long,
     val word: String,
-    val translation: String,
+    val translations: List<String>,
     val imageUrl: String?,
 )

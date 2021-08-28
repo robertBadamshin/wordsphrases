@@ -15,7 +15,7 @@ class SetWordText @Inject constructor(
     private val wordRepository: WordRepository,
 ) {
 
-    operator suspend fun invoke(text: String) {
+    operator fun invoke(text: String) {
         wordRepository.setWordText(text)
     }
 }
