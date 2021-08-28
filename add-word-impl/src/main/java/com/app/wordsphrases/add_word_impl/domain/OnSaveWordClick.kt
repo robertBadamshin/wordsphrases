@@ -20,7 +20,6 @@ class OnSaveWordClick @Inject constructor(
         val selectedTranslationsTexts = selectedTranslations.map { translation -> translation.text }
 
         val result = saveWord(wordText, selectedTranslationsTexts, image)
-
         if (result.isSuccess) {
             wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))
         } else {

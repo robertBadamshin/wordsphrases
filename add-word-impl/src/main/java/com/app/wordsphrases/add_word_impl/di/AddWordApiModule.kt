@@ -10,11 +10,7 @@ import com.app.wordsphrases.core.di.AppScope
 import dagger.Binds
 import dagger.Module
 
-@Module(
-    includes = [
-        WordsDatabaseModule::class,
-    ]
-)
+@Module
 interface AddWordApiModule {
 
     @Binds

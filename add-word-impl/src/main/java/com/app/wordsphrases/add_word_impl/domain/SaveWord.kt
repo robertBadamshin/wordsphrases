@@ -9,7 +9,7 @@ class SaveWord @Inject constructor(
     private val saveWordRepository: SaveWordRepository,
 ) {
 
-    suspend operator fun invoke(text: String, translations: List<String>, image: WordImage?): ResultWrapper<Unit> {
+    suspend operator fun invoke(text: String, translations: List<String>, image: WordImage?): ResultWrapper<Long> {
         return saveWordRepository.addWord(text, translations, image)
     }
 }

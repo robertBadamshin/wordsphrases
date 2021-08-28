@@ -1,6 +1,7 @@
 package com.app.wordsphrases.stories_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
+import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import com.app.wordsphrases.stories_impl.domain.use_case.GetCurrentWord
 import com.app.wordsphrases.stories_impl.domain.use_case.MoveToNextWord
 import com.app.wordsphrases.stories_impl.domain.use_case.SubscribeForWords
@@ -20,7 +21,7 @@ class StoriesPresenter @Inject constructor(
     private val subscribeForWords: SubscribeForWords,
     private val moveToNextWord: MoveToNextWord,
     private val enterWordStarter: EnterWordStarter,
-    private val router: Router,
+    @StoriesNavigationQualifier private val router: Router,
 ) : MvpPresenter<StoriesView>() {
 
     override fun onFirstViewAttach() {
@@ -43,5 +44,13 @@ class StoriesPresenter @Inject constructor(
     fun openEnterWord() {
         val screen = enterWordStarter.getScreen()
         router.navigateTo(screen)
+    }
+
+    fun onBackStackChanged(entriesCount: Int) {
+        val hasEntries = entriesCount > 0
+        viewState.updateBackPressedNestedNavigationEnabled(hasEntries)
+
+        val visible = !hasEntries
+        viewState.updateAddWordButtonVisible(visible)
     }
 }

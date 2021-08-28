@@ -40,8 +40,6 @@ class SaveWordDataSource @Inject constructor(
     }
 
     fun saveWord(word: WordDbEntity): Long {
-        insertWordDao.insertWord(word)
-        // TODO make params
-        return 1
+        return insertWordDao.insertWord(word)
     }
 }

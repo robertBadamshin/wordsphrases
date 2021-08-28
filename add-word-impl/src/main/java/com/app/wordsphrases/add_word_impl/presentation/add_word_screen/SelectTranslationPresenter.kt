@@ -1,21 +1,20 @@
 package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
 import com.app.wordsphrases.add_word_api.WordImage
+import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetImage
 import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
-import com.app.wordsphrases.add_word_impl.domain.GetTranslations
-import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.domain.GetSuccessfulTranslations
-import com.app.wordsphrases.add_word_impl.domain.SetWordText
+import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.ToggleTranslationSelection
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
-import com.app.wordsphrases.translation_api.domain.Translation
+import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,7 +32,7 @@ class SelectTranslationPresenter @Inject constructor(
     private val getImage: GetImage,
     private val getAddWordResult: GetAddWordResult,
     private val onSaveWordClick: OnSaveWordClick,
-    private val router: Router,
+    @StoriesNavigationQualifier private val router: Router,
     private val getSuccessfulTranslations: GetSuccessfulTranslations,
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
@@ -81,7 +80,8 @@ class SelectTranslationPresenter @Inject constructor(
     fun onAddWordClicked() {
         presenterScope.launch {
             onSaveWordClick()
-            router.backTo(null)
+            AddWordComponent.clear()
+            router.newRootChain()
         }
     }
 

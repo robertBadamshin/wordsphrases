@@ -6,5 +6,4 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 @AddToEndSingle
 interface HomeView: MvpView {
 
-    fun updateBackPressedNestedNavigationEnabled(enabled: Boolean)
 }

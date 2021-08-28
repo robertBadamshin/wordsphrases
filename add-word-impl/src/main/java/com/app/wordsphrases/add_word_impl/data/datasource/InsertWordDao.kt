@@ -9,7 +9,7 @@ import com.app.wordsphrases.entity.word.WordDbEntity
 interface InsertWordDao {
 
     @Insert
-    fun insertWord(word: WordDbEntity)
+    fun insertWord(word: WordDbEntity): Long
 
     @Query("Select * from word")
     fun getWords(): List<WordDbEntity>

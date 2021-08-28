@@ -9,7 +9,7 @@ import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyExce
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
-import com.app.wordsphrases.translation_api.domain.Translation
+import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class EnterWordPresenter @Inject constructor(
     private val getTranslations: GetTranslations,
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
-    private val router: Router,
+    @StoriesNavigationQualifier private val router: Router,
 ) : MvpPresenter<EnterWordView>() {
 
     override fun onFirstViewAttach() {

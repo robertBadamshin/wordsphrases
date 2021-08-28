@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.di
 
+import com.app.wordsphrases.add_word_impl.di.database.WordDatabaseComponent
 import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.SelectTranslationPresenter
 import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
 import com.app.wordsphrases.core.AppComponent
@@ -11,9 +12,7 @@ import dagger.Component
 @Component(
     dependencies = [
         AppComponent::class,
-    ],
-    modules = [
-        WordsDatabaseModule::class,
+        WordDatabaseComponent::class,
     ]
 )
 interface AddWordComponent {
@@ -30,11 +29,16 @@ interface AddWordComponent {
                 } else {
                     val newComponent = DaggerAddWordComponent.builder()
                         .appComponent(appComponent)
+                        .wordDatabaseComponent(WordDatabaseComponent.require())
                         .build()
                     Companion.component = newComponent
                     newComponent
                 }
             }
+        }
+
+        fun clear() {
+            component = null
         }
     }
 

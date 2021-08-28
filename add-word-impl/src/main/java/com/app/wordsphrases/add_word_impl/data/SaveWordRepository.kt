@@ -4,8 +4,8 @@ import android.content.Context
 import android.graphics.BitmapFactory
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.data.datasource.SaveWordDataSource
-import com.app.wordsphrases.entity.word.WordDbEntity
 import com.app.wordsphrases.entity.ResultWrapper
+import com.app.wordsphrases.entity.word.WordDbEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
@@ -17,7 +17,7 @@ class SaveWordRepository @Inject constructor(
     private val context: Context,
 ) {
 
-    suspend fun addWord(text: String, translations: List<String>, image: WordImage?): ResultWrapper<Unit> {
+    suspend fun addWord(text: String, translations: List<String>, image: WordImage?): ResultWrapper<Long> {
         val imageString = sameImageToFileSystem(image)
 
         val wordDbEntity = WordDbEntity(
@@ -27,11 +27,10 @@ class SaveWordRepository @Inject constructor(
             createdAt = System.currentTimeMillis(),
         )
 
-        val result = withContext(Dispatchers.IO) {
-            saveWordDataSource.saveWord(wordDbEntity)
+        return withContext(Dispatchers.IO) {
+            val result = saveWordDataSource.saveWord(wordDbEntity)
+            ResultWrapper.createSuccess(result)
         }
-
-        return ResultWrapper.createSuccess(Unit)
     }
 
     private fun sameImageToFileSystem(image: WordImage?): String? {

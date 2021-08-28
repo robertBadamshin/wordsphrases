@@ -16,9 +16,4 @@ class HomePresenter @Inject constructor(
         val screen = storiesStarter.getScreen()
         router.newRootScreen(screen)
     }
-
-    fun onBackStackChanged(entriesCount: Int) {
-        val hasEntries = entriesCount > 0
-        viewState.updateBackPressedNestedNavigationEnabled(hasEntries)
-    }
 }
