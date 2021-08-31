@@ -16,5 +16,5 @@ interface StoriesView : MvpView {
 
     fun updateBackPressedNestedNavigationEnabled(enabled: Boolean)
 
-    fun updateAddWordButtonVisible(enabled: Boolean)
+    fun updateAddWordButtonVisible(visible: Boolean)
 }

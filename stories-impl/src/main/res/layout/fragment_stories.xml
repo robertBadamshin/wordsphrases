@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
         android:gravity="center"
-        android:textSize="34dp"
+        android:textColor="@color/black_87"
+        android:textSize="32dp"
         app:layout_constraintBottom_toTopOf="@+id/text_view_translation_text_stories"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,14 +22,15 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="Text" />
 
-
     <TextView
         android:id="@+id/text_view_translation_text_stories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
-        android:textSize="16dp"
+        android:textColor="@color/black_87"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -43,7 +45,7 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_plus"
+        app:srcCompat="@drawable/ic_add_icon"
         app:tint="@android:color/white" />
 
     <FrameLayout

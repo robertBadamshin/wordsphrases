@@ -8,16 +8,16 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updateMargins
 import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.core_ui.view.showKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
@@ -34,6 +34,20 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private val whiteColor by lazy { requireContext().getColor(android.R.color.white) }
     private val disabledColor by lazy { requireContext().getColor(R.color.white_38) }
+
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+
+        override fun handleOnBackPressed() {
+            presenter.onBackPressed()
+        }
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(this, backPressedCallback)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,11 +87,6 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
         presenter.showKeyboard()
     }
 
-    override fun onPause() {
-        super.onPause()
-        presenter.hideKeyboard()
-    }
-
     override fun showMessage(messageRes: Int) {
         Snackbar
             .make(requireView(), messageRes, Snackbar.LENGTH_SHORT)
@@ -112,19 +121,14 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
     }
 
     override fun showKeyboard() {
-        ViewCompat.getWindowInsetsController(textToTranslateEditText)?.show(WindowInsetsCompat.Type.ime())
-        textToTranslateEditText.requestFocus()
-    }
-
-    override fun hideKeyboard() {
-        ViewCompat.getWindowInsetsController(textToTranslateEditText)?.hide(WindowInsetsCompat.Type.ime())
-        textToTranslateEditText.clearFocus()
+        textToTranslateEditText.showKeyboard()
     }
 
     private fun configureInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = insets.top)
+            view.updatePadding(top = insets.top, bottom = insets.bottom)
+
             return@setOnApplyWindowInsetsListener windowInsets
         }
 
@@ -134,11 +138,10 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
                 insets: WindowInsetsCompat,
                 runningAnimations: MutableList<WindowInsetsAnimationCompat>
             ): WindowInsetsCompat {
-                val keyboardInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
-                view.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                    updateMargins(bottom = keyboardInsets.bottom)
-                }
-
+                val keyboardInsets = insets.getInsets(
+                    WindowInsetsCompat.Type.ime() or WindowInsetsCompat.Type.systemBars()
+                )
+                view.updatePadding(bottom = keyboardInsets.bottom)
                 return insets
             }
         }

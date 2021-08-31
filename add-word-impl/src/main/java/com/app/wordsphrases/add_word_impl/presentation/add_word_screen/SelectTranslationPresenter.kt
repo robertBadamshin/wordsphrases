@@ -11,9 +11,6 @@ import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.ToggleTranslationSelection
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
-import com.app.wordsphrases.entity.RequestErrorStateWrapper
-import com.app.wordsphrases.entity.RequestLoadingStateWrapper
-import com.app.wordsphrases.entity.RequestSuccessStateWrapper
 import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
@@ -36,11 +33,36 @@ class SelectTranslationPresenter @Inject constructor(
     private val getSuccessfulTranslations: GetSuccessfulTranslations,
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
-) : MvpPresenter<AddWordView>() {
+) : MvpPresenter<SelectTranslationView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
+        updateTranslations()
+        updateWord()
+        updateDoneButton()
+    }
+
+    private fun updateDoneButton() {
+        getSelectedTranslationsIds()
+            .onEach { ids ->
+                if (ids.isNotEmpty()) {
+                    viewState.setDoneButtonEnabled()
+                } else {
+                    viewState.setDoneButtonDisabled()
+                }
+            }
+            .launchIn(presenterScope)
+    }
+
+    private fun updateWord() {
+        presenterScope.launch {
+            val wordText = getCurrentWordText()
+            viewState.setWordText(wordText)
+        }
+    }
+
+    private fun updateTranslations() {
         combine(
             getSuccessfulTranslations(),
             getSelectedTranslationsIds(),
@@ -49,28 +71,6 @@ class SelectTranslationPresenter @Inject constructor(
         }
             .onEach { uiModels -> viewState.showTranslations(uiModels) }
             .launchIn(presenterScope)
-
-        getAddWordResult()
-            .onEach { wrapper ->
-                when (wrapper) {
-                    is RequestSuccessStateWrapper -> {
-                        viewState.showMessage("Success")
-                        // TODO add routing
-                    }
-                    is RequestErrorStateWrapper -> {
-                        viewState.showMessage("Error")
-                    }
-                    is RequestLoadingStateWrapper -> {
-                        // TODO nothing
-                    }
-                }
-            }
-            .launchIn(presenterScope)
-
-        presenterScope.launch {
-            val wordText = getCurrentWordText()
-            viewState.setWordText(wordText)
-        }
     }
 
     fun onImageSelected(image: WordImage) {

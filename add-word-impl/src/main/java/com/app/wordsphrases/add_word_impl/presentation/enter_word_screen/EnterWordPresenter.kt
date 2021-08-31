@@ -2,6 +2,7 @@ package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
 import com.app.wordsphrases.add_word_impl.R
+import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.SetWordText
 import com.app.wordsphrases.add_word_impl.domain.SubscribeForWordTranslation
@@ -91,11 +92,12 @@ class EnterWordPresenter @Inject constructor(
         }
     }
 
-    fun hideKeyboard() {
-        viewState.hideKeyboard()
-    }
-
     fun showKeyboard() {
         viewState.showKeyboard()
+    }
+
+    fun onBackPressed() {
+        AddWordComponent.clear()
+        router.exit()
     }
 }

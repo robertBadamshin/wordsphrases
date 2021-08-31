@@ -3,8 +3,6 @@ package com.app.wordsphrases.presentation
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.app.wordsphrases.R
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
@@ -30,9 +28,6 @@ class MainActivity : MvpAppCompatActivity(), MainView, MainRouter {
 
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        val controller = WindowInsetsControllerCompat(window, mainContainer)
-        controller.hide(WindowInsetsCompat.Type.systemBars())
-        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
     override fun start(screen: NavigationScreen) {
@@ -43,10 +38,6 @@ class MainActivity : MvpAppCompatActivity(), MainView, MainRouter {
 
     override fun startScreen(screen: NavigationScreen) {
         start(screen)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 
     override fun closeScreen(fragment: Fragment) {

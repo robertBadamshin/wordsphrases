@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,9 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updatePadding
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
@@ -18,7 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
-class SelectTranslationFragment : MvpAppCompatFragment(), AddWordView {
+class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView {
 
     private val presenter by moxyPresenter { AddWordComponent.get().selectTranslationPresenter }
 
@@ -27,6 +31,9 @@ class SelectTranslationFragment : MvpAppCompatFragment(), AddWordView {
 
     private lateinit var fabAddWord: FloatingActionButton
     private lateinit var translationLinearLayout: LinearLayout
+
+    private val whiteColor by lazy { requireContext().getColor(android.R.color.white) }
+    private val disabledColor by lazy { requireContext().getColor(R.color.white_38) }
 
     // TODO cut image
     private val takePhoto = registerForActivityResult(
@@ -72,6 +79,13 @@ class SelectTranslationFragment : MvpAppCompatFragment(), AddWordView {
         fabAddWord.setOnClickListener { presenter.onAddWordClicked() }
 
         translationLinearLayout = view.findViewById(R.id.linear_layout_translations)
+
+        ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.updatePadding(top = insets.top, bottom = insets.bottom)
+
+            return@setOnApplyWindowInsetsListener windowInsets
+        }
     }
 
     override fun showTranslations(uiModels: List<TranslationUiModel>) {
@@ -102,6 +116,16 @@ class SelectTranslationFragment : MvpAppCompatFragment(), AddWordView {
 
     override fun setWordText(word: String) {
         wordTextView.text = word
+    }
+
+    override fun setDoneButtonEnabled() {
+        fabAddWord.imageTintList = ColorStateList.valueOf(whiteColor)
+        fabAddWord.isClickable = true
+    }
+
+    override fun setDoneButtonDisabled() {
+        fabAddWord.imageTintList = ColorStateList.valueOf(disabledColor)
+        fabAddWord.isClickable = false
     }
 
     private fun dispatchTakePicture() {
