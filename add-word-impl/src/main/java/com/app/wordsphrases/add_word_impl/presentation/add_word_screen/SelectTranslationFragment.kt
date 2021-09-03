@@ -18,7 +18,7 @@ import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -29,7 +29,7 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
     private lateinit var arrowBackImageView: ImageView
     private lateinit var wordTextView: TextView
 
-    private lateinit var fabAddWord: FloatingActionButton
+    private lateinit var fabAddWord: ExtendedFloatingActionButton
     private lateinit var translationLinearLayout: LinearLayout
 
     private val whiteColor by lazy { requireContext().getColor(android.R.color.white) }
@@ -119,12 +119,16 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
     }
 
     override fun setDoneButtonEnabled() {
-        fabAddWord.imageTintList = ColorStateList.valueOf(whiteColor)
+        val colorStateList = ColorStateList.valueOf(whiteColor)
+        fabAddWord.iconTint = colorStateList
+        fabAddWord.setTextColor(colorStateList)
         fabAddWord.isClickable = true
     }
 
     override fun setDoneButtonDisabled() {
-        fabAddWord.imageTintList = ColorStateList.valueOf(disabledColor)
+        val colorStateList = ColorStateList.valueOf(disabledColor)
+        fabAddWord.iconTint = colorStateList
+        fabAddWord.setTextColor(colorStateList)
         fabAddWord.isClickable = false
     }
 

@@ -8,13 +8,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.23148148148148148" />
         <entry key="add-word-impl/src/main/res/drawable/ic_done.xml" value="0.23645833333333333" />
         <entry key="add-word-impl/src/main/res/layout/fragment_enter_word.xml" value="0.16388044579533942" />
         <entry key="add-word-impl/src/main/res/layout/fragment_select_translation.xml" value="0.31885714285714284" />
         <entry key="add-word-impl/src/main/res/layout/fragment_translation.xml" value="0.12092391304347826" />
-        <entry key="add-word-impl/src/main/res/layout/item_translation.xml" value="1.2057142857142857" />
+        <entry key="add-word-impl/src/main/res/layout/item_translation.xml" value="1.067357512953368" />
         <entry key="add-word-impl/src/main/res/layout/item_translation_text.xml" value="0.12092391304347826" />
         <entry key="add-word-impl/src/main/res/menu/app_bar_menu.xml" value="0.17447916666666666" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/ic_android_icon.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2361111111111111" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2361111111111111" />
         <entry key="home-impl/src/main/res/drawable/ic_plus.xml" value="0.20625" />
         <entry key="home-impl/src/main/res/layout/fragment_home.xml" value="0.12092391304347826" />
         <entry key="stories-impl/src/main/res/drawable/ic_add_icon.xml" value="0.2361111111111111" />
