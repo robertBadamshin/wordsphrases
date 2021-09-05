@@ -21,9 +21,11 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew build
-      - name: Upload APK
-        uses: actions/upload-artifact@v1
+        run: ./gradlew buildRelease
+      - name: upload artifact to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          name: build-output
-          path: app/build/outputs/apk/release/app-release.apk
+          appId: 1:550942627819:android:3fd691a200523939e9ebae
+          token: 1//0cThLZkoLgl_rCgYIARAAGAwSNwF-L9Ir8R2WT-PyEvXZhF-UcioIzpsE71pxbcOqb2c9Sw2G_qwWEvg3yIpBvzvygGaUrhLSrjw
+          groups: testers
+          file: app/build/outputs/apk/release/app-release-unsigned.apk
