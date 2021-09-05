@@ -9,14 +9,21 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class TranslateTextImpl @Inject constructor(
+    private val translateTextByMicrosoftDictionary: TranslateTextByMicrosoftDictionary,
     private val translateTextByMicrosoft: TranslateTextByMicrosoft,
+    private val countWordsInText: CountWordsInText,
 ) : TranslateText {
 
     // TODO make service and other
     override suspend operator fun invoke(text: String): ResultWrapper<TranslationResult> {
         return withContext(Dispatchers.IO) {
             try {
-                val result = translateTextByMicrosoft(text)
+                val wordsCount = countWordsInText(text)
+                val result = if (wordsCount == 1) {
+                     translateTextByMicrosoftDictionary(text)
+                } else {
+                    translateTextByMicrosoft(text)
+                }
                 val formattedResult = formatTranslations(result)
                 ResultWrapper.createSuccess(formattedResult)
             } catch (exception: Exception) {

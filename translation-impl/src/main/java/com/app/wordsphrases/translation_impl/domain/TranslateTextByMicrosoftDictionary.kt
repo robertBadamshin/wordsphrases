@@ -1,7 +1,7 @@
 package com.app.wordsphrases.translation_impl.domain
 
 import com.app.wordsphrases.translation_api.domain.TranslationResult
-import com.app.wordsphrases.translation_impl.data.entity.TextTranslationResultRemote
+import com.app.wordsphrases.translation_impl.data.entity.DictionaryTranslationResultRemote
 import com.app.wordsphrases.translation_impl.data.entity.toDomainEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -15,9 +15,9 @@ import javax.inject.Inject
 
 private const val subscriptionKey = "aa7e0d04bfba4658a6ed362782768bc0"
 private const val endpoint = "https://api-eur.cognitive.microsofttranslator.com"
-private const val url = "$endpoint/translate?api-version=3.0&from=en&to=ru"
+private const val url = "$endpoint/dictionary/lookup?api-version=3.0&from=en&to=ru"
 
-class TranslateTextByMicrosoft @Inject constructor() {
+class TranslateTextByMicrosoftDictionary @Inject constructor() {
 
     private val client = OkHttpClient()
     private val gson = Gson()
@@ -37,8 +37,8 @@ class TranslateTextByMicrosoft @Inject constructor() {
         val response = client.newCall(request).execute()
 
         val responseString = response.body()!!.string()
-        val type = object : TypeToken<ArrayList<TextTranslationResultRemote>>() {}.type
-        val resultRemote = gson.fromJson<List<TextTranslationResultRemote>>(responseString, type)
+        val type = object : TypeToken<ArrayList<DictionaryTranslationResultRemote>>() {}.type
+        val resultRemote = gson.fromJson<List<DictionaryTranslationResultRemote>>(responseString, type)
 
         return resultRemote.first().toDomainEntity()
     }

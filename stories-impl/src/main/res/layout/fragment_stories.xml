@@ -5,8 +5,7 @@
     android:id="@+id/container_stories"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-
+    
     <TextView
         android:id="@+id/text_view_word_text_stories"
         android:layout_width="0dp"

@@ -9,5 +9,5 @@ import dagger.Module
 interface TranslationApiBindsModule {
 
     @Binds
-    fun provideGetTranslation(impl: TranslateTextImpl): TranslateText
+    fun provideTranslateText(impl: TranslateTextImpl): TranslateText
 }

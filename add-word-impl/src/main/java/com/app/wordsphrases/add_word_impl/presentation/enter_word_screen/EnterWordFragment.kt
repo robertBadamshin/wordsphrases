@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.activity.OnBackPressedCallback
+import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsAnimationCompat
 import androidx.core.view.WindowInsetsCompat
@@ -89,7 +90,7 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     override fun showMessage(messageRes: Int) {
         Snackbar
-            .make(requireView(), messageRes, Snackbar.LENGTH_SHORT)
+            .make(requireActivity().findViewById(android.R.id.content), messageRes, Snackbar.LENGTH_SHORT)
             .setAnchorView(translateWordFab)
             .show()
     }
@@ -126,8 +127,8 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private fun configureInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            view.updatePadding(top = insets.top, bottom = insets.bottom)
+            val screenInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            view.updatePadding(top = screenInsets.top, bottom = screenInsets.bottom)
 
             return@setOnApplyWindowInsetsListener windowInsets
         }
@@ -138,14 +139,16 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
                 insets: WindowInsetsCompat,
                 runningAnimations: MutableList<WindowInsetsAnimationCompat>
             ): WindowInsetsCompat {
-                val keyboardInsets = insets.getInsets(
-                    WindowInsetsCompat.Type.ime() or WindowInsetsCompat.Type.systemBars()
-                )
-                view.updatePadding(bottom = keyboardInsets.bottom)
+                val screenInsets = getScreenInsets(insets)
+                view.updatePadding(bottom = screenInsets.bottom)
                 return insets
             }
         }
 
         ViewCompat.setWindowInsetsAnimationCallback(view, insetsCallback)
+    }
+
+    private fun getScreenInsets(insets: WindowInsetsCompat): Insets {
+        return insets.getInsets(WindowInsetsCompat.Type.ime() or WindowInsetsCompat.Type.systemBars())
     }
 }

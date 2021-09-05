@@ -2,6 +2,7 @@ package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetAddWordResult
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetImage
@@ -33,6 +34,7 @@ class SelectTranslationPresenter @Inject constructor(
     private val getSuccessfulTranslations: GetSuccessfulTranslations,
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
+    private val autoSelectTranslations: AutoSelectTranslations,
 ) : MvpPresenter<SelectTranslationView>() {
 
     override fun onFirstViewAttach() {
@@ -41,6 +43,13 @@ class SelectTranslationPresenter @Inject constructor(
         updateTranslations()
         updateWord()
         updateDoneButton()
+        autoSelectTranslation()
+    }
+
+    private fun autoSelectTranslation() {
+        presenterScope.launch {
+            autoSelectTranslations()
+        }
     }
 
     private fun updateDoneButton() {
