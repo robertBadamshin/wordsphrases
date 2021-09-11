@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply from: '../getKeys.gradle'
 apply from: '../commonDaggerModule.gradle'
 apply from: '../commonMoxyModule.gradle'
 apply from: '../commonRetrofitModule.gradle'
@@ -7,12 +8,13 @@ apply from: '../commonRoomModule.gradle'
 apply from: '../commonUiModule.gradle'
 apply from: '../commonBase.gradle'
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
     defaultConfig {
-        applicationId "com.wordsandphrases.wordsandphrases"
+        applicationId "com.app.wordsphrases"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 2
@@ -37,6 +39,15 @@ android {
 
     packagingOptions {
         exclude 'META-INF/INDEX.LIST'
+    }
+
+    signingConfigs {
+        config {
+            keyAlias project.ext.keystoreProperties['keyAlias']
+            keyPassword project.ext.keystoreProperties['keyPassword']
+            storeFile file(project.ext.keystoreProperties['storeFile'])
+            storePassword project.ext.keystoreProperties['storePassword']
+        }
     }
 }
 
