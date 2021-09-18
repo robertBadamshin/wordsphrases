@@ -2,7 +2,7 @@ package com.app.wordsphrases.stories_impl.navigation
 
 import androidx.fragment.app.Fragment
 import com.app.wordsphrases.stories_api.StoriesStarter
-import com.app.wordsphrases.stories_impl.presentation.StoriesFragment
+import com.app.wordsphrases.popup_translator_impl.presentation.StoriesFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 

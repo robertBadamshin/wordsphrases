@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.presentation
+package com.app.wordsphrases.popup_translator_impl.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,8 +17,8 @@ import com.app.wordsphrases.core_ui.view.dpToPx
 import com.app.wordsphrases.navigation.MainRouter
 import com.app.wordsphrases.navigation.NavigationScreen
 import com.app.wordsphrases.stories_impl.R
-import com.app.wordsphrases.stories_impl.di.StoriesComponent
-import com.app.wordsphrases.stories_impl.ui.model.WordUiModel
+import com.app.wordsphrases.popup_translator_impl.di.StoriesComponent
+import com.app.wordsphrases.popup_translator_impl.ui.model.WordUiModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter

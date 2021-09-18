@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.di
+package com.app.wordsphrases.popup_translator_impl.di
 
 import com.app.wordsphrases.stories_api.StoriesStarter
 import com.app.wordsphrases.stories_impl.navigation.StoriesStarterImpl

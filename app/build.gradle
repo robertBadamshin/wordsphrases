@@ -65,5 +65,6 @@ dependencies {
     implementation project(':translation-api')
     implementation project(':stories-impl')
     implementation project(':stories-api')
+    implementation project(':popup-translator-impl')
     implementation project(':entity')
 }

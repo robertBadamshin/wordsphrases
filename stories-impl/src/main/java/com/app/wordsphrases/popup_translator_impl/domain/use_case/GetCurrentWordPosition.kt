@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.domain.use_case
+package com.app.wordsphrases.popup_translator_impl.domain.use_case
 
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
 import kotlinx.coroutines.flow.Flow

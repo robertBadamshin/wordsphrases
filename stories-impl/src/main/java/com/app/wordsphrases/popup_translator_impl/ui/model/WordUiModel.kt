@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.ui.model
+package com.app.wordsphrases.popup_translator_impl.ui.model
 
 data class WordUiModel(
     val word: String,

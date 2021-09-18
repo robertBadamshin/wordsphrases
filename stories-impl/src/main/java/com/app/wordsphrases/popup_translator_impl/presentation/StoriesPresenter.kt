@@ -1,11 +1,11 @@
-package com.app.wordsphrases.stories_impl.presentation
+package com.app.wordsphrases.popup_translator_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
 import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
-import com.app.wordsphrases.stories_impl.domain.use_case.GetCurrentWord
-import com.app.wordsphrases.stories_impl.domain.use_case.MoveToNextWord
-import com.app.wordsphrases.stories_impl.domain.use_case.SubscribeForWords
-import com.app.wordsphrases.stories_impl.ui.model.mapper.WordUiMapper
+import com.app.wordsphrases.popup_translator_impl.domain.use_case.GetCurrentWord
+import com.app.wordsphrases.popup_translator_impl.domain.use_case.MoveToNextWord
+import com.app.wordsphrases.popup_translator_impl.domain.use_case.SubscribeForWords
+import com.app.wordsphrases.popup_translator_impl.ui.model.mapper.WordUiMapper
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
