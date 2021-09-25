@@ -9,6 +9,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.23148148148148148" />
+        <entry key="add-word-impl/src/main/res/drawable/ic_arrow_forward.xml" value="0.20277777777777778" />
         <entry key="add-word-impl/src/main/res/drawable/ic_done.xml" value="0.23645833333333333" />
         <entry key="add-word-impl/src/main/res/layout/fragment_enter_word.xml" value="0.16388044579533942" />
         <entry key="add-word-impl/src/main/res/layout/fragment_select_translation.xml" value="0.31885714285714284" />

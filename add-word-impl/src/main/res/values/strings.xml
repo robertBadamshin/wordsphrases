@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="enter_word_or_phrase">Word or phrase</string>
-    <string name="are_not_able_to_translate">Не удалось получить перевод</string>
 </resources>

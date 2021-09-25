@@ -8,7 +8,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 
 private const val translationButtonEnabledTag = "translationButtonEnabledTag"
-private const val translationButtonTag = "translationButtonTag"
+private const val translationButtonTagVisibility = "translationButtonTag"
 
 @AddToEndSingle
 interface EnterWordView : MvpView {
@@ -23,13 +23,13 @@ interface EnterWordView : MvpView {
     @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonEnabledTag)
     fun setTranslateButtonEnabled()
 
-    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonTag)
+    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonEnabledTag)
     fun setTranslateButtonDisabled()
 
-    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonEnabledTag)
+    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonTagVisibility)
     fun showTranslateButton()
 
-    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonEnabledTag)
+    @StateStrategyType(AddToEndSingleTagStrategy::class, tag = translationButtonTagVisibility)
     fun hideTranslateButton()
 
     @OneExecution

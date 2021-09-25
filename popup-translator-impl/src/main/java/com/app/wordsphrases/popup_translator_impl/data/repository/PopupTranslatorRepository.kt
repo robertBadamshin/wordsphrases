@@ -14,6 +14,7 @@ class PopupTranslatorRepository @Inject constructor() {
 
     private val translationsFlow = MutableStateFlow<RequestStateWrapper<List<Translation>>?>(null)
     private val wordTextFlow = MutableSharedFlow<String?>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private val selectedTranslationsFlow = MutableStateFlow<Set<Int>>(emptySet())
 
     fun getTranslations(): Flow<RequestStateWrapper<List<Translation>>?> {
         return translationsFlow
@@ -37,5 +38,18 @@ class PopupTranslatorRepository @Inject constructor() {
 
     fun getCurrentWordText(): String {
         return wordTextFlow.replayCache.first() ?: throw IllegalStateException("call only when word exists")
+    }
+
+
+    fun setSelectedTranslationsIds(ids: Set<Int>) {
+        selectedTranslationsFlow.value = ids
+    }
+
+    fun getSelectedTranslationsIds(): Flow<Set<Int>> {
+        return selectedTranslationsFlow
+    }
+
+    fun requireSelectedTranslationsIds(): Set<Int> {
+        return selectedTranslationsFlow.value
     }
 }

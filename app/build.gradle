@@ -23,7 +23,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [popupTranslatorEnabled: "true"]
+        }
+
         release {
+            manifestPlaceholders = [ popupTranslatorEnabled:"false"]
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
