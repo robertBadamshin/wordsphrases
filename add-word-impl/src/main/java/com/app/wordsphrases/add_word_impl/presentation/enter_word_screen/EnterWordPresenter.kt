@@ -1,6 +1,7 @@
 package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
+import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
@@ -10,13 +11,11 @@ import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyExce
 import com.app.wordsphrases.entity.RequestErrorStateWrapper
 import com.app.wordsphrases.entity.RequestLoadingStateWrapper
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
-import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class EnterWordPresenter @Inject constructor(
@@ -24,7 +23,7 @@ class EnterWordPresenter @Inject constructor(
     private val getTranslations: GetTranslations,
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
-    @StoriesNavigationQualifier private val router: Router,
+    private val routerWrapper: AddWordInnerRouterWrapper,
 ) : MvpPresenter<EnterWordView>() {
 
     override fun onFirstViewAttach() {
@@ -45,7 +44,7 @@ class EnterWordPresenter @Inject constructor(
                         viewState.showTranslateButton()
 
                         val screen = selectTranslationStarter.getScreen()
-                        router.navigateTo(screen)
+                        routerWrapper.router.navigateTo(screen)
                     }
                     is RequestErrorStateWrapper -> {
                         viewState.hideTranslationProgress()
@@ -98,6 +97,6 @@ class EnterWordPresenter @Inject constructor(
 
     fun onBackPressed() {
         AddWordComponent.clear()
-        router.exit()
+        routerWrapper.router.exit()
     }
 }

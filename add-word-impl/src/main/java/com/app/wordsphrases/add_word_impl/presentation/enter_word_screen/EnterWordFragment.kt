@@ -18,6 +18,7 @@ import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core_ui.view.showKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -26,7 +27,10 @@ import moxy.ktx.moxyPresenter
 
 class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
-    private val presenter by moxyPresenter { AddWordComponent.get().enterWordPresenter }
+    private val presenter by moxyPresenter {
+        val addWordComponent = appComponent.requireAddWordComponent()
+        return@moxyPresenter addWordComponent.enterWordPresenter
+    }
 
     private lateinit var arrowCloseImageView: ImageView
     private lateinit var textToTranslateEditText: EditText
@@ -127,7 +131,8 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private fun configureInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-            val screenInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            val screenInsets =
+                windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
             view.updatePadding(top = screenInsets.top, bottom = screenInsets.bottom)
 
             return@setOnApplyWindowInsetsListener windowInsets

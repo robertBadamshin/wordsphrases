@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
+package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import moxy.MvpView

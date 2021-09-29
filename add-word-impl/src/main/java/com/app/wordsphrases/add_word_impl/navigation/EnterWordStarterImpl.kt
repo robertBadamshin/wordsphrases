@@ -9,7 +9,8 @@ import javax.inject.Inject
 class EnterWordStarterImpl @Inject constructor() : EnterWordStarter {
 
     override fun getScreen(): SupportAppScreen {
-        return object: SupportAppScreen() {
+
+        return object : SupportAppScreen() {
 
             override fun getScreenKey(): String {
                 return EnterWordFragment::class.java.simpleName

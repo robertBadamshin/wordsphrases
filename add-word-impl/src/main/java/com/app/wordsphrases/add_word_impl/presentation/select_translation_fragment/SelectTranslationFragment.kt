@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
+package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import android.content.res.ColorStateList
 import android.os.Bundle
@@ -24,7 +24,7 @@ import moxy.ktx.moxyPresenter
 
 class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView {
 
-    private val presenter by moxyPresenter { AddWordComponent.get().selectTranslationPresenter }
+    private val presenter by moxyPresenter { AddWordComponent.require().selectTranslationPresenter }
 
     private lateinit var arrowBackImageView: ImageView
     private lateinit var wordTextView: TextView
