@@ -42,9 +42,9 @@ class StoriesPresenter @Inject constructor(
     }
 
     fun openEnterWord() {
-        // TODO clear
-        val screen = enterWordStarter.getScreen()
-        router.navigateTo(screen)
+        // TODO make routing
+//        val screen = enterWordStarter.getScreen()
+//        router.navigateTo(screen)
     }
 
     fun onBackStackChanged(entriesCount: Int) {

@@ -17,8 +17,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
+import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.core_ui.view.showKeyboard
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -28,7 +27,7 @@ import moxy.ktx.moxyPresenter
 class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private val presenter by moxyPresenter {
-        val addWordComponent = appComponent.requireAddWordComponent()
+        val addWordComponent = AddWordParentComponent.get().requirePopupAddWordComponent()
         return@moxyPresenter addWordComponent.enterWordPresenter
     }
 

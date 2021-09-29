@@ -1,10 +1,10 @@
 package com.app.wordsphrases.add_word_impl.data
 
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.core.di.AppScope
+import com.app.wordsphrases.core.di.FeatureScope
 import javax.inject.Inject
 
-@AppScope
+@FeatureScope
 class AddWordComponentsRepository @Inject constructor() {
 
 
