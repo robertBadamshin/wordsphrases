@@ -6,7 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.app.wordsphrases.popup_translator_impl.R
-import com.app.wordsphrases.popup_translator_impl.di.AddWordInnerComponentImpl
+import com.app.wordsphrases.popup_translator_impl.di.PopupAddWordInnerComponentImpl
 import com.app.wordsphrases.popup_translator_impl.di.PopupTranslatorComponent
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -18,7 +18,7 @@ import ru.terrakok.cicerone.commands.Command
 
 class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
 
-    private val addWordInnerComponent by lazy { AddWordInnerComponentImpl.get() }
+    private val addWordInnerComponent by lazy { PopupAddWordInnerComponentImpl.get() }
     private val popupTranslatorComponent by lazy { PopupTranslatorComponent.get(addWordInnerComponent) }
 
     private val popupTranslatorPresenter by moxyPresenter { popupTranslatorComponent.popupTranslatorPresenter }

@@ -10,11 +10,11 @@ import dagger.Component
         PopupTranslatorRouterModule::class,
     ],
 )
-interface AddWordInnerComponentImpl : AddWordInnerComponent, PopupTranslatorInnerComponent {
+interface PopupAddWordInnerComponentImpl : AddWordInnerComponent, PopupTranslatorInnerComponent {
 
     companion object {
-        fun get(): AddWordInnerComponentImpl {
-            return DaggerAddWordInnerComponentImpl.builder().build()
+        fun get(): PopupAddWordInnerComponentImpl {
+            return DaggerPopupAddWordInnerComponentImpl.builder().build()
         }
     }
 }

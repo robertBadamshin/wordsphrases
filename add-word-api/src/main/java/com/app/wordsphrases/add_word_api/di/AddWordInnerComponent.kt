@@ -6,6 +6,4 @@ interface AddWordInnerComponent {
 
     @get:AddWordNavigationQualifier
     val router: Router
-
-    
 }

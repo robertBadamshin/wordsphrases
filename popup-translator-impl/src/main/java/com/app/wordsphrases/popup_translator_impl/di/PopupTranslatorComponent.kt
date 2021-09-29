@@ -12,6 +12,7 @@ import ru.terrakok.cicerone.NavigatorHolder
     dependencies = [
         AppComponent::class,
         PopupTranslatorInnerComponent::class,
+        PopupTranslatorRouterModule::class,
     ],
 )
 interface PopupTranslatorComponent {
