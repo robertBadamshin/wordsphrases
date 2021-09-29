@@ -27,6 +27,10 @@ class AddWordComponentsRepository @Inject constructor() {
     }
 
     fun clearAddWordComponent(type: AddWordComponentType) {
+        if (!addWordComponents.contains(type)) {
+            throw IllegalStateException("component should be presented")
+        }
+
         addWordComponents.remove(type)
     }
 }

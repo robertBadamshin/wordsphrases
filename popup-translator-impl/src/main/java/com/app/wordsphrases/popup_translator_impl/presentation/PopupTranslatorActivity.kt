@@ -19,12 +19,12 @@ import ru.terrakok.cicerone.commands.Command
 class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
 
     private val addWordInnerComponent by lazy { AddWordInnerComponentImpl.get() }
-    private val component by lazy { PopupTranslatorComponent.get(addWordInnerComponent) }
+    private val popupTranslatorComponent by lazy { PopupTranslatorComponent.get(addWordInnerComponent) }
 
-    private val popupTranslatorPresenter by moxyPresenter { component.popupTranslatorPresenter }
+    private val popupTranslatorPresenter by moxyPresenter { popupTranslatorComponent.popupTranslatorPresenter }
 
     private val navigatorHolder: NavigatorHolder by lazy {
-        component.popupTranslatorNavigatorHolderWrapper.navigatorHolder
+        popupTranslatorComponent.popupTranslatorNavigatorHolder
     }
     private val navigator: Navigator by lazy {
         object : SupportAppNavigator(this, supportFragmentManager, R.id.fragment_container_popup) {
@@ -59,6 +59,11 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
         super.onCreate(savedInstanceState)
 
         onBackPressedDispatcher.addCallback(this, backPressedNestedNavigationCallback)
+
+        supportFragmentManager.addOnBackStackChangedListener {
+            val count = supportFragmentManager.backStackEntryCount
+            popupTranslatorPresenter.onBackStackChanged(count)
+        }
 
         setContentView(R.layout.activity_popup_translator)
 

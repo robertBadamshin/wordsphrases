@@ -1,7 +1,6 @@
 package com.app.wordsphrases.popup_translator_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
-import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.popup_translator_impl.di.RegularAddWordInnerComponentImpl
 import com.app.wordsphrases.popup_translator_impl.domain.use_case.GetCurrentWord
@@ -45,11 +44,7 @@ class StoriesPresenter @Inject constructor(
     }
 
     fun openEnterWord() {
-        // TODO make routing
-//
-
-        val routerWrapper = AddWordInnerRouterWrapper(router)
-        val innerComponent = RegularAddWordInnerComponentImpl.get(routerWrapper)
+        val innerComponent = RegularAddWordInnerComponentImpl.get(router)
         enterWordStarter.initComponent(AddWordComponentType.Regular, innerComponent)
 
         val screen = enterWordStarter.getScreen(AddWordComponentType.Regular)

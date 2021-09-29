@@ -1,12 +1,13 @@
 package com.app.wordsphrases.popup_translator_impl.di
 
-import com.app.wordsphrases.popup_translator_impl.domain.entity.PopupTranslatorNavigatorHolderWrapper
-import com.app.wordsphrases.popup_translator_impl.domain.entity.PopupTranslatorRouterWrapper
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.Router
 
 interface PopupTranslatorInnerComponent {
 
-    val popupTranslatorRouterWrapper: PopupTranslatorRouterWrapper
+    @get:PopupTranslatorNavigationQualifier
+    val popupTranslationRouter: Router
 
-    //@AddWordNavigationQualifier
-    val popupTranslatorNavigatorHolderWrapper: PopupTranslatorNavigatorHolderWrapper
+    @get:PopupTranslatorNavigationQualifier
+    val popupTranslatorNavigatorHolder: NavigatorHolder
 }

@@ -26,7 +26,6 @@ class MainActivity : MvpAppCompatActivity(), MainView, MainRouter {
 
         mainContainer = findViewById(R.id.main_container)
 
-
         WindowCompat.setDecorFitsSystemWindows(window, false)
     }
 

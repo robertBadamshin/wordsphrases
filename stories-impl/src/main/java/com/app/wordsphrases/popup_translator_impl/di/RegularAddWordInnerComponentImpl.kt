@@ -1,7 +1,6 @@
 package com.app.wordsphrases.popup_translator_impl.di
 
 import com.app.wordsphrases.add_word_api.di.AddWordInnerComponent
-import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
 import com.app.wordsphrases.add_word_api.di.AddWordNavigationQualifier
 import com.app.wordsphrases.core.di.FeatureScope
 import dagger.BindsInstance
@@ -13,9 +12,10 @@ import ru.terrakok.cicerone.Router
 interface RegularAddWordInnerComponentImpl : AddWordInnerComponent {
 
     companion object {
-        fun get(addWordInnerRouterWrapper: AddWordInnerRouterWrapper): RegularAddWordInnerComponentImpl {
+
+        fun get(router: Router): RegularAddWordInnerComponentImpl {
             return DaggerRegularAddWordInnerComponentImpl.factory()
-                .create(addWordInnerRouterWrapper, addWordInnerRouterWrapper.router)
+                .create(router)
         }
     }
 
@@ -23,7 +23,6 @@ interface RegularAddWordInnerComponentImpl : AddWordInnerComponent {
     interface Factory {
 
         fun create(
-            @BindsInstance addWordInnerRouterWrapper: AddWordInnerRouterWrapper,
             @BindsInstance @AddWordNavigationQualifier router: Router,
         ): RegularAddWordInnerComponentImpl
     }

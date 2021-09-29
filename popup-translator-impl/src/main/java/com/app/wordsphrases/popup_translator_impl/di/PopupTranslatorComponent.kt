@@ -3,9 +3,9 @@ package com.app.wordsphrases.popup_translator_impl.di
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core.di.FeatureScope
-import com.app.wordsphrases.popup_translator_impl.domain.entity.PopupTranslatorNavigatorHolderWrapper
 import com.app.wordsphrases.popup_translator_impl.presentation.PopupTranslatorPresenter
 import dagger.Component
+import ru.terrakok.cicerone.NavigatorHolder
 
 @FeatureScope
 @Component(
@@ -29,7 +29,8 @@ interface PopupTranslatorComponent {
         }
     }
 
-    val popupTranslatorNavigatorHolderWrapper: PopupTranslatorNavigatorHolderWrapper
+    @get:PopupTranslatorNavigationQualifier
+    val popupTranslatorNavigatorHolder: NavigatorHolder
 
     val popupTranslatorPresenter: PopupTranslatorPresenter
 }
