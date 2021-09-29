@@ -10,21 +10,28 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
-import com.app.wordsphrases.add_word_api.WordImage
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
+private const val addWordComponentTypeKey = "addWordComponentTypeKey"
+
 class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView {
 
-    private val presenter by moxyPresenter { AddWordComponent.require().selectTranslationPresenter }
+    private val presenter by moxyPresenter {
+        val addWordComponentType = requireArguments().getSerializable(addWordComponentTypeKey) as? AddWordComponentType
+            ?: throw IllegalStateException("addWordComponentType should be presented")
+
+        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(addWordComponentType)
+        return@moxyPresenter addWordComponent.selectTranslationPresenter
+    }
 
     private lateinit var arrowBackImageView: ImageView
     private lateinit var wordTextView: TextView
@@ -35,29 +42,29 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
     private val whiteColor by lazy { requireContext().getColor(android.R.color.white) }
     private val disabledColor by lazy { requireContext().getColor(R.color.white_38) }
 
-    // TODO cut image
-    private val takePhoto = registerForActivityResult(
-        ActivityResultContracts.TakePicturePreview()
-    ) { bitmap ->
-        if (bitmap == null) {
-            return@registerForActivityResult
-        }
-
-        val image = WordImage.BitmapWordImage(bitmap)
-        presenter.onImageSelected(image)
-    }
-
-    // TODO cut image
-    private val pickPhoto = registerForActivityResult(
-        ActivityResultContracts.GetContent()
-    ) { uri ->
-        if (uri == null) {
-            return@registerForActivityResult
-        }
-
-        val image = WordImage.FileWordImage(uri)
-        presenter.onImageSelected(image)
-    }
+//    // TODO cut image
+//    private val takePhoto = registerForActivityResult(
+//        ActivityResultContracts.TakePicturePreview()
+//    ) { bitmap ->
+//        if (bitmap == null) {
+//            return@registerForActivityResult
+//        }
+//
+//        val image = WordImage.BitmapWordImage(bitmap)
+//        presenter.onImageSelected(image)
+//    }
+//
+//    // TODO cut image
+//    private val pickPhoto = registerForActivityResult(
+//        ActivityResultContracts.GetContent()
+//    ) { uri ->
+//        if (uri == null) {
+//            return@registerForActivityResult
+//        }
+//
+//        val image = WordImage.FileWordImage(uri)
+//        presenter.onImageSelected(image)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -132,11 +139,24 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
         fabAddWord.isClickable = false
     }
 
-    private fun dispatchTakePicture() {
-        takePhoto.launch(null)
-    }
+//    private fun dispatchTakePicture() {
+//        takePhoto.launch(null)
+//    }
+//
+//    private fun dispatchPickPicture() {
+//        pickPhoto.launch("image/*")
+//    }
 
-    private fun dispatchPickPicture() {
-        pickPhoto.launch("image/*")
+    companion object {
+
+        fun newInstance(type: AddWordComponentType): SelectTranslationFragment {
+            val arguments = Bundle().apply {
+                putSerializable(addWordComponentTypeKey, type)
+            }
+
+            return SelectTranslationFragment().apply {
+                setArguments(arguments)
+            }
+        }
     }
 }

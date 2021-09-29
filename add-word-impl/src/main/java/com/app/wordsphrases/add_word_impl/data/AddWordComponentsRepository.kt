@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.data
 
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.core.di.FeatureScope
 import javax.inject.Inject
@@ -8,33 +9,24 @@ import javax.inject.Inject
 class AddWordComponentsRepository @Inject constructor() {
 
 
-    private var addWordComponent: AddWordComponent? = null
+    private var addWordComponents = mutableMapOf<AddWordComponentType, AddWordComponent>()
 
-    private var popupAddWordComponent: AddWordComponent? = null
+    fun setAddWordComponent(type: AddWordComponentType, component: AddWordComponent) {
+        if (addWordComponents.containsKey(type)) {
+            throw IllegalStateException("component already exists")
+        }
 
-    fun setAddWordComponent(component: AddWordComponent) {
-        addWordComponent = component
+        addWordComponents[type] = component
     }
 
-    fun requireAddWordComponent(): AddWordComponent {
-        return addWordComponent
-            ?: throw IllegalArgumentException("${AddWordComponent::class.java.simpleName} should be null")
+    fun requireAddWordComponent(type: AddWordComponentType): AddWordComponent {
+        return addWordComponents[type]
+            ?: throw IllegalArgumentException(
+                "${AddWordComponent::class.java.simpleName} with type $type should not be null"
+            )
     }
 
-    fun clearAddWordComponent() {
-        addWordComponent = null
-    }
-
-    fun setPopupAddWordComponent(component: AddWordComponent) {
-        popupAddWordComponent = component
-    }
-
-    fun requirePopupAddWordComponent(): AddWordComponent {
-        return popupAddWordComponent
-            ?: throw IllegalArgumentException("${AddWordComponent::class.java.simpleName} should be null")
-    }
-
-    fun clearPopupAddWordComponent() {
-        popupAddWordComponent = null
+    fun clearAddWordComponent(type: AddWordComponentType) {
+        addWordComponents.remove(type)
     }
 }

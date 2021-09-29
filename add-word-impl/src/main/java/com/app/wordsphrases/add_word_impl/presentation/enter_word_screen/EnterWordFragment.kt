@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.core_ui.view.showKeyboard
@@ -24,10 +25,15 @@ import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
+private const val addWordComponentTypeKey = "addWordComponentTypeKey"
+
 class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private val presenter by moxyPresenter {
-        val addWordComponent = AddWordParentComponent.get().requirePopupAddWordComponent()
+        val addWordComponentType = requireArguments().getSerializable(addWordComponentTypeKey) as? AddWordComponentType
+            ?: throw IllegalStateException("addWordComponentType should be presented")
+
+        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(addWordComponentType)
         return@moxyPresenter addWordComponent.enterWordPresenter
     }
 
@@ -154,5 +160,18 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private fun getScreenInsets(insets: WindowInsetsCompat): Insets {
         return insets.getInsets(WindowInsetsCompat.Type.ime() or WindowInsetsCompat.Type.systemBars())
+    }
+
+    companion object {
+
+        fun newInstance(type: AddWordComponentType): EnterWordFragment {
+            val arguments = Bundle().apply {
+                putSerializable(addWordComponentTypeKey, type)
+            }
+
+            return EnterWordFragment().apply {
+                setArguments(arguments)
+            }
+        }
     }
 }

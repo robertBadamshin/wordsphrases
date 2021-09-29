@@ -2,8 +2,8 @@ package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
 import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.SetWordText
 import com.app.wordsphrases.add_word_impl.domain.SubscribeForWordTranslation
@@ -24,6 +24,7 @@ class EnterWordPresenter @Inject constructor(
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
     private val routerWrapper: AddWordInnerRouterWrapper,
+    private val addWordComponentType: AddWordComponentType,
 ) : MvpPresenter<EnterWordView>() {
 
     override fun onFirstViewAttach() {
@@ -43,7 +44,7 @@ class EnterWordPresenter @Inject constructor(
                         viewState.hideTranslationProgress()
                         viewState.showTranslateButton()
 
-                        val screen = selectTranslationStarter.getScreen()
+                        val screen = selectTranslationStarter.getScreen(addWordComponentType)
                         routerWrapper.router.navigateTo(screen)
                     }
                     is RequestErrorStateWrapper -> {
@@ -96,7 +97,7 @@ class EnterWordPresenter @Inject constructor(
     }
 
     fun onBackPressed() {
-        AddWordComponent.clear()
+        //AddWordComponent.clear()
         routerWrapper.router.exit()
     }
 }

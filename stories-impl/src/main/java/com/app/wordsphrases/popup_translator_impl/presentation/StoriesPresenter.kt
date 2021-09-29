@@ -1,6 +1,9 @@
 package com.app.wordsphrases.popup_translator_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
+import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
+import com.app.wordsphrases.popup_translator_impl.di.RegularAddWordInnerComponentImpl
 import com.app.wordsphrases.popup_translator_impl.domain.use_case.GetCurrentWord
 import com.app.wordsphrases.popup_translator_impl.domain.use_case.MoveToNextWord
 import com.app.wordsphrases.popup_translator_impl.domain.use_case.SubscribeForWords
@@ -43,8 +46,14 @@ class StoriesPresenter @Inject constructor(
 
     fun openEnterWord() {
         // TODO make routing
-//        val screen = enterWordStarter.getScreen()
-//        router.navigateTo(screen)
+//
+
+        val routerWrapper = AddWordInnerRouterWrapper(router)
+        val innerComponent = RegularAddWordInnerComponentImpl.get(routerWrapper)
+        enterWordStarter.initComponent(AddWordComponentType.Regular, innerComponent)
+
+        val screen = enterWordStarter.getScreen(AddWordComponentType.Regular)
+        router.navigateTo(screen)
     }
 
     fun onBackStackChanged(entriesCount: Int) {

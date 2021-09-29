@@ -1,12 +1,14 @@
 package com.app.wordsphrases.add_word_impl.di
 
 import com.app.wordsphrases.add_word_api.di.AddWordInnerComponent
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.di.database.WordDatabaseComponent
 import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
 import com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment.SelectTranslationPresenter
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core.di.FeatureScope
+import dagger.BindsInstance
 import dagger.Component
 
 @FeatureScope
@@ -21,40 +23,18 @@ interface AddWordComponent {
 
     companion object {
 
-        private var component: AddWordComponent? = null
-
-        fun create(addWordInnerComponent: AddWordInnerComponent): AddWordComponent {
-//            return synchronized(this) {
-//                val component = component
-//                if (component != null) {
-//                    component
-//                } else {
-//                    val newComponent = DaggerAddWordComponent
-//                        .factory()
-//                        .create(
-//                            appComponent,
-//                            WordDatabaseComponent.require(),
-//                            addWordInnerComponent,
-//                        )
-//                    Companion.component = newComponent
-//                    newComponent
-//                }
-//            }
+        fun create(
+            addWordInnerComponent: AddWordInnerComponent,
+            type: AddWordComponentType,
+        ): AddWordComponent {
             return DaggerAddWordComponent
                 .factory()
                 .create(
-                    appComponent,
-                    WordDatabaseComponent.require(),
-                    addWordInnerComponent,
+                    appComponent = appComponent,
+                    wordDatabaseComponent = WordDatabaseComponent.require(),
+                    addWordInnerComponent = addWordInnerComponent,
+                    type = type,
                 )
-        }
-
-        fun require(): AddWordComponent {
-            return component!!
-        }
-
-        fun clear() {
-            component = null
         }
     }
 
@@ -64,6 +44,7 @@ interface AddWordComponent {
             appComponent: AppComponent,
             wordDatabaseComponent: WordDatabaseComponent,
             addWordInnerComponent: AddWordInnerComponent,
+            @BindsInstance type: AddWordComponentType,
         ): AddWordComponent
     }
 

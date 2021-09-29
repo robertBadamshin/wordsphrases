@@ -2,7 +2,6 @@ package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragm
 
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
@@ -83,7 +82,7 @@ class SelectTranslationPresenter @Inject constructor(
     fun onAddWordClicked() {
         presenterScope.launch {
             onSaveWordClick()
-            AddWordComponent.clear()
+            //AddWordComponent.clear()
             routerWrapper.router.newRootChain()
             routerWrapper.router.exit()
         }
