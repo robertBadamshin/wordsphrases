@@ -1,9 +1,11 @@
 package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
-import com.app.wordsphrases.add_word_api.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
+import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
 import com.app.wordsphrases.add_word_impl.R
+import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
+import com.app.wordsphrases.add_word_impl.domain.ClearSelfAddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
 import com.app.wordsphrases.add_word_impl.domain.SetWordText
 import com.app.wordsphrases.add_word_impl.domain.SubscribeForWordTranslation
@@ -26,6 +28,8 @@ class EnterWordPresenter @Inject constructor(
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
     private val addWordComponentType: AddWordComponentType,
+    private val initialTextWrapper: InitialTextWrapper,
+    private val clearSelfAddWordComponent: ClearSelfAddWordComponent,
 ) : MvpPresenter<EnterWordView>() {
 
     override fun onFirstViewAttach() {
@@ -35,6 +39,17 @@ class EnterWordPresenter @Inject constructor(
         subscribeForTranslation()
 
         viewState.showKeyboard()
+
+        when (addWordComponentType) {
+            AddWordComponentType.Popup -> {
+                val initialText = initialTextWrapper.text ?: "text should be presented"
+                setWordText(initialText)
+                viewState.setInitialText(initialText)
+            }
+            AddWordComponentType.Regular -> {
+                // do nothing
+            }
+        }
     }
 
     private fun subscribeForTranslations() {
@@ -78,9 +93,7 @@ class EnterWordPresenter @Inject constructor(
     }
 
     fun onTranslateClick(textToTranslate: String) {
-        presenterScope.launch {
-            setWordText(textToTranslate)
-        }
+        setWordText(textToTranslate)
     }
 
     fun onWordChanged(text: String) {
@@ -98,7 +111,11 @@ class EnterWordPresenter @Inject constructor(
     }
 
     fun onBackPressed() {
-        //AddWordComponent.clear()
         router.exit()
+    }
+
+    override fun onDestroy() {
+        clearSelfAddWordComponent()
+        super.onDestroy()
     }
 }

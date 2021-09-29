@@ -1,24 +1,18 @@
 package com.app.wordsphrases.add_word_impl.data
 
 import com.app.wordsphrases.add_word_api.WordImage
-import com.app.wordsphrases.add_word_impl.data.datasource.GetWordsDao
-import com.app.wordsphrases.translation_api.domain.Translation
-import com.app.wordsphrases.core.di.FeatureScope
+import com.app.wordsphrases.add_word_impl.di.AddWordComponentScope
 import com.app.wordsphrases.core.utils.LazyStateFlow
 import com.app.wordsphrases.entity.RequestStateWrapper
-import com.app.wordsphrases.entity.word.Word
-import com.app.wordsphrases.entity.word.toDomainEntity
+import com.app.wordsphrases.translation_api.domain.Translation
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.map
-import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import javax.inject.Inject
 
 
-@FeatureScope
+@AddWordComponentScope
 class WordRepository @Inject constructor() {
 
     private val translationsFlow = MutableStateFlow<RequestStateWrapper<List<Translation>>?>(null)

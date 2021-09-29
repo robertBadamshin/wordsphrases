@@ -1,13 +1,13 @@
 package com.app.wordsphrases.add_word_impl.di
 
+import com.app.wordsphrases.add_word_impl.domain.ClearAddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.CreateAddWordComponent
 import com.app.wordsphrases.add_word_impl.domain.RequireAddWordComponent
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
-import com.app.wordsphrases.core.di.FeatureScope
 import dagger.Component
 
-@FeatureScope
+@AddWordParentComponentScope
 @Component(
     dependencies = [
         AppComponent::class,
@@ -42,4 +42,6 @@ interface AddWordParentComponent {
     val createAddWordComponent: CreateAddWordComponent
 
     val requireAddWordComponent: RequireAddWordComponent
+
+    val clearAddWordComponent: ClearAddWordComponent
 }

@@ -34,4 +34,7 @@ interface EnterWordView : MvpView {
 
     @OneExecution
     fun showKeyboard()
+
+    @OneExecution
+    fun setInitialText(text: String)
 }

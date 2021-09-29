@@ -1,7 +1,8 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import com.app.wordsphrases.add_word_api.WordImage
-import com.app.wordsphrases.add_word_api.di.AddWordNavigationQualifier
+import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
+import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
@@ -29,6 +30,7 @@ class SelectTranslationPresenter @Inject constructor(
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
     private val autoSelectTranslations: AutoSelectTranslations,
+    private val initialTextWrapper: InitialTextWrapper?,
 ) : MvpPresenter<SelectTranslationView>() {
 
     override fun onFirstViewAttach() {

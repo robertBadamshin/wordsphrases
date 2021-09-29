@@ -2,17 +2,16 @@ package com.app.wordsphrases.add_word_impl.data
 
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.core.di.FeatureScope
+import com.app.wordsphrases.add_word_impl.di.AddWordParentComponentScope
 import javax.inject.Inject
 
-@FeatureScope
+@AddWordParentComponentScope
 class AddWordComponentsRepository @Inject constructor() {
-
 
     private var addWordComponents = mutableMapOf<AddWordComponentType, AddWordComponent>()
 
     fun setAddWordComponent(type: AddWordComponentType, component: AddWordComponent) {
-        if (addWordComponents.containsKey(type)) {
+       if (addWordComponents.containsKey(type)) {
             throw IllegalStateException("component already exists")
         }
 
@@ -27,7 +26,7 @@ class AddWordComponentsRepository @Inject constructor() {
     }
 
     fun clearAddWordComponent(type: AddWordComponentType) {
-        if (!addWordComponents.contains(type)) {
+        if (!addWordComponents.containsKey(type)) {
             throw IllegalStateException("component should be presented")
         }
 

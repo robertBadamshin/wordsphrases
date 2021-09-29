@@ -5,8 +5,8 @@ import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
 import com.app.wordsphrases.popup_translator_impl.R
-import com.app.wordsphrases.popup_translator_impl.di.PopupAddWordInnerComponentImpl
 import com.app.wordsphrases.popup_translator_impl.di.PopupTranslatorComponent
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -18,10 +18,17 @@ import ru.terrakok.cicerone.commands.Command
 
 class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
 
-    private val addWordInnerComponent by lazy { PopupAddWordInnerComponentImpl.get() }
-    private val popupTranslatorComponent by lazy { PopupTranslatorComponent.get(addWordInnerComponent) }
+    private val popupTranslatorComponent by lazy {
+        val wordText = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString()
+            ?: throw IllegalArgumentException("extraText should be presented")
 
-    private val popupTranslatorPresenter by moxyPresenter { popupTranslatorComponent.popupTranslatorPresenter }
+        val initialTextWrapper = InitialTextWrapper(wordText)
+        PopupTranslatorComponent.get(initialTextWrapper)
+    }
+
+    private val popupTranslatorPresenter by moxyPresenter {
+        popupTranslatorComponent.popupTranslatorPresenter
+    }
 
     private val navigatorHolder: NavigatorHolder by lazy {
         popupTranslatorComponent.popupTranslatorNavigatorHolder
@@ -82,21 +89,10 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
     }
 
     private fun initWordText() {
-        val wordText = intent
-            .getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)
-            ?.toString()
 
-        if (wordText == null) {
-            throw IllegalArgumentException("extraText should be presented")
-        }
 
         //
         //popupTranslatorPresenter.onSetWordText(wordText)
-    }
-
-
-    override fun beginPopupAddWordComponentCreation() {
-        popupTranslatorPresenter.initPopupAddWordComponent(addWordInnerComponent)
     }
 
     override fun closeScreen() {

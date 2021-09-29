@@ -134,6 +134,10 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
         textToTranslateEditText.showKeyboard()
     }
 
+    override fun setInitialText(text: String) {
+        textToTranslateEditText.setText(text)
+    }
+
     private fun configureInsets(view: View) {
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
             val screenInsets =

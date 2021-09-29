@@ -8,8 +8,5 @@ import moxy.viewstate.strategy.alias.OneExecution
 interface PopupTranslatorView : MvpView {
 
     @OneExecution
-    fun beginPopupAddWordComponentCreation()
-
-    @OneExecution
     fun closeScreen()
 }

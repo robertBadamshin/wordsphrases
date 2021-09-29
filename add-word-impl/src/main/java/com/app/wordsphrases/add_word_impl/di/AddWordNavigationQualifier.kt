@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_api.di
+package com.app.wordsphrases.add_word_impl.di
 
 import javax.inject.Qualifier
 
