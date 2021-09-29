@@ -9,9 +9,6 @@ import ru.terrakok.cicerone.NavigatorHolder
 
 @FeatureScope
 @Component(
-    modules = [
-        //PopupTranslatorRouterModule::class,
-    ],
     dependencies = [
         AppComponent::class,
         PopupTranslatorInnerComponent::class,

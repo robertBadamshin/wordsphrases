@@ -14,11 +14,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.app.wordsphrases.core.BaseWordsPhrasesApp
 import com.app.wordsphrases.core_ui.view.dpToPx
-import com.app.wordsphrases.navigation.MainRouter
-import com.app.wordsphrases.navigation.NavigationScreen
-import com.app.wordsphrases.stories_impl.R
 import com.app.wordsphrases.popup_translator_impl.di.StoriesComponent
 import com.app.wordsphrases.popup_translator_impl.ui.model.WordUiModel
+import com.app.wordsphrases.stories_impl.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -112,10 +110,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     override fun onPause() {
         navigatorHolder.removeNavigator()
         super.onPause()
-    }
-
-    override fun openScreen(screen: NavigationScreen) {
-        (requireActivity() as MainRouter).startScreen(screen)
     }
 
     override fun showWord(uiModel: WordUiModel) {

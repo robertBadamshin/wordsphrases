@@ -98,4 +98,8 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
     override fun beginPopupAddWordComponentCreation() {
         popupTranslatorPresenter.initPopupAddWordComponent(addWordInnerComponent)
     }
+
+    override fun closeScreen() {
+        finish()
+    }
 }

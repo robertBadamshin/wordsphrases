@@ -9,4 +9,7 @@ interface PopupTranslatorView : MvpView {
 
     @OneExecution
     fun beginPopupAddWordComponentCreation()
+
+    @OneExecution
+    fun closeScreen()
 }

@@ -28,7 +28,7 @@ class PopupTranslatorPresenter @Inject constructor(
 
     fun onBackStackChanged(count: Int) {
         if (count == 0) {
-            router.exit()
+            viewState.closeScreen()
         }
     }
 }
