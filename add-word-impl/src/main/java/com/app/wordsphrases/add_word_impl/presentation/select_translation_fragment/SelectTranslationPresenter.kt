@@ -1,7 +1,7 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import com.app.wordsphrases.add_word_api.WordImage
-import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
+import com.app.wordsphrases.add_word_api.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
 import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
@@ -16,14 +16,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class SelectTranslationPresenter @Inject constructor(
+    @AddWordNavigationQualifier private val router: Router,
     private val getCurrentWordText: GetCurrentWordText,
     private val translationsUiMapper: TranslationsUiMapper,
     private val setImage: SetImage,
     private val onSaveWordClick: OnSaveWordClick,
-    private val routerWrapper: AddWordInnerRouterWrapper,
     private val getSuccessfulTranslations: GetSuccessfulTranslations,
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
@@ -83,12 +84,16 @@ class SelectTranslationPresenter @Inject constructor(
         presenterScope.launch {
             onSaveWordClick()
             //AddWordComponent.clear()
-            routerWrapper.router.newRootChain()
-            routerWrapper.router.exit()
+            router.newRootChain()
         }
     }
 
     fun onToggleTranslationSelection(id: Int) {
         toggleTranslationSelection(id = id)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val a  = 3
     }
 }

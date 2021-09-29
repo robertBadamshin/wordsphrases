@@ -1,7 +1,7 @@
 package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
-import com.app.wordsphrases.add_word_api.di.AddWordInnerRouterWrapper
+import com.app.wordsphrases.add_word_api.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.domain.GetTranslations
@@ -16,14 +16,15 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class EnterWordPresenter @Inject constructor(
+    @AddWordNavigationQualifier private val router: Router,
     private val setWordText: SetWordText,
     private val getTranslations: GetTranslations,
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
-    private val routerWrapper: AddWordInnerRouterWrapper,
     private val addWordComponentType: AddWordComponentType,
 ) : MvpPresenter<EnterWordView>() {
 
@@ -45,7 +46,7 @@ class EnterWordPresenter @Inject constructor(
                         viewState.showTranslateButton()
 
                         val screen = selectTranslationStarter.getScreen(addWordComponentType)
-                        routerWrapper.router.navigateTo(screen)
+                        router.navigateTo(screen)
                     }
                     is RequestErrorStateWrapper -> {
                         viewState.hideTranslationProgress()
@@ -98,6 +99,6 @@ class EnterWordPresenter @Inject constructor(
 
     fun onBackPressed() {
         //AddWordComponent.clear()
-        routerWrapper.router.exit()
+        router.exit()
     }
 }

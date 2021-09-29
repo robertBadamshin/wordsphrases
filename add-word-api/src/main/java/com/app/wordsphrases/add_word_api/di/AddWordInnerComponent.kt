@@ -1,6 +1,9 @@
 package com.app.wordsphrases.add_word_api.di
 
+import ru.terrakok.cicerone.Router
+
 interface AddWordInnerComponent {
 
-    val addWordInnerRouterWrapper: AddWordInnerRouterWrapper
+    @get:AddWordNavigationQualifier
+    val router: Router
 }
