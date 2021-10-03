@@ -6,6 +6,7 @@
     <FrameLayout
         android:id="@+id/fragment_container_popup"
         android:layout_width="300dp"
-        android:layout_height="400dp" />
+        android:layout_height="400dp"
+        android:background="@drawable/background_popup_window_rounded_corners" />
 
 </FrameLayout>

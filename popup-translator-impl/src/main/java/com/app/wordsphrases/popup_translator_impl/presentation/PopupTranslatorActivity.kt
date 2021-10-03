@@ -73,8 +73,6 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
         }
 
         setContentView(R.layout.activity_popup_translator)
-
-        initWordText()
     }
 
 
@@ -86,13 +84,6 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
     override fun onPause() {
         navigatorHolder.removeNavigator()
         super.onPause()
-    }
-
-    private fun initWordText() {
-
-
-        //
-        //popupTranslatorPresenter.onSetWordText(wordText)
     }
 
     override fun closeScreen() {
