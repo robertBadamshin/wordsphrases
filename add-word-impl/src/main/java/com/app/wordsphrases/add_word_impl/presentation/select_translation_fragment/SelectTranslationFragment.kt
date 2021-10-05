@@ -12,11 +12,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
+import com.app.wordsphrases.core_ui.view.dpToPx
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -137,6 +140,12 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
         fabAddWord.iconTint = colorStateList
         fabAddWord.setTextColor(colorStateList)
         fabAddWord.isClickable = false
+    }
+
+    override fun setWordToMargin(uiModel: MarginUiModel) {
+        wordTextView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+            topMargin = uiModel.margin.dpToPx()
+        }
     }
 
 //    private fun dispatchTakePicture() {

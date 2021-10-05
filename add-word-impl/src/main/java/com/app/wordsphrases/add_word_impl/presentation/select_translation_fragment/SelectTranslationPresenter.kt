@@ -1,7 +1,7 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import com.app.wordsphrases.add_word_api.WordImage
-import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
@@ -11,6 +11,7 @@ import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
 import com.app.wordsphrases.add_word_impl.domain.SetImage
 import com.app.wordsphrases.add_word_impl.domain.ToggleTranslationSelection
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.WordTopMarginUiMapper
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +31,8 @@ class SelectTranslationPresenter @Inject constructor(
     private val getSelectedTranslationsIds: GetSelectedTranslationsIds,
     private val toggleTranslationSelection: ToggleTranslationSelection,
     private val autoSelectTranslations: AutoSelectTranslations,
-    private val initialTextWrapper: InitialTextWrapper?,
+    private val addWordComponentType: AddWordComponentType,
+    private val wordTopMarginUiMapper: WordTopMarginUiMapper,
 ) : MvpPresenter<SelectTranslationView>() {
 
     override fun onFirstViewAttach() {
@@ -40,6 +42,12 @@ class SelectTranslationPresenter @Inject constructor(
         updateWord()
         updateDoneButton()
         autoSelectTranslation()
+        setWordTopMargin()
+    }
+
+    private fun setWordTopMargin() {
+        val paddingUiModel = wordTopMarginUiMapper.map(addWordComponentType)
+        viewState.setWordToMargin(paddingUiModel)
     }
 
     private fun autoSelectTranslation() {
@@ -96,6 +104,6 @@ class SelectTranslationPresenter @Inject constructor(
 
     override fun onDestroy() {
         super.onDestroy()
-        val a  = 3
+        val a = 3
     }
 }

@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import moxy.MvpView
 import moxy.viewstate.strategy.AddToEndSingleTagStrategy
@@ -22,4 +23,6 @@ interface SelectTranslationView : MvpView {
 
     @StateStrategyType(AddToEndSingleTagStrategy::class, tag = doneButtonEnabledTag)
     fun setDoneButtonDisabled()
+
+    fun setWordToMargin(uiModel: MarginUiModel)
 }
