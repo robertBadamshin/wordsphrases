@@ -20,9 +20,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".popup_translator_impl.presentation.PopupTranslatorActivity"
-            android:theme="@style/PopupTranslator"
-            android:enabled="${popupTranslatorEnabled}">
+        <activity
+            android:name=".popup_translator_impl.presentation.PopupTranslatorActivity"
+            android:theme="@style/PopupTranslator">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
