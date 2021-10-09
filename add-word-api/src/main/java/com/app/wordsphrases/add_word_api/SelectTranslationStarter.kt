@@ -1,9 +1,9 @@
 package com.app.wordsphrases.add_word_api
 
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import ru.terrakok.cicerone.android.support.SupportAppScreen
+import java.util.UUID
 
 interface SelectTranslationStarter {
 
-    fun getScreen(type: AddWordComponentType): SupportAppScreen
+    fun getScreen(uuid: UUID): SupportAppScreen
 }

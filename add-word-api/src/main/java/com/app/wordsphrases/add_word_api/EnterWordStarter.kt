@@ -7,5 +7,9 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 interface EnterWordStarter {
 
-    fun getScreen(type: AddWordComponentType, router: Router, initialTextWrapper: InitialTextWrapper): SupportAppScreen
+    fun getScreen(
+        type: AddWordComponentType,
+        router: Router,
+        initialTextWrapper: InitialTextWrapper,
+    ): SupportAppScreen
 }

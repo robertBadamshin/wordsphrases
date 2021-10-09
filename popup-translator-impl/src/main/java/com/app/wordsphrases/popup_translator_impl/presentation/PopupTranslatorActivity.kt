@@ -75,7 +75,6 @@ class PopupTranslatorActivity : MvpAppCompatActivity(), PopupTranslatorView {
         setContentView(R.layout.activity_popup_translator)
     }
 
-
     override fun onResume() {
         super.onResume()
         navigatorHolder.setNavigator(navigator)

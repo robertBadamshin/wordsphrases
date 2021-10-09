@@ -14,7 +14,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
@@ -23,16 +22,17 @@ import com.app.wordsphrases.core_ui.view.dpToPx
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import java.util.UUID
 
-private const val addWordComponentTypeKey = "addWordComponentTypeKey"
+private const val addWordComponentUuidKey = "addWordComponentUuid"
 
 class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView {
 
     private val presenter by moxyPresenter {
-        val addWordComponentType = requireArguments().getSerializable(addWordComponentTypeKey) as? AddWordComponentType
-            ?: throw IllegalStateException("addWordComponentType should be presented")
+        val uuid = requireArguments().getSerializable(addWordComponentUuidKey) as? UUID
+            ?: throw IllegalStateException("addWordComponent Uuid should be presented")
 
-        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(addWordComponentType)
+        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(uuid)
         return@moxyPresenter addWordComponent.selectTranslationPresenter
     }
 
@@ -158,9 +158,9 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
 
     companion object {
 
-        fun newInstance(type: AddWordComponentType): SelectTranslationFragment {
+        fun newInstance(uuid: UUID): SelectTranslationFragment {
             val arguments = Bundle().apply {
-                putSerializable(addWordComponentTypeKey, type)
+                putSerializable(addWordComponentUuidKey, uuid)
             }
 
             return SelectTranslationFragment().apply {

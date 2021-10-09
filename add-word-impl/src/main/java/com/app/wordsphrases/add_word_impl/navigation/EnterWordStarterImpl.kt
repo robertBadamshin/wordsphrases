@@ -8,6 +8,7 @@ import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordFragment
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
+import java.util.UUID
 import javax.inject.Inject
 
 class EnterWordStarterImpl @Inject constructor() : EnterWordStarter {
@@ -18,7 +19,14 @@ class EnterWordStarterImpl @Inject constructor() : EnterWordStarter {
         initialTextWrapper: InitialTextWrapper,
     ): SupportAppScreen {
         val component = AddWordParentComponent.get()
-        component.createAddWordComponent(type, router, initialTextWrapper)
+        val uuid = UUID.randomUUID()
+
+        component.createAddWordComponent(
+            uuid = uuid,
+            type = type,
+            router = router,
+            initialTextWrapper = initialTextWrapper,
+        )
 
         return object : SupportAppScreen() {
 
@@ -27,7 +35,7 @@ class EnterWordStarterImpl @Inject constructor() : EnterWordStarter {
             }
 
             override fun getFragment(): Fragment {
-                return EnterWordFragment.newInstance(type)
+                return EnterWordFragment.newInstance(uuid)
             }
         }
     }

@@ -9,6 +9,7 @@ import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import dagger.BindsInstance
 import dagger.Component
+import java.util.UUID
 
 @AddWordComponentScope
 @Component(
@@ -27,6 +28,7 @@ interface AddWordComponent {
             addWordParentComponent: AddWordParentComponent,
             addWordInnerComponent: AddWordInnerComponent,
             type: AddWordComponentType,
+            uuid: UUID,
         ): AddWordComponent {
             return DaggerAddWordComponent
                 .factory()
@@ -36,6 +38,7 @@ interface AddWordComponent {
                     addWordInnerComponent = addWordInnerComponent,
                     addWordParentComponent = addWordParentComponent,
                     type = type,
+                    uuid = uuid,
                 )
         }
     }
@@ -48,6 +51,7 @@ interface AddWordComponent {
             addWordInnerComponent: AddWordInnerComponent,
             addWordParentComponent: AddWordParentComponent,
             @BindsInstance type: AddWordComponentType,
+            @BindsInstance uuid: UUID,
         ): AddWordComponent
     }
 
