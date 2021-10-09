@@ -1,15 +1,15 @@
 package com.app.wordsphrases.add_word_impl.domain
 
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.data.AddWordComponentsRepository
 import com.app.wordsphrases.add_word_impl.di.AddWordComponent
+import java.util.UUID
 import javax.inject.Inject
 
 class RequireAddWordComponent @Inject constructor(
     private val addWordComponentsRepository: AddWordComponentsRepository,
 ) {
 
-    operator fun invoke(type: AddWordComponentType): AddWordComponent {
-        return addWordComponentsRepository.requireAddWordComponent(type)
+    operator fun invoke(uuid: UUID): AddWordComponent {
+        return addWordComponentsRepository.requireAddWordComponent(uuid)
     }
 }

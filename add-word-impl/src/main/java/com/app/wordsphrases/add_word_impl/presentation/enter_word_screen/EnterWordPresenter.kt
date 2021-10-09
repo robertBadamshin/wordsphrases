@@ -19,6 +19,7 @@ import kotlinx.coroutines.launch
 import moxy.MvpPresenter
 import moxy.presenterScope
 import ru.terrakok.cicerone.Router
+import java.util.UUID
 import javax.inject.Inject
 
 class EnterWordPresenter @Inject constructor(
@@ -28,6 +29,7 @@ class EnterWordPresenter @Inject constructor(
     private val subscribeForWordTranslation: SubscribeForWordTranslation,
     private val selectTranslationStarter: SelectTranslationStarter,
     private val addWordComponentType: AddWordComponentType,
+    private val uuid: UUID,
     private val initialTextWrapper: InitialTextWrapper,
     private val clearSelfAddWordComponent: ClearSelfAddWordComponent,
 ) : MvpPresenter<EnterWordView>() {
@@ -60,7 +62,7 @@ class EnterWordPresenter @Inject constructor(
                         viewState.hideTranslationProgress()
                         viewState.showTranslateButton()
 
-                        val screen = selectTranslationStarter.getScreen(addWordComponentType)
+                        val screen = selectTranslationStarter.getScreen(uuid)
                         router.navigateTo(screen)
                     }
                     is RequestErrorStateWrapper -> {

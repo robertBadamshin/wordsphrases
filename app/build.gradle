@@ -22,16 +22,22 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        debug {
-            manifestPlaceholders = [popupTranslatorEnabled: "true"]
+    signingConfigs {
+        release {
+            keyAlias project.ext.keystoreProperties['keyAlias']
+            keyPassword project.ext.keystoreProperties['keyPassword']
+            storeFile file(project.ext.keystoreProperties['storeFile'])
+            storePassword project.ext.keystoreProperties['storePassword']
         }
+    }
+
+    buildTypes {
 
         release {
-            manifestPlaceholders = [ popupTranslatorEnabled:"true"]
 
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -44,15 +50,6 @@ android {
 
     packagingOptions {
         exclude 'META-INF/INDEX.LIST'
-    }
-
-    signingConfigs {
-        config {
-            keyAlias project.ext.keystoreProperties['keyAlias']
-            keyPassword project.ext.keystoreProperties['keyPassword']
-            storeFile file(project.ext.keystoreProperties['storeFile'])
-            storePassword project.ext.keystoreProperties['storePassword']
-        }
     }
 }
 

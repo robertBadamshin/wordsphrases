@@ -16,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.core_ui.view.showKeyboard
@@ -24,16 +23,17 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import java.util.UUID
 
-private const val addWordComponentTypeKey = "addWordComponentTypeKey"
+private const val addWordComponentUuidKey = "addWordComponentUuid"
 
 class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     private val presenter by moxyPresenter {
-        val addWordComponentType = requireArguments().getSerializable(addWordComponentTypeKey) as? AddWordComponentType
-            ?: throw IllegalStateException("addWordComponentType should be presented")
+        val uuid = requireArguments().getSerializable(addWordComponentUuidKey) as? UUID
+            ?: throw IllegalStateException("addWordComponentUuid should be presented")
 
-        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(addWordComponentType)
+        val addWordComponent = AddWordParentComponent.get().requireAddWordComponent(uuid)
         return@moxyPresenter addWordComponent.enterWordPresenter
     }
 
@@ -168,9 +168,9 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     companion object {
 
-        fun newInstance(type: AddWordComponentType): EnterWordFragment {
+        fun newInstance(uuid: UUID): EnterWordFragment {
             val arguments = Bundle().apply {
-                putSerializable(addWordComponentTypeKey, type)
+                putSerializable(addWordComponentUuidKey, uuid)
             }
 
             return EnterWordFragment().apply {
