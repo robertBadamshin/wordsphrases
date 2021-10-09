@@ -148,7 +148,11 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
         }
     }
 
-//    private fun dispatchTakePicture() {
+    override fun showToastMessage(messageRes: Int) {
+        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_SHORT).show()
+    }
+
+    //    private fun dispatchTakePicture() {
 //        takePhoto.launch(null)
 //    }
 //

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="are_not_able_to_translate">Не удалось получить перевод</string>
+    <string name="are_not_able_to_translate">Can\'t receive translation</string>
 </resources>

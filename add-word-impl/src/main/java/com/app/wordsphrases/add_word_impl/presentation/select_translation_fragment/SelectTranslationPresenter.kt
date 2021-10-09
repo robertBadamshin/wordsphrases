@@ -2,6 +2,7 @@ package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragm
 
 import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
+import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
 import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
 import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
@@ -93,7 +94,7 @@ class SelectTranslationPresenter @Inject constructor(
     fun onAddWordClicked() {
         presenterScope.launch {
             onSaveWordClick()
-            //AddWordComponent.clear()
+            viewState.showToastMessage(R.string.word_added)
             router.newRootChain()
         }
     }
@@ -104,6 +105,5 @@ class SelectTranslationPresenter @Inject constructor(
 
     override fun onDestroy() {
         super.onDestroy()
-        val a = 3
     }
 }
