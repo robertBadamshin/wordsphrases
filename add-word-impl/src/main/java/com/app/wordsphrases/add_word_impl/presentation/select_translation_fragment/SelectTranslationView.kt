@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
+import androidx.annotation.StringRes
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import moxy.MvpView
@@ -25,4 +26,6 @@ interface SelectTranslationView : MvpView {
     fun setDoneButtonDisabled()
 
     fun setWordToMargin(uiModel: MarginUiModel)
+
+    fun showToastMessage(@StringRes messageRes: Int)
 }

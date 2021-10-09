@@ -13,7 +13,7 @@ class MoveToNextWord @Inject constructor(
         val words = repository.getCurrentsWords()
         val position = repository.getCurrentWordPosition()
 
-        val newPosition = if (words.lastIndex == position) {
+        val newPosition = if (words.isEmpty() || words.lastIndex == position) {
             firstWordIndex
         } else {
             position + 1
