@@ -8,6 +8,8 @@ apply from: '../commonRoomModule.gradle'
 apply from: '../commonUiModule.gradle'
 apply from: '../commonBase.gradle'
 
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 30
@@ -31,6 +33,10 @@ android {
     }
 
     buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+        }
 
         release {
 
@@ -71,4 +77,8 @@ dependencies {
     implementation project(':email-sender-impl')
     implementation project(':email-sender-api')
     implementation project(':entity')
+
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 }
