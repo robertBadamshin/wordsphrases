@@ -1,0 +1,8 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+apply from: '../commonDaggerModule.gradle'
+
+dependencies {
+    implementation project(":email-sender-api")
+}

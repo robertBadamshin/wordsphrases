@@ -14,9 +14,8 @@ android {
 
     defaultConfig {
         applicationId "com.app.wordsphrases"
-        minSdkVersion 26
-        targetSdkVersion 30
-        versionCode 3
+
+        versionCode 5
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -69,5 +68,7 @@ dependencies {
     implementation project(':stories-impl')
     implementation project(':stories-api')
     implementation project(':popup-translator-impl')
+    implementation project(':email-sender-impl')
+    implementation project(':email-sender-api')
     implementation project(':entity')
 }

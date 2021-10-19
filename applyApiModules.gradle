@@ -7,4 +7,5 @@ dependencies {
     implementation project(':remote-api')
     implementation project(':translation-api')
     implementation project(':stories-api')
+    implementation project(':email-sender-api')
 }

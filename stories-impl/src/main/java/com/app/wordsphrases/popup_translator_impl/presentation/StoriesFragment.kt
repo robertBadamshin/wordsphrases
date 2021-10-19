@@ -1,9 +1,11 @@
 package com.app.wordsphrases.popup_translator_impl.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
@@ -33,6 +35,7 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     private lateinit var translationTextView: TextView
     private lateinit var containerView: View
     private lateinit var addWordButton: FloatingActionButton
+    private lateinit var feedBackImageView: ImageView
 
     private val navigatorHolder: NavigatorHolder by lazy { BaseWordsPhrasesApp.appComponent.storiesNavigatorHolder }
     private val navigator: Navigator by lazy {
@@ -93,6 +96,9 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
         addWordButton = view.findViewById(R.id.floating_button_add_word)
         addWordButton.setOnClickListener { storiesPresenter.openEnterWord() }
 
+        feedBackImageView = view.findViewById(R.id.image_view_feedback)
+        feedBackImageView.setOnClickListener { storiesPresenter.onSendFeedbackClick() }
+
         ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
             addWordButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
@@ -123,5 +129,9 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
 
     override fun updateAddWordButtonVisible(visible: Boolean) {
         addWordButton.isVisible = visible
+    }
+
+    override fun startEmailActivity(intent: Intent) {
+        startActivity(intent)
     }
 }
