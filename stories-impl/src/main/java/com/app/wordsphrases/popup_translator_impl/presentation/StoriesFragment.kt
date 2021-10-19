@@ -104,6 +104,9 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
             addWordButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                 bottomMargin = insets.bottom + 16.dpToPx()
             }
+            feedBackImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                topMargin = insets.top + 16.dpToPx()
+            }
             return@setOnApplyWindowInsetsListener windowInsets
         }
     }
