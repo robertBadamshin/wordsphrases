@@ -1,0 +1,91 @@
+apply plugin: 'com.android.application'
+
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+apply from: '../commonDaggerModule.gradle'
+
+
+
+apply plugin: 'kotlin-android'
+apply from: '../getKeys.gradle'
+apply from: '../commonMoxyModule.gradle'
+apply from: '../commonRetrofitModule.gradle'
+apply from: '../commonRoomModule.gradle'
+apply from: '../commonUiModule.gradle'
+apply from: '../commonBase.gradle'
+
+apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        applicationId "com.app.wordsphrases"
+
+        versionCode 5
+        versionName "0.1"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        release {
+            keyAlias project.ext.keystoreProperties['keyAlias']
+            keyPassword project.ext.keystoreProperties['keyPassword']
+            storeFile file(project.ext.keystoreProperties['storeFile'])
+            storePassword project.ext.keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+        }
+
+        release {
+
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/INDEX.LIST'
+    }
+}
+
+dependencies {
+
+    implementation project(':android:core')
+    implementation project(':android:core-ui')
+    implementation project(':android:navigation')
+    implementation project(':android:add-word-impl')
+    implementation project(':android:add-word-api')
+    implementation project(':android:home-impl')
+    implementation project(':android:home-api')
+    implementation project(':android:remote-api')
+    implementation project(':android:remote-impl')
+    implementation project(':android:translation-impl')
+    implementation project(':android:translation-api')
+    implementation project(':android:stories-impl')
+    implementation project(':android:stories-api')
+    implementation project(':android:popup-translator-impl')
+    implementation project(':android:email-sender-impl')
+    implementation project(':android:email-sender-api')
+    implementation project(':android:entity')
+    implementation project(':kmm-wordsphrases')
+
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+}

@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonRetrofitModule.gradle'
+
+dependencies {
+
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
+
+    implementation project(":android:remote-api")
+    implementation project(":android:entity")
+}

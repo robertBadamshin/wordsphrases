@@ -1,0 +1,10 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply from: '../commonUiModule.gradle'
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+
+    implementation project(':android:add-word-api')
+    implementation project(':android:home-api')
+}

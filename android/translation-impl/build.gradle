@@ -1,0 +1,13 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonRetrofitModule.gradle'
+
+dependencies {
+
+    implementation project(":android:remote-api")
+    implementation project(":android:translation-api")
+    implementation project(":android:core")
+    implementation project(":android:entity")
+}
