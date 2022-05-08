@@ -1,0 +1,25 @@
+CREATE TABLE word (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    createdAt INTEGER NOT NULL,
+    sortOrder INTEGER NOT NULL,
+    maxRepeatCount INTEGER NOT NULL,
+    repeatCount INTEGER NOT NULL
+);
+
+insertItem:
+INSERT INTO word (
+    id,
+    createdAt,
+    sortOrder,
+    maxRepeatCount,
+    repeatCount
+) VALUES (
+    ?,
+    ?,
+    ?,
+    ?,
+    ?
+    );
+
+selectAll:
+SELECT * FROM word;

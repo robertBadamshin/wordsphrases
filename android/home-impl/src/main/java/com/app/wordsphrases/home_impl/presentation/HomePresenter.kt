@@ -3,7 +3,10 @@ package com.app.wordsphrases.home_impl.presentation
 import com.app.wordsphrases.home_api.HomeNavigationQualifier
 import com.app.wordsphrases.stories_api.StoriesStarter
 import com.wordphrases.Platform
-import moxy.MvpPresenter
+import com.wordphrases.data.repository.FirebaseRepository
+import com.wordphrases.database.createDatabase
+import kotlinx.coroutines.launch
+import moxy.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
@@ -15,7 +18,9 @@ class HomePresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        Platform().platform
+        presenterScope.launch {
+            FirebaseRepository().getListFromFirebase()
+        }
 
         val screen = storiesStarter.getScreen()
         router.newRootScreen(screen)

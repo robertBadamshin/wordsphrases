@@ -10,6 +10,8 @@ buildscript {
 
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.7.1")
         classpath("com.google.gms:google-services:4.3.10")
+
+        classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
     }
 }
 
