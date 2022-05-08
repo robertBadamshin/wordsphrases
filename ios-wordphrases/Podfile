@@ -1,0 +1,5 @@
+target 'ios-wordphrases' do
+  use_frameworks!
+  platform :ios, '14.1'
+  pod 'kmm_wordsphrases', :path => '../kmm-wordsphrases'
+end

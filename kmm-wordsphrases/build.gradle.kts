@@ -1,11 +1,8 @@
-import org.apache.tools.ant.taskdefs.condition.Os
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-import org.gradle.api.tasks.testing.logging.TestLogEvent
-
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    kotlin("native.cocoapods")
     kotlin("plugin.serialization") version "1.6.10"
 }
 
@@ -16,51 +13,35 @@ sqldelight {
     }
 }
 
-tasks {
-    val carthageTasks = if (projectDir.resolve("src/nativeInterop/cinterop/Cartfile").exists()) { // skipping firebase-common module
-        listOf("bootstrap", "update").map {
-            task<Exec>("carthage${it.capitalize()}") {
-                group = "carthage"
-                executable = "carthage"
-                args(
-                    it,
-                    "--project-directory", projectDir.resolve("src/nativeInterop/cinterop"),
-                    "--platform", "iOS"
-                )
-            }
-        }
-    } else emptyList()
-
-    if (Os.isFamily(Os.FAMILY_MAC)) {
-        withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess::class) {
-            if (carthageTasks.isNotEmpty()) {
-                dependsOn("carthageBootstrap")
-            }
-        }
-    }
-
-//    create("carthageClean", Delete::class.java) {
-//        group = "carthage"
-//        delete(
-//            projectDir.resolve("src/nativeInterop/cinterop/Carthage"),
-//            projectDir.resolve("src/nativeInterop/cinterop/Cartfile.resolved")
-//        )
-//    }
-}
+version = "1.0"
 
 kotlin {
     android()
 
-    val iosArm64 = iosArm64()
-    val iosX64 = iosX64() // iosX64("ios") // iosX64()
+//    val iosArm64 = iosArm64()
+//    val iosX64 = iosX64() // iosX64("ios") // iosX64()
+//
+//    listOf(
+//        iosX64,
+//        iosArm64,
+//        iosSimulatorArm64()
+//    ).forEach {
+//        it.binaries.framework {
+//            baseName = "kmm-wordsphrases"
+//        }
+//    }
 
-    listOf(
-        iosX64,
-        iosArm64,
-        iosSimulatorArm64()
-    ).forEach {
-        it.binaries.framework {
-            baseName = "kmm-wordsphrases"
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        ios.deploymentTarget = "14.1"
+        podfile = project.file("../ios-wordphrases/Podfile")
+        framework {
+            baseName = "kmm_wordsphrases"
         }
     }
 

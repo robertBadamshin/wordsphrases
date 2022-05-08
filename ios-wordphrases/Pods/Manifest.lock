@@ -1,0 +1,16 @@
+PODS:
+  - kmm_wordsphrases (1.0)
+
+DEPENDENCIES:
+  - kmm_wordsphrases (from `../kmm-wordsphrases`)
+
+EXTERNAL SOURCES:
+  kmm_wordsphrases:
+    :path: "../kmm-wordsphrases"
+
+SPEC CHECKSUMS:
+  kmm_wordsphrases: c49dd0c1f9ba794c0329ae61336859e8cbed09ab
+
+PODFILE CHECKSUM: b39c9276cbedc556d33c151382fa202647a47c9d
+
+COCOAPODS: 1.11.3

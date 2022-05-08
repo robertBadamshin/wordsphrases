@@ -1,10 +1,9 @@
 package com.app.wordsphrases.home_impl.presentation
 
+import android.util.Log
 import com.app.wordsphrases.home_api.HomeNavigationQualifier
 import com.app.wordsphrases.stories_api.StoriesStarter
-import com.wordphrases.Platform
-import com.wordphrases.data.repository.FirebaseRepository
-import com.wordphrases.database.createDatabase
+import com.wordphrases.data.repository.*
 import kotlinx.coroutines.launch
 import moxy.*
 import ru.terrakok.cicerone.Router
@@ -19,7 +18,14 @@ class HomePresenter @Inject constructor(
         super.onFirstViewAttach()
 
         presenterScope.launch {
-            FirebaseRepository().getListFromFirebase()
+            //FirebaseRepository().getListFromFirebase()
+            try {
+                val repo = WordsRepository()
+                //repo.putWords()
+                repo.getWords()
+            } catch (ex: Exception) {
+                Log.d("das", "$ex")
+            }
         }
 
         val screen = storiesStarter.getScreen()
