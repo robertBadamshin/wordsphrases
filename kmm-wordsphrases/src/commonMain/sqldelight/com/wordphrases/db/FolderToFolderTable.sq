@@ -1,0 +1,22 @@
+CREATE TABLE folderToFolderDbEntity(
+    folderId INTEGER NOT NULL,
+    parentFolderId INTEGER,
+    FOREIGN KEY (folderId)
+            REFERENCES folderDbEntity (folderId)
+            ON DELETE CASCADE,
+    FOREIGN KEY (parentFolderId)
+            REFERENCES folderDbEntity (folderId)
+            ON DELETE CASCADE
+);
+
+insertItem:
+INSERT INTO folderToFolderDbEntity(
+    folderId,
+    parentFolderId
+) VALUES (
+    ?,
+    ?
+);
+
+selectAll:
+SELECT * FROM folderToFolderDbEntity;

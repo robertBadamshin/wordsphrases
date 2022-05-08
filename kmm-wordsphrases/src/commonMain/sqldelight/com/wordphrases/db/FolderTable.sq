@@ -1,0 +1,19 @@
+CREATE TABLE folderDbEntity(
+    folderId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    createdAt INTEGER NOT NULL,
+    name TEXT NOT NULL
+);
+
+insertItem:
+INSERT INTO folderDbEntity(
+    folderId,
+    createdAt,
+    name
+) VALUES (
+    ?,
+    ?,
+    ?
+);
+
+selectAll:
+SELECT * FROM folderDbEntity;

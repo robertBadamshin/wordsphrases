@@ -1,0 +1,22 @@
+CREATE TABLE translationDbEntity(
+    transaltionId INTEGER NOT NULL PRIMARY KEY,
+    wordId INTEGER NOT NULL,
+    transaltionText TEXT NOT NULL,
+    FOREIGN KEY (wordId)
+        REFERENCES wordDbEntity (wordId)
+        ON DELETE CASCADE
+);
+
+insertItem:
+INSERT INTO translationDbEntity(
+    transaltionId,
+    wordId,
+    transaltionText
+) VALUES (
+    ?,
+    ?,
+    ?
+);
+
+selectAll:
+SELECT * FROM translationDbEntity;

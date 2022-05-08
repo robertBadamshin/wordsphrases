@@ -1,0 +1,22 @@
+CREATE TABLE wordToFolderDbEntity(
+    wordId INTEGER NOT NULL,
+    folderId INTEGER NOT NULL,
+    FOREIGN KEY (wordId)
+            REFERENCES wordDbEntity (wordId)
+            ON DELETE CASCADE,
+    FOREIGN KEY (folderId)
+            REFERENCES folderDbEntity (folderId)
+            ON DELETE CASCADE
+);
+
+insertItem:
+INSERT INTO wordToFolderDbEntity(
+    wordId,
+    folderId
+) VALUES (
+    ?,
+    ?
+);
+
+selectAll:
+SELECT * FROM wordToFolderDbEntity;

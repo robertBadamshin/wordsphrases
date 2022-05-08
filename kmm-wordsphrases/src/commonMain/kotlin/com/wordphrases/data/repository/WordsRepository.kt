@@ -1,26 +1,29 @@
 package com.wordphrases.data.repository
 
-import com.wordphrases.DatabaseProvider
-import com.wordphrases.data.model.FirebaseUserRemote
-import com.wordphrases.db.Word
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.firestore.firestore
+import com.wordphrases.db.*
+import com.wordphrases.di.*
+import com.wordphrases.domain.entity.Word
 
-class WordsRepository {
+class WordsRepository(
+    private val wordLocalDataSource: WordLocalDataSource = DataSourceProvider.wordLocalDataSource,
+    private val translationLocalDataSource: TranslationLocalDataSource = DataSourceProvider.translationLocalDataSource,
+    private val wordToFolderLocalDataSource: WordToFolderLocalDataSource = DataSourceProvider.wordToFolderLocalDataSource,
+) {
 
-    private val database by lazy { DatabaseProvider().getDatabase() }
-
-    fun putWords() {
-        database.wordTableQueries.insertItem(
-            12L,
-            123L,
-            2L,
-            5L,
-            2L,
+    fun putWord(word: Word) {
+        val dbEntity = WordDbEntity(
+            wordId = word.wordId,
+            createdAt = word.createdAt,
+            wordText = word.wordText,
+            sortOrder = word.sortOrder,
+            maxRepeatCount = word.maxRepeatCount,
+            repeatCount = word.maxRepeatCount,
         )
+
+        wordLocalDataSource.insert(entity = dbEntity)
     }
 
-    fun getWords(): List<Word> {
-        return database.wordTableQueries.selectAll().executeAsList()
-    }
+//    fun getWords(): List<Word> {
+//        return database.wordTableQueries.selectAll().executeAsList()
+//    }
 }

@@ -3,7 +3,7 @@ package com.app.wordsphrases
 import com.app.wordsphrases.add_word_impl.di.database.WordDatabaseComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp
 import com.app.wordsphrases.di.DaggerAppComponentImpl
-import com.wordphrases.database.appContext
+import com.wordphrases.di.appContext
 
 @Suppress("unused")
 class WordsPhrasesApp : BaseWordsPhrasesApp() {

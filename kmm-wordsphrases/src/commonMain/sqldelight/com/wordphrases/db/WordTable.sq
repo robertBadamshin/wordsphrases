@@ -1,15 +1,17 @@
-CREATE TABLE word (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+CREATE TABLE wordDbEntity(
+    wordId INTEGER PRIMARY KEY AUTOINCREMENT,
     createdAt INTEGER NOT NULL,
+    wordText TEXT NOT NULL,
     sortOrder INTEGER NOT NULL,
     maxRepeatCount INTEGER NOT NULL,
     repeatCount INTEGER NOT NULL
 );
 
 insertItem:
-INSERT INTO word (
-    id,
+INSERT INTO wordDbEntity(
+    wordId,
     createdAt,
+    wordText,
     sortOrder,
     maxRepeatCount,
     repeatCount
@@ -18,8 +20,9 @@ INSERT INTO word (
     ?,
     ?,
     ?,
+    ?,
     ?
-    );
+);
 
 selectAll:
-SELECT * FROM word;
+SELECT * FROM wordDbEntity;

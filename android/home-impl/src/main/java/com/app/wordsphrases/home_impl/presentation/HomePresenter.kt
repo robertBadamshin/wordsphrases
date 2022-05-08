@@ -4,6 +4,7 @@ import android.util.Log
 import com.app.wordsphrases.home_api.HomeNavigationQualifier
 import com.app.wordsphrases.stories_api.StoriesStarter
 import com.wordphrases.data.repository.*
+import com.wordphrases.db.WordDbEntity
 import kotlinx.coroutines.launch
 import moxy.*
 import ru.terrakok.cicerone.Router
@@ -20,9 +21,14 @@ class HomePresenter @Inject constructor(
         presenterScope.launch {
             //FirebaseRepository().getListFromFirebase()
             try {
-                val repo = WordsRepository()
+//                val dataSource = WordLocalDataSource()
+//                val dbEntity = WordDbEntity(
+//
+//                )
+//                dataSource.insert()
+
                 //repo.putWords()
-                repo.getWords()
+                //repo.getWords()
             } catch (ex: Exception) {
                 Log.d("das", "$ex")
             }
