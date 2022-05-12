@@ -8,6 +8,9 @@ import dagger.Component
 
 @FeatureScope
 @Component(
+    modules = [
+        StoriesProvidesModule::class,
+    ],
     dependencies = [
         AppComponent::class,
     ]
@@ -15,6 +18,7 @@ import dagger.Component
 interface StoriesComponent {
 
     companion object {
+
         fun get(): StoriesComponent {
             return DaggerStoriesComponent.builder().appComponent(appComponent).build()
         }

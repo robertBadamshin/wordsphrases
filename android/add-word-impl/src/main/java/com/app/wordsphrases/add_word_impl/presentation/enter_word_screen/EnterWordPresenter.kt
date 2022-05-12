@@ -37,8 +37,6 @@ class EnterWordPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        val database =
-
         subscribeForTranslations()
         subscribeForTranslation()
 

@@ -9,7 +9,6 @@ CREATE TABLE wordDbEntity(
 
 insertItem:
 INSERT INTO wordDbEntity(
-    wordId,
     createdAt,
     wordText,
     sortOrder,
@@ -20,9 +19,11 @@ INSERT INTO wordDbEntity(
     ?,
     ?,
     ?,
-    ?,
     ?
 );
 
-selectAll:
+selectAllForStories:
 SELECT * FROM wordDbEntity;
+
+lastInsertRowId:
+SELECT last_insert_rowid();

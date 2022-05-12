@@ -2,7 +2,6 @@ package com.app.wordsphrases.di
 
 import android.content.Context
 import com.app.wordsphrases.add_word_impl.di.AddWordApiModule
-import com.app.wordsphrases.add_word_impl.di.database.WordDatabaseComponent
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.email_sender_impl.di.EmailSenderApiModule
@@ -19,9 +18,6 @@ import dagger.Component
 
 @AppScope
 @Component(
-    dependencies = [
-        WordDatabaseComponent::class,
-    ],
     modules = [
         AddWordApiModule::class,
         HomeApiModule::class,
@@ -41,7 +37,6 @@ interface AppComponentImpl : AppComponent {
 
         fun create(
             @BindsInstance context: Context,
-            wordDatabaseComponent: WordDatabaseComponent,
         ): AppComponentImpl
     }
 

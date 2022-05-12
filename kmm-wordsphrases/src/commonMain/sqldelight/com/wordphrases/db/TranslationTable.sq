@@ -9,14 +9,13 @@ CREATE TABLE translationDbEntity(
 
 insertItem:
 INSERT INTO translationDbEntity(
-    transaltionId,
     wordId,
     transaltionText
 ) VALUES (
-    ?,
     ?,
     ?
 );
 
 selectAll:
-SELECT * FROM translationDbEntity;
+SELECT * FROM translationDbEntity
+    WHERE wordId IN ?;

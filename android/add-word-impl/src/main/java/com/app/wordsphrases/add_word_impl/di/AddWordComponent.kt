@@ -1,7 +1,6 @@
 package com.app.wordsphrases.add_word_impl.di
 
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
-import com.app.wordsphrases.add_word_impl.di.database.WordDatabaseComponent
 import com.app.wordsphrases.add_word_impl.di.inner.AddWordInnerComponent
 import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
 import com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment.SelectTranslationPresenter
@@ -13,9 +12,11 @@ import java.util.UUID
 
 @AddWordComponentScope
 @Component(
+    modules = [
+        AddWordProvidesModule::class,
+    ],
     dependencies = [
         AppComponent::class,
-        WordDatabaseComponent::class,
         AddWordInnerComponent::class,
         AddWordParentComponent::class,
     ]
@@ -34,7 +35,6 @@ interface AddWordComponent {
                 .factory()
                 .create(
                     appComponent = appComponent,
-                    wordDatabaseComponent = WordDatabaseComponent.require(),
                     addWordInnerComponent = addWordInnerComponent,
                     addWordParentComponent = addWordParentComponent,
                     type = type,
@@ -45,9 +45,9 @@ interface AddWordComponent {
 
     @Component.Factory
     interface Factory {
+
         fun create(
             appComponent: AppComponent,
-            wordDatabaseComponent: WordDatabaseComponent,
             addWordInnerComponent: AddWordInnerComponent,
             addWordParentComponent: AddWordParentComponent,
             @BindsInstance type: AddWordComponentType,
