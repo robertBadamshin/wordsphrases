@@ -16,10 +16,6 @@ class AuthRepository(
         this.userId = userId
     }
 
-    fun getUserId(): String? {
-        return userId
-    }
-
     fun requireUserId(): String {
         return userId ?: throw IllegalStateException("userId is null")
     }
@@ -32,7 +28,7 @@ class AuthRepository(
         authLocalDataSource.saveEmail(email)
     }
 
-    fun clearEmail(email: String) {
+    fun clearEmail() {
         authLocalDataSource.clearEmail()
     }
 
