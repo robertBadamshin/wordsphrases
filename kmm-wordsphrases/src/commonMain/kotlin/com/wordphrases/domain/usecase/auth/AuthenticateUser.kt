@@ -21,8 +21,7 @@ class AuthenticateUser(
             val authResult = authRepository.signIn(email, emailLink)
 
             return if (authResult.isSuccess) {
-                val uid = authResult.requireData().uid
-                authRepository.setUserId(uid)
+                authRepository.clearEmail()
                 ResultWrapper.createSuccess(Unit)
             } else {
                 ResultWrapper.createFailure(authResult.requireException())

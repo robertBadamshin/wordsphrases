@@ -18,8 +18,7 @@ class OnSaveWordClick @Inject constructor(
     private val getSelectedTranslations: GetSelectedTranslations,
 ) {
 
-    suspend operator fun invoke() {
-        val image = getCurrentImage()
+    operator fun invoke() {
         val wordText = getCurrentWordText()
         val selectedTranslations = getSelectedTranslations()
         val selectedTranslationsTexts = selectedTranslations.map { translation -> translation.text }
@@ -33,11 +32,7 @@ class OnSaveWordClick @Inject constructor(
             translations = selectedTranslationsTexts,
         )
 
-        val result = saveNewWord(word)
-        //if (result.isSuccess) {
-            wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))
-//        } else {
-//            wordRepository.setCreationResult(RequestErrorStateWrapper(throwable = result.requireException()))
-//        }
+        saveNewWord(word)
+        wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))
     }
 }
