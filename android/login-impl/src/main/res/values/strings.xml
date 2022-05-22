@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_title">Log In</string>
+    <string name="email_input_hint">Your email</string>
+    <string name="check_your_email">Check your inbox and follow log in link</string>
+    <string name="email_was_sent_to">Email has been sent to \n%1$s</string>
+    <string name="email_deliver_description">Email delivered within 1–2 minutes usually. In case you can’t find it please check Spam folder.</string>
+    <string name="resend_email">Resend link</string>
+</resources>

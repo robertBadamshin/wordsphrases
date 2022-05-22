@@ -1,18 +1,17 @@
 package com.app.wordsphrases.popup_translator_impl.domain.use_case
 
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
-import com.wordphrases.domain.entity.Word
-import com.wordphrases.domain.usecase.GetWords
+import com.wordphrases.domain.usecase.GetWordsForStories
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class SubscribeForWords @Inject constructor(
-    private val getWords: GetWords,
+    private val getWordsForStories: GetWordsForStories,
     private val repository: StoriesRepository,
 ) {
 
     suspend operator fun invoke() {
-        return getWords()
+        return getWordsForStories()
             .map { words ->
                 words.map { word ->
                     com.app.wordsphrases.entity.word.Word(

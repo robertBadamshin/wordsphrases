@@ -1,10 +1,14 @@
 package com.wordphrases.data.repository
 
-import com.wordphrases.data.model.FirebaseUserRemote
+import com.wordphrases.data.model.*
+import com.wordphrases.data.repository.datasource.*
+import com.wordphrases.di.DataSourceProvider
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.firestore.firestore
 
-class FirebaseRepository {
+class FirebaseRepository(
+    private val wordLocalDataSource: WordLocalDataSource = DataSourceProvider.wordLocalDataSource,
+) {
 
 //    /***********************************************************************************************
 //     * GET USERS FROM FIREBASE
@@ -15,9 +19,23 @@ class FirebaseRepository {
 //    }
 
     suspend fun getListFromFirebase() {
-        val reponse = Firebase.firestore
-            .collection("Users")
-            .add(FirebaseUserRemote("124"))
+        val wordsForSync = wordLocalDataSource.getWordsForSync()
+
+        val remoteWords = wordsForSync
+            .map { wordDbEntity ->
+                WordFirebaseRemote(
+                    wordId = wordDbEntity.wordId,
+                    createdAt = wordDbEntity.createdAt,
+                    wordText = wordDbEntity.wordText,
+                    repeatCount = wordDbEntity.repeatCount,
+                    maxRepeatCount = wordDbEntity.maxRepeatCount,
+                )
+            }
+
+
+//        val reponse = Firebase.firestore
+//            .collection("Words")
+//            .add(FirebaseUserRemote("124"))
     }
 
 //

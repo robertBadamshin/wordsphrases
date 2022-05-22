@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply plugin: 'kotlin-kapt'
+apply from: '../commonMoxyModule.gradle'
+apply from: '../commonUiModule.gradle'
+apply from: '../applyApiModules.gradle'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonRetrofitModule.gradle'
+
+dependencies {
+
+    implementation project(":android:login-api")
+    implementation project(":android:core")
+    implementation project(":android:core-ui")
+    implementation project(":android:entity")
+    implementation project(":kmm-wordsphrases")
+}

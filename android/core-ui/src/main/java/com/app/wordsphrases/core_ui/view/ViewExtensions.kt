@@ -6,7 +6,20 @@ import android.view.inputmethod.InputMethodManager
 
 
 fun View.showKeyboard() {
-    val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    val inputMethodManager = context.getSystemService(
+        Context.INPUT_METHOD_SERVICE
+    ) as InputMethodManager
     requestFocus()
     inputMethodManager.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+}
+
+fun View.hideKeyboard() {
+    val inputMethodManager = context?.getSystemService(
+        Context.INPUT_METHOD_SERVICE
+    ) as? InputMethodManager
+
+    if (inputMethodManager?.isActive != true) {
+        return
+    }
+    inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
 }

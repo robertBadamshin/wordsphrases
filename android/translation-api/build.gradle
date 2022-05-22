@@ -5,4 +5,5 @@ apply plugin: 'kotlin-kapt'
 
 dependencies {
     implementation project(":android:entity")
+    implementation project(":kmm-wordsphrases")
 }

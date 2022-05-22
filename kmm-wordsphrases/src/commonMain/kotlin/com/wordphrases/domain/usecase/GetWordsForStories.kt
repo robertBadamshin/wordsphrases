@@ -5,7 +5,7 @@ import com.wordphrases.di.RepositoryProvider
 import com.wordphrases.domain.entity.Word
 import kotlinx.coroutines.flow.Flow
 
-class GetWords(
+class GetWordsForStories(
     private val wordsRepository: WordsRepository = RepositoryProvider.wordsRepository
 ) {
 

@@ -1,4 +1,4 @@
-package com.wordphrases.data.repository
+package com.wordphrases.data.repository.datasource
 
 import com.squareup.sqldelight.TransactionWithoutReturn
 import com.squareup.sqldelight.runtime.coroutines.*
@@ -17,11 +17,16 @@ class WordLocalDataSource(
             sortOrder = entity.sortOrder,
             maxRepeatCount = entity.maxRepeatCount,
             repeatCount = entity.maxRepeatCount,
+            synced = entity.synced,
         )
     }
 
     fun getWordsForStories(): Flow<List<WordDbEntity>> {
         return queries.selectAllForStories().asFlow().mapToList()
+    }
+
+    fun getWordsForSync(): List<WordDbEntity> {
+        return queries.selectAllForSync().executeAsList()
     }
 
     fun lastInsertedRowId(): Long {

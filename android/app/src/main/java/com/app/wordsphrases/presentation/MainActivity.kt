@@ -2,6 +2,7 @@ package com.app.wordsphrases.presentation
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.WindowCompat
 import com.app.wordsphrases.R
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
@@ -25,6 +26,11 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         mainContainer = findViewById(R.id.main_container)
 
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val intentData = intent?.data
+        if (intentData != null) {
+            mainPresenter.startEmailLogin(intentData.toString())
+        }
     }
 
     override fun start(screen: NavigationScreen) {

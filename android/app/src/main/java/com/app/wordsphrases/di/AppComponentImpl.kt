@@ -6,6 +6,7 @@ import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.email_sender_impl.di.EmailSenderApiModule
 import com.app.wordsphrases.home_impl.di.HomeApiModule
+import com.app.wordsphrases.login_impl.di.LoginApiModule
 import com.app.wordsphrases.popup_translator_impl.di.StoriesApiModule
 import com.app.wordsphrases.popup_translator_impl.di.StoriesApiProvidesModule
 import com.app.wordsphrases.presentation.MainPresenter
@@ -28,6 +29,8 @@ import dagger.Component
         StoriesApiModule::class,
         StoriesApiProvidesModule::class,
         EmailSenderApiModule::class,
+        LoginApiModule::class,
+        MainModule::class,
     ]
 )
 interface AppComponentImpl : AppComponent {

@@ -18,7 +18,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion compileSdkAndroidVersion
 
     defaultConfig {
         applicationId "com.app.wordsphrases"
@@ -79,6 +79,8 @@ dependencies {
     implementation project(':android:translation-api')
     implementation project(':android:stories-impl')
     implementation project(':android:stories-api')
+    implementation project(':android:login-api')
+    implementation project(':android:login-impl')
     implementation project(':android:popup-translator-impl')
     implementation project(':android:email-sender-impl')
     implementation project(':android:email-sender-api')

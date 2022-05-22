@@ -18,7 +18,7 @@ import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
-import com.app.wordsphrases.core_ui.view.showKeyboard
+import com.app.wordsphrases.core_ui.view.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
@@ -89,7 +89,7 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
         presenter.onWordChanged(textToTranslateEditText.text.toString())
 
-        configureInsets(view)
+        view.configureInsets()
     }
 
     override fun onResume() {
@@ -136,34 +136,6 @@ class EnterWordFragment : MvpAppCompatFragment(), EnterWordView {
 
     override fun setInitialText(text: String) {
         textToTranslateEditText.setText(text)
-    }
-
-    private fun configureInsets(view: View) {
-        ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-            val screenInsets =
-                windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
-            view.updatePadding(top = screenInsets.top, bottom = screenInsets.bottom)
-
-            return@setOnApplyWindowInsetsListener windowInsets
-        }
-
-        val insetsCallback = object : WindowInsetsAnimationCompat.Callback(DISPATCH_MODE_STOP) {
-
-            override fun onProgress(
-                insets: WindowInsetsCompat,
-                runningAnimations: MutableList<WindowInsetsAnimationCompat>
-            ): WindowInsetsCompat {
-                val screenInsets = getScreenInsets(insets)
-                view.updatePadding(bottom = screenInsets.bottom)
-                return insets
-            }
-        }
-
-        ViewCompat.setWindowInsetsAnimationCallback(view, insetsCallback)
-    }
-
-    private fun getScreenInsets(insets: WindowInsetsCompat): Insets {
-        return insets.getInsets(WindowInsetsCompat.Type.ime() or WindowInsetsCompat.Type.systemBars())
     }
 
     companion object {

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="tertiary" format="color|reference" />
+    <attr name="rainbow_60" format="color|reference" />
+    <attr name="rainbow" format="color|reference" />
+    <attr name="surface" format="color|reference" />
+</resources>

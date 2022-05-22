@@ -8,4 +8,5 @@ dependencies {
     implementation project(':android:translation-api')
     implementation project(':android:stories-api')
     implementation project(':android:email-sender-api')
+    implementation project(':android:login-api')
 }

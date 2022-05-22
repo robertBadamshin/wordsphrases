@@ -4,7 +4,8 @@ CREATE TABLE wordDbEntity(
     wordText TEXT NOT NULL,
     sortOrder INTEGER NOT NULL,
     maxRepeatCount INTEGER NOT NULL,
-    repeatCount INTEGER NOT NULL
+    repeatCount INTEGER NOT NULL,
+    synced INTEGER NOT NULL
 );
 
 insertItem:
@@ -13,14 +14,20 @@ INSERT INTO wordDbEntity(
     wordText,
     sortOrder,
     maxRepeatCount,
-    repeatCount
+    repeatCount,
+    synced
 ) VALUES (
+    ?,
     ?,
     ?,
     ?,
     ?,
     ?
 );
+
+selectAllForSync:
+SELECT * FROM wordDbEntity
+    WHERE synced == 0;
 
 selectAllForStories:
 SELECT * FROM wordDbEntity;

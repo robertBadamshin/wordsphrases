@@ -1,11 +1,8 @@
 package com.app.wordsphrases.translation_impl.domain
 
-import android.util.Log
-import com.app.wordsphrases.entity.ResultWrapper
 import com.app.wordsphrases.translation_api.TranslateText
 import com.app.wordsphrases.translation_api.domain.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.wordphrases.ResultWrapper
 import javax.inject.Inject
 
 class TranslateTextImpl @Inject constructor(

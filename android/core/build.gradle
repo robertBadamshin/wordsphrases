@@ -5,7 +5,7 @@ apply from: '../commonRoomModule.gradle'
 apply from: '../applyApiModules.gradle'
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
 
     implementation project(':android:add-word-api')
     implementation project(':android:home-api')

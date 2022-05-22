@@ -10,4 +10,5 @@ dependencies {
 
     implementation project(":android:remote-api")
     implementation project(":android:entity")
+    implementation project(":kmm-wordsphrases")
 }

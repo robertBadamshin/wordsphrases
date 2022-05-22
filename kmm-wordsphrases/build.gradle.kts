@@ -18,19 +18,6 @@ version = "1.0"
 kotlin {
     android()
 
-//    val iosArm64 = iosArm64()
-//    val iosX64 = iosX64() // iosX64("ios") // iosX64()
-//
-//    listOf(
-//        iosX64,
-//        iosArm64,
-//        iosSimulatorArm64()
-//    ).forEach {
-//        it.binaries.framework {
-//            baseName = "kmm-wordsphrases"
-//        }
-//    }
-
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -46,16 +33,23 @@ kotlin {
     }
 
     sourceSets {
+
+        val sqlDelightVersion = rootProject.ext["sqlDelightVersion"]
+
         val commonMain by getting {
             dependencies {
-                api("org.jetbrains.kotlin:kotlin-stdlib-common")
+                //api("org.jetbrains.kotlin:kotlin-stdlib-common")
 
-                implementation("com.squareup.sqldelight:runtime:1.5.3")
                 implementation("dev.gitlive:firebase-firestore:1.6.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+                implementation("dev.gitlive:firebase-auth:1.6.1")
+
+                val coroutinesVersion = rootProject.ext["coroutinesVersion"]
+                //implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
-                implementation("com.squareup.sqldelight:coroutines-extensions:1.5.3")
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
             }
         }
         val commonTest by getting {
@@ -65,7 +59,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:android-driver:1.5.3")
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
         val androidTest by getting
@@ -79,7 +73,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
         }
         iosMain.dependencies {
-            implementation("com.squareup.sqldelight:native-driver:1.5.3")
+            implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -94,10 +88,10 @@ kotlin {
 }
 
 android {
-    compileSdk = 32
+    compileSdk = rootProject.ext["compileSdkAndroidVersion"] as Int
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
-        minSdk = 26
-        targetSdk = 32
+        minSdk = rootProject.ext["minSdkAndroidVersion"] as Int
+        targetSdk = rootProject.ext["compileSdkAndroidVersion"] as Int
     }
 }

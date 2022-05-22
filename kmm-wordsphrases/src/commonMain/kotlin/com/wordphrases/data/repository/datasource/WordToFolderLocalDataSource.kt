@@ -1,4 +1,4 @@
-package com.wordphrases.data.repository
+package com.wordphrases.data.repository.datasource
 
 import com.wordphrases.db.*
 import com.wordphrases.di.QueriesProvider

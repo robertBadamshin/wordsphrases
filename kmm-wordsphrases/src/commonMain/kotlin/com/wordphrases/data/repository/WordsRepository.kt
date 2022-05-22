@@ -1,5 +1,6 @@
 package com.wordphrases.data.repository
 
+import com.wordphrases.data.repository.datasource.*
 import com.wordphrases.db.*
 import com.wordphrases.di.*
 import com.wordphrases.domain.entity.Word
@@ -19,6 +20,7 @@ class WordsRepository(
                 sortOrder = word.sortOrder,
                 maxRepeatCount = word.maxRepeatCount,
                 repeatCount = word.maxRepeatCount,
+                synced = 0,
             )
 
             wordLocalDataSource.insert(entity = dbEntity)

@@ -1,6 +1,6 @@
 package com.wordphrases.di
 
-import com.wordphrases.data.repository.*
+import com.wordphrases.data.repository.datasource.*
 
 object DataSourceProvider {
 
@@ -13,4 +13,10 @@ object DataSourceProvider {
     val wordLocalDataSource by lazy { WordLocalDataSource() }
 
     val wordToFolderLocalDataSource by lazy { WordToFolderLocalDataSource() }
+
+    val authDataSource by lazy { AuthDataSource() }
+
+    val authLocalDataSource by lazy { AuthLocalDataSource() }
+
+
 }

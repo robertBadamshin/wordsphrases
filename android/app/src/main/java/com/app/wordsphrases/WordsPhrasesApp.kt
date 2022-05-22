@@ -2,7 +2,8 @@ package com.app.wordsphrases
 
 import com.app.wordsphrases.core.BaseWordsPhrasesApp
 import com.app.wordsphrases.di.DaggerAppComponentImpl
-import com.wordphrases.di.appContext
+import com.wordphrases.data.AuthPreferences
+import com.wordphrases.di.appContextForDatabase
 
 @Suppress("unused")
 class WordsPhrasesApp : BaseWordsPhrasesApp() {
@@ -14,6 +15,7 @@ class WordsPhrasesApp : BaseWordsPhrasesApp() {
             context = this,
         )
 
-        appContext = this
+        appContextForDatabase = this
+        AuthPreferences.init(this)
     }
 }

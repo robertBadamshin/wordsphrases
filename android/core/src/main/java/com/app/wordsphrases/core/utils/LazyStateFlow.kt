@@ -6,7 +6,10 @@ import kotlinx.coroutines.flow.*
 
 class LazyStateFlow<T> : SharedFlow<T> {
 
-    private val mutableSharedFlow = MutableSharedFlow<T>(1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
+    private val mutableSharedFlow = MutableSharedFlow<T>(
+        replay = 1,
+        onBufferOverflow = BufferOverflow.DROP_OLDEST,
+    )
 
     override val replayCache: List<T> = mutableSharedFlow.replayCache
 
@@ -21,11 +24,12 @@ class LazyStateFlow<T> : SharedFlow<T> {
             mutableSharedFlow.tryEmit(value)
         }
 
-    @InternalCoroutinesApi
-    override suspend fun collect(collector: FlowCollector<T>) {
-        mutableSharedFlow
-            .distinctUntilChanged()
-            .collect(collector)
+    //@InternalCoroutinesApi
+    override suspend fun collect(collector: FlowCollector<T>): Nothing {
+        val sharedFlow  = mutableSharedFlow
+            .distinctUntilChanged() as SharedFlow<T>
+
+        sharedFlow.collect(collector)
     }
 
     public fun resetReplayCache() {

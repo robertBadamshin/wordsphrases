@@ -1,6 +1,6 @@
 package com.app.wordsphrases.remote_impl.converter
 
-import com.app.wordsphrases.entity.ResultWrapper
+import com.wordphrases.ResultWrapper
 import com.app.wordsphrases.remote_impl.ResultWrapperRemote
 import com.app.wordsphrases.remote_impl.exception.ServerException
 import com.google.gson.Gson

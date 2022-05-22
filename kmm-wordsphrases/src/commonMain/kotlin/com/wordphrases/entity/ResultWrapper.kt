@@ -1,4 +1,4 @@
-package com.app.wordsphrases.entity
+package com.wordphrases
 
 data class ResultWrapper<T>(
     val data: T? = null,

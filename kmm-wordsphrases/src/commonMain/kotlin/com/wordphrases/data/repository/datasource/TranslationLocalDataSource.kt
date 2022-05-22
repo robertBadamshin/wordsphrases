@@ -1,4 +1,4 @@
-package com.wordphrases.data.repository
+package com.wordphrases.data.repository.datasource
 
 import com.squareup.sqldelight.TransactionWithoutReturn
 import com.squareup.sqldelight.runtime.coroutines.*
