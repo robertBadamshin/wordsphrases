@@ -1,25 +1,17 @@
 package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import com.app.wordsphrases.add_word_api.SelectTranslationStarter
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
-import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
-import com.app.wordsphrases.add_word_impl.domain.ClearSelfAddWordComponent
-import com.app.wordsphrases.add_word_impl.domain.GetTranslations
-import com.app.wordsphrases.add_word_impl.domain.SetWordText
-import com.app.wordsphrases.add_word_impl.domain.SubscribeForWordTranslation
+import com.app.wordsphrases.add_word_impl.domain.*
 import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyException
-import com.app.wordsphrases.entity.RequestErrorStateWrapper
-import com.app.wordsphrases.entity.RequestLoadingStateWrapper
-import com.app.wordsphrases.entity.RequestSuccessStateWrapper
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.app.wordsphrases.entity.*
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import moxy.MvpPresenter
-import moxy.presenterScope
+import moxy.*
 import ru.terrakok.cicerone.Router
-import java.util.UUID
+import java.util.*
 import javax.inject.Inject
 
 class EnterWordPresenter @Inject constructor(

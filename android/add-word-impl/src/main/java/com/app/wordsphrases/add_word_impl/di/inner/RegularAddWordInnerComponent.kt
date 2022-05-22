@@ -3,8 +3,7 @@ package com.app.wordsphrases.add_word_impl.di.inner
 import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
 import com.app.wordsphrases.core.di.FeatureScope
-import dagger.BindsInstance
-import dagger.Component
+import dagger.*
 import ru.terrakok.cicerone.Router
 
 @FeatureScope

@@ -3,8 +3,7 @@ package com.app.wordsphrases.popup_translator_impl.presentation
 import android.content.Intent
 import com.app.wordsphrases.popup_translator_impl.ui.model.WordUiModel
 import moxy.MvpView
-import moxy.viewstate.strategy.alias.AddToEndSingle
-import moxy.viewstate.strategy.alias.OneExecution
+import moxy.viewstate.strategy.alias.*
 
 @AddToEndSingle
 interface StoriesView : MvpView {

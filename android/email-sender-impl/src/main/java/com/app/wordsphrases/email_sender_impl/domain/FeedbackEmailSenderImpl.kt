@@ -1,7 +1,6 @@
 package com.app.wordsphrases.email_sender_impl.domain
 
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import com.app.wordsphrases.email_sender_api.FeedbackEmailSender

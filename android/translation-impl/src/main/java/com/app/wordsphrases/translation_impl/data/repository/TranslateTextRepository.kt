@@ -1,7 +1,6 @@
 package com.app.wordsphrases.translation_impl.data.repository
 
-import com.app.wordsphrases.translation_api.domain.Translation
-import com.app.wordsphrases.translation_api.domain.TranslationResult
+import com.app.wordsphrases.translation_api.domain.*
 import com.app.wordsphrases.translation_impl.data.datasource.service.OxfordDictionaryService
 import com.app.wordsphrases.translation_impl.data.entity.oxford.toTranslationsList
 import com.app.wordsphrases.translation_impl.domain.OxfordGrammaticalFeatureId

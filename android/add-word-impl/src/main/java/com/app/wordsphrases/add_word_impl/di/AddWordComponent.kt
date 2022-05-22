@@ -6,9 +6,8 @@ import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWo
 import com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment.SelectTranslationPresenter
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
-import dagger.BindsInstance
-import dagger.Component
-import java.util.UUID
+import dagger.*
+import java.util.*
 
 @AddWordComponentScope
 @Component(

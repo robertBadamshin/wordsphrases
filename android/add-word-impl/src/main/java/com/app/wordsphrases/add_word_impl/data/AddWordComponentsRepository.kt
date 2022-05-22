@@ -1,8 +1,7 @@
 package com.app.wordsphrases.add_word_impl.data
 
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.add_word_impl.di.AddWordParentComponentScope
-import java.util.UUID
+import com.app.wordsphrases.add_word_impl.di.*
+import java.util.*
 import javax.inject.Inject
 
 @AddWordParentComponentScope

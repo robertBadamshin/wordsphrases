@@ -5,8 +5,7 @@ import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core.di.FeatureScope
 import com.app.wordsphrases.popup_translator_impl.presentation.PopupTranslatorPresenter
-import dagger.BindsInstance
-import dagger.Component
+import dagger.*
 import ru.terrakok.cicerone.NavigatorHolder
 
 @FeatureScope

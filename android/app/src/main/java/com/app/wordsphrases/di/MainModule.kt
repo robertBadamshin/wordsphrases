@@ -1,13 +1,13 @@
 package com.app.wordsphrases.di
 
-import com.wordphrases.domain.usecase.auth.IsAuthorized
+import com.wordphrases.domain.usecase.auth.SubscribeForAuthState
 import dagger.*
 
 @Module
 class MainModule {
 
     @Provides
-    fun provideIsAuthorized(): IsAuthorized {
-        return IsAuthorized()
+    fun subscribeForAuthState(): SubscribeForAuthState {
+        return SubscribeForAuthState()
     }
 }

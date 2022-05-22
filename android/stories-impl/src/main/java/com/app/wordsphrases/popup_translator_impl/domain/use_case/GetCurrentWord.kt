@@ -2,9 +2,7 @@ package com.app.wordsphrases.popup_translator_impl.domain.use_case
 
 import com.app.wordsphrases.entity.word.Word
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class GetCurrentWord @Inject constructor(

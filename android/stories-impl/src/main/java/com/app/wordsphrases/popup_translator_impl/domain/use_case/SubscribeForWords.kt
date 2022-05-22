@@ -2,7 +2,7 @@ package com.app.wordsphrases.popup_translator_impl.domain.use_case
 
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
 import com.wordphrases.domain.usecase.GetWordsForStories
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class SubscribeForWords @Inject constructor(

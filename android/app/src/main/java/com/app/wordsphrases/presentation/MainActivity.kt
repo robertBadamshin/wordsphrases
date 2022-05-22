@@ -2,7 +2,6 @@ package com.app.wordsphrases.presentation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.WindowCompat
 import com.app.wordsphrases.R
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent

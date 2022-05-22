@@ -1,14 +1,11 @@
 package com.app.wordsphrases.add_word_impl.domain
 
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
-import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.add_word_impl.data.AddWordComponentsRepository
-import com.app.wordsphrases.add_word_impl.di.AddWordComponent
-import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
-import com.app.wordsphrases.add_word_impl.di.inner.PopupAddWordInnerComponent
-import com.app.wordsphrases.add_word_impl.di.inner.RegularAddWordInnerComponent
+import com.app.wordsphrases.add_word_impl.di.*
+import com.app.wordsphrases.add_word_impl.di.inner.*
 import ru.terrakok.cicerone.Router
-import java.util.UUID
+import java.util.*
 import javax.inject.Inject
 
 class CreateAddWordComponent @Inject constructor(

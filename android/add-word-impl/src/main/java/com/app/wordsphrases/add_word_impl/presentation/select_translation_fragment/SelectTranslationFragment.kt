@@ -2,27 +2,17 @@ package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragm
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
-import androidx.core.view.updatePadding
+import android.view.*
+import android.widget.*
+import androidx.core.view.*
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.*
 import com.app.wordsphrases.core_ui.view.dpToPx
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import java.util.UUID
+import java.util.*
 
 private const val addWordComponentUuidKey = "addWordComponentUuid"
 

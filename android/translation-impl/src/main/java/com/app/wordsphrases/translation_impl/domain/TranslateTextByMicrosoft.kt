@@ -1,16 +1,11 @@
 package com.app.wordsphrases.translation_impl.domain
 
 import com.app.wordsphrases.translation_api.domain.TranslationResult
-import com.app.wordsphrases.translation_impl.data.entity.TextTranslationResultRemote
-import com.app.wordsphrases.translation_impl.data.entity.toDomainEntity
+import com.app.wordsphrases.translation_impl.data.entity.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
+import okhttp3.*
 import java.io.IOException
-import java.util.ArrayList
 import javax.inject.Inject
 
 private const val subscriptionKey = "aa7e0d04bfba4658a6ed362782768bc0"

@@ -1,11 +1,9 @@
 package com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment
 
 import androidx.annotation.StringRes
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.MarginUiModel
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.*
 import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleTagStrategy
-import moxy.viewstate.strategy.StateStrategyType
+import moxy.viewstate.strategy.*
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
 private const val doneButtonEnabledTag = "doneButtonEnabledTag"

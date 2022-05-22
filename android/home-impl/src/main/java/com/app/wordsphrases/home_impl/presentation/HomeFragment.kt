@@ -1,19 +1,14 @@
 package com.app.wordsphrases.home_impl.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import android.view.*
+import androidx.fragment.app.*
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.home_impl.R
 import com.app.wordsphrases.home_impl.di.HomeComponent
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.*
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 

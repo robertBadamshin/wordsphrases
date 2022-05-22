@@ -2,10 +2,8 @@ package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import androidx.annotation.StringRes
 import moxy.MvpView
-import moxy.viewstate.strategy.AddToEndSingleTagStrategy
-import moxy.viewstate.strategy.StateStrategyType
-import moxy.viewstate.strategy.alias.AddToEndSingle
-import moxy.viewstate.strategy.alias.OneExecution
+import moxy.viewstate.strategy.*
+import moxy.viewstate.strategy.alias.*
 
 private const val translationButtonEnabledTag = "translationButtonEnabledTag"
 private const val translationButtonTagVisibility = "translationButtonTag"

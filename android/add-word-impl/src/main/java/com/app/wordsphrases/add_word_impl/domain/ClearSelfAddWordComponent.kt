@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.domain
 
-import java.util.UUID
+import java.util.*
 import javax.inject.Inject
 
 class ClearSelfAddWordComponent @Inject constructor(

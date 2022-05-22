@@ -2,19 +2,10 @@ package com.app.wordsphrases.add_word_impl.presentation.enter_word_screen
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.view.*
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.graphics.Insets
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsAnimationCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
 import androidx.core.widget.doAfterTextChanged
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
@@ -23,7 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import java.util.UUID
+import java.util.*
 
 private const val addWordComponentUuidKey = "addWordComponentUuid"
 

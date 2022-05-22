@@ -3,8 +3,6 @@ package com.app.wordsphrases.home_impl.presentation
 import android.util.Log
 import com.app.wordsphrases.home_api.HomeNavigationQualifier
 import com.app.wordsphrases.stories_api.StoriesStarter
-import com.wordphrases.data.repository.*
-import com.wordphrases.db.WordDbEntity
 import kotlinx.coroutines.launch
 import moxy.*
 import ru.terrakok.cicerone.Router

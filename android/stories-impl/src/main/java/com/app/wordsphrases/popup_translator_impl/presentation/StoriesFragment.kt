@@ -2,18 +2,11 @@ package com.app.wordsphrases.popup_translator_impl.presentation
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.*
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.isVisible
-import androidx.core.view.updateLayoutParams
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.core.view.*
+import androidx.fragment.app.*
 import com.app.wordsphrases.core.BaseWordsPhrasesApp
 import com.app.wordsphrases.core_ui.view.dpToPx
 import com.app.wordsphrases.popup_translator_impl.di.StoriesComponent
@@ -22,8 +15,7 @@ import com.app.wordsphrases.stories_impl.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import ru.terrakok.cicerone.Navigator
-import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.*
 import ru.terrakok.cicerone.android.support.SupportAppNavigator
 import ru.terrakok.cicerone.commands.Command
 

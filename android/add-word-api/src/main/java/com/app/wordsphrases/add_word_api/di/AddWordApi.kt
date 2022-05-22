@@ -1,7 +1,6 @@
 package com.app.wordsphrases.add_word_api.di
 
-import com.app.wordsphrases.add_word_api.EnterWordStarter
-import com.app.wordsphrases.add_word_api.SelectTranslationStarter
+import com.app.wordsphrases.add_word_api.*
 
 interface AddWordApi {
 

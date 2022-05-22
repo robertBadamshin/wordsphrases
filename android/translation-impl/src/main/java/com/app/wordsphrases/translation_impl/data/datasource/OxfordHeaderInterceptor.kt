@@ -1,7 +1,6 @@
 package com.app.wordsphrases.translation_impl.data.datasource
 
-import okhttp3.Interceptor
-import okhttp3.Response
+import okhttp3.*
 
 class OxfordHeaderInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

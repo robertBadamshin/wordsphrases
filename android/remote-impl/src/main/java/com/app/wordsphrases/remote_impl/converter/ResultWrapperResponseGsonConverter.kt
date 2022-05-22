@@ -1,15 +1,13 @@
 package com.app.wordsphrases.remote_impl.converter
 
-import com.wordphrases.ResultWrapper
 import com.app.wordsphrases.remote_impl.ResultWrapperRemote
 import com.app.wordsphrases.remote_impl.exception.ServerException
 import com.google.gson.Gson
+import com.wordphrases.ResultWrapper
 import okhttp3.ResponseBody
-import retrofit2.Converter
-import retrofit2.Retrofit
+import retrofit2.*
 import java.io.IOException
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
+import java.lang.reflect.*
 
 
 class ResultWrapperResponseGsonConverter : Converter.Factory() {

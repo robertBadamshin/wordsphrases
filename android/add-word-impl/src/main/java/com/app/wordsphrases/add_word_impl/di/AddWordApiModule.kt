@@ -1,11 +1,8 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_api.EnterWordStarter
-import com.app.wordsphrases.add_word_api.SelectTranslationStarter
-import com.app.wordsphrases.add_word_impl.navigation.EnterWordStarterImpl
-import com.app.wordsphrases.add_word_impl.navigation.SelectTranslationStarterImpl
-import dagger.Binds
-import dagger.Module
+import com.app.wordsphrases.add_word_api.*
+import com.app.wordsphrases.add_word_impl.navigation.*
+import dagger.*
 
 @Module
 interface AddWordApiModule {

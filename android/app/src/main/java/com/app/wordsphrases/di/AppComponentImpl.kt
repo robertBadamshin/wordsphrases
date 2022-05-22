@@ -7,15 +7,12 @@ import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.email_sender_impl.di.EmailSenderApiModule
 import com.app.wordsphrases.home_impl.di.HomeApiModule
 import com.app.wordsphrases.login_impl.di.LoginApiModule
-import com.app.wordsphrases.popup_translator_impl.di.StoriesApiModule
-import com.app.wordsphrases.popup_translator_impl.di.StoriesApiProvidesModule
+import com.app.wordsphrases.popup_translator_impl.di.*
 import com.app.wordsphrases.presentation.MainPresenter
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
-import com.app.wordsphrases.translation_impl.di.TranslationApiBindsModule
-import com.app.wordsphrases.translation_impl.di.TranslationApiModule
+import com.app.wordsphrases.translation_impl.di.*
 import com.app.wordsphrases.translation_impl.di.oxford.OxfordDictionaryRetrofitModule
-import dagger.BindsInstance
-import dagger.Component
+import dagger.*
 
 @AppScope
 @Component(

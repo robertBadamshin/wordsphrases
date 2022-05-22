@@ -2,7 +2,7 @@ package com.wordphrases.data.repository
 
 import com.wordphrases.data.repository.datasource.*
 import com.wordphrases.db.*
-import com.wordphrases.di.*
+import com.wordphrases.di.DataSourceProvider
 import com.wordphrases.domain.entity.Word
 import kotlinx.coroutines.flow.*
 

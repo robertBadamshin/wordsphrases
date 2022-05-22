@@ -1,8 +1,6 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_impl.domain.ClearAddWordComponent
-import com.app.wordsphrases.add_word_impl.domain.CreateAddWordComponent
-import com.app.wordsphrases.add_word_impl.domain.RequireAddWordComponent
+import com.app.wordsphrases.add_word_impl.domain.*
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import dagger.Component

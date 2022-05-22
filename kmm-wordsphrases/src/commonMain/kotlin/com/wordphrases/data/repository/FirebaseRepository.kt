@@ -1,10 +1,8 @@
 package com.wordphrases.data.repository
 
-import com.wordphrases.data.model.*
-import com.wordphrases.data.repository.datasource.*
+import com.wordphrases.data.model.WordFirebaseRemote
+import com.wordphrases.data.repository.datasource.WordLocalDataSource
 import com.wordphrases.di.DataSourceProvider
-import dev.gitlive.firebase.Firebase
-import dev.gitlive.firebase.firestore.firestore
 
 class FirebaseRepository(
     private val wordLocalDataSource: WordLocalDataSource = DataSourceProvider.wordLocalDataSource,

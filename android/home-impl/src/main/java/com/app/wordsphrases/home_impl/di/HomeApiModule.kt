@@ -1,14 +1,10 @@
 package com.app.wordsphrases.home_impl.di
 
 import com.app.wordsphrases.core.di.AppScope
-import com.app.wordsphrases.home_api.HomeNavigationQualifier
-import com.app.wordsphrases.home_api.HomeRouter
+import com.app.wordsphrases.home_api.*
 import com.app.wordsphrases.home_impl.navigation.HomeRouterImpl
-import dagger.Module
-import dagger.Provides
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
+import dagger.*
+import ru.terrakok.cicerone.*
 
 @Module
 class HomeApiModule {

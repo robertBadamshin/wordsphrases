@@ -4,7 +4,7 @@ import com.squareup.sqldelight.TransactionWithoutReturn
 import com.squareup.sqldelight.runtime.coroutines.*
 import com.wordphrases.db.*
 import com.wordphrases.di.QueriesProvider
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
 
 class WordLocalDataSource(
     private val queries: WordTableQueries = QueriesProvider.wordTableQueries,

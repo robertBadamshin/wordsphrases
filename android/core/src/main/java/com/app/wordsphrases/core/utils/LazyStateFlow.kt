@@ -1,6 +1,5 @@
 package com.app.wordsphrases.core.utils
 
-import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 

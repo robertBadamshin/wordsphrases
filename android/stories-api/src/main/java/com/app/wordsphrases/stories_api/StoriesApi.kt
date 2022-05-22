@@ -1,7 +1,6 @@
 package com.app.wordsphrases.stories_api
 
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
+import ru.terrakok.cicerone.*
 
 interface StoriesApi {
 

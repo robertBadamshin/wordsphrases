@@ -4,21 +4,11 @@ import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
-import com.app.wordsphrases.add_word_impl.domain.AutoSelectTranslations
-import com.app.wordsphrases.add_word_impl.domain.GetCurrentWordText
-import com.app.wordsphrases.add_word_impl.domain.GetSelectedTranslationsIds
-import com.app.wordsphrases.add_word_impl.domain.GetSuccessfulTranslations
-import com.app.wordsphrases.add_word_impl.domain.OnSaveWordClick
-import com.app.wordsphrases.add_word_impl.domain.SetImage
-import com.app.wordsphrases.add_word_impl.domain.ToggleTranslationSelection
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
-import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.WordTopMarginUiMapper
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
+import com.app.wordsphrases.add_word_impl.domain.*
+import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.*
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import moxy.MvpPresenter
-import moxy.presenterScope
+import moxy.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

@@ -1,8 +1,7 @@
 package com.app.wordsphrases.translation_impl.data.datasource.service
 
 import com.app.wordsphrases.translation_impl.data.entity.oxford.OxfordTranslationResponse
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface OxfordDictionaryService {
 

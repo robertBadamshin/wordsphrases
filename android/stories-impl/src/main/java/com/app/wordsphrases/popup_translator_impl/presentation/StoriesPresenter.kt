@@ -1,20 +1,14 @@
 package com.app.wordsphrases.popup_translator_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
-import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
-import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
+import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.email_sender_api.FeedbackEmailSender
-import com.app.wordsphrases.popup_translator_impl.domain.use_case.GetCurrentWord
-import com.app.wordsphrases.popup_translator_impl.domain.use_case.MoveToNextWord
-import com.app.wordsphrases.popup_translator_impl.domain.use_case.SubscribeForWords
+import com.app.wordsphrases.popup_translator_impl.domain.use_case.*
 import com.app.wordsphrases.popup_translator_impl.ui.model.mapper.WordUiMapper
 import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import moxy.MvpPresenter
-import moxy.presenterScope
+import moxy.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 

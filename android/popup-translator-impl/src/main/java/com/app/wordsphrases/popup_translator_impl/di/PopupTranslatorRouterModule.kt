@@ -1,11 +1,8 @@
 package com.app.wordsphrases.popup_translator_impl.di
 
 import com.app.wordsphrases.core.di.FeatureScope
-import dagger.Module
-import dagger.Provides
-import ru.terrakok.cicerone.Cicerone
-import ru.terrakok.cicerone.NavigatorHolder
-import ru.terrakok.cicerone.Router
+import dagger.*
+import ru.terrakok.cicerone.*
 
 @Module
 class PopupTranslatorRouterModule {
