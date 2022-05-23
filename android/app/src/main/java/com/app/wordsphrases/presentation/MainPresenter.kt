@@ -5,15 +5,19 @@ import com.app.wordsphrases.login_api.EnterEmailStarter
 import com.app.wordsphrases.navigation.NavigationScreen
 import com.wordphrases.domain.entity.AuthState
 import com.wordphrases.domain.usecase.auth.*
+import com.wordphrases.domain.usecase.language_pair.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
+import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
     private val homeRouter: HomeRouter,
     private val enterEmailStarter: EnterEmailStarter,
     private val subscribeForAuthState: SubscribeForAuthState,
+    private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
+    private val createDefaultLanguagePair: CreateDefaultLanguagePair,
 ) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
@@ -23,7 +27,7 @@ class MainPresenter @Inject constructor(
             subscribeForAuthState()
                 .collectLatest { state ->
                     when (state) {
-                        AuthState.Authenticated -> viewState.start(homeRouter.getScreen())
+                        AuthState.Authenticated -> proceedAfterLogin()
                         AuthState.NotAuthenticated -> openLoginScreen()
                     }
                 }
@@ -34,13 +38,23 @@ class MainPresenter @Inject constructor(
         presenterScope.launch {
             val result = AuthenticateUser().invoke(emailLink)
             if (result.isSuccess) {
-                viewState.start(homeRouter.getScreen())
+                proceedAfterLogin()
             } else {
                 openLoginScreen()
             }
         }
     }
 
+    private fun proceedAfterLogin() {
+        val languagePair = getCurrentSelectedLanguagePair()
+        if (languagePair == null) {
+            // TODO HANDLE REAL SELECTION
+            createDefaultLanguagePair()
+            proceedAfterLogin()
+        } else {
+            viewState.start(homeRouter.getScreen())
+        }
+    }
 
     // todo make on support app screen
     private fun openLoginScreen() {

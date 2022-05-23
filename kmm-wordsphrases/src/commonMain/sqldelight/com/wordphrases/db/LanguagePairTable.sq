@@ -1,0 +1,21 @@
+CREATE TABLE languagePairDbEntity(
+    pairId INTEGER PRIMARY KEY AUTOINCREMENT,
+    learningLanguageCode TEXT NOT NULL,
+    nativeLanguageCode TEXT NOT NULL,
+    selected INTEGER NOT NULL
+);
+
+insertItem:
+INSERT INTO languagePairDbEntity(
+    learningLanguageCode,
+    nativeLanguageCode,
+    selected
+) VALUES (
+    ?,
+    ?,
+    ?
+);
+
+selectCurrentPair:
+SELECT * FROM languagePairDbEntity
+    WHERE selected == 1;

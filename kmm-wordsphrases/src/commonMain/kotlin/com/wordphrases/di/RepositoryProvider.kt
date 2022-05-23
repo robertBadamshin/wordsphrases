@@ -7,4 +7,6 @@ object RepositoryProvider {
     val wordsRepository by lazy { WordsRepository() }
 
     val authRepository by lazy { AuthRepository() }
+
+    val languagePairRepository by lazy { LanguagePairRepository() }
 }

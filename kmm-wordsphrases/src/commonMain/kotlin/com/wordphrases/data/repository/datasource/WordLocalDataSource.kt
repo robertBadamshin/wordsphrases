@@ -12,6 +12,7 @@ class WordLocalDataSource(
 
     fun insert(entity: WordDbEntity) {
         queries.insertItem(
+            languagePairId = entity.languagePairId,
             createdAt = entity.createdAt,
             wordText = entity.wordText,
             sortOrder = entity.sortOrder,
@@ -21,8 +22,8 @@ class WordLocalDataSource(
         )
     }
 
-    fun getWordsForStories(): Flow<List<WordDbEntity>> {
-        return queries.selectAllForStories().asFlow().mapToList()
+    fun getWordsForStories(languagePairId: Long): Flow<List<WordDbEntity>> {
+        return queries.selectAllForStories(languagePairId).asFlow().mapToList()
     }
 
     fun getWordsForSync(): List<WordDbEntity> {
