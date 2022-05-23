@@ -6,6 +6,7 @@ import com.app.wordsphrases.stories_api.StoriesStarter
 import kotlinx.coroutines.launch
 import moxy.*
 import ru.terrakok.cicerone.Router
+import java.util.*
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
@@ -15,22 +16,6 @@ class HomePresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-
-        presenterScope.launch {
-            //FirebaseRepository().getListFromFirebase()
-            try {
-//                val dataSource = WordLocalDataSource()
-//                val dbEntity = WordDbEntity(
-//
-//                )
-//                dataSource.insert()
-
-                //repo.putWords()
-                //repo.getWords()
-            } catch (ex: Exception) {
-                Log.d("das", "$ex")
-            }
-        }
 
         val screen = storiesStarter.getScreen()
         router.newRootScreen(screen)
