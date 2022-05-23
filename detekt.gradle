@@ -1,0 +1,8 @@
+apply plugin: 'io.gitlab.arturbosch.detekt'
+
+detekt {
+    source = files("${project.rootDir}/")
+    config = files("${project.rootDir}/common/detekt-config.yml")
+    buildUponDefaultConfig = true
+    basePath = projectDir
+}

@@ -13,7 +13,7 @@ apply from: '../commonRetrofitModule.gradle'
 apply from: '../commonRoomModule.gradle'
 apply from: '../commonUiModule.gradle'
 apply from: '../commonBase.gradle'
-
+apply from: '../../detekt.gradle'
 apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'com.google.gms.google-services'
 
@@ -51,10 +51,12 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }

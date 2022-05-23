@@ -21,8 +21,9 @@ buildscript {
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.7.1")
         classpath("com.google.gms:google-services:4.3.10")
 
-        //val sqlDelightVersion : String by extra
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
+
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
     }
 }
 
