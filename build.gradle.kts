@@ -16,13 +16,14 @@ buildscript {
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10")
-        classpath("com.android.tools.build:gradle:7.1.2")
+        classpath("com.android.tools.build:gradle:7.1.3")
 
         classpath("com.google.firebase:firebase-crashlytics-gradle:2.7.1")
         classpath("com.google.gms:google-services:4.3.10")
 
-        //val sqlDelightVersion : String by extra
         classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
+
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.19.0")
     }
 }
 

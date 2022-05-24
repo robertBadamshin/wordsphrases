@@ -1,0 +1,132 @@
+# https://detekt.github.io/detekt/complexity.html
+complexity:
+  ComplexCondition:
+    threshold: 100
+  ComplexMethod:
+    threshold: 100
+  LargeClass:
+    threshold: 3500
+  LongMethod:
+    threshold: 3500
+  LongParameterList:
+    functionThreshold: 100
+    constructorThreshold: 100
+  NestedBlockDepth:
+    threshold: 100
+  TooManyFunctions:
+    thresholdInFiles: 100
+    thresholdInClasses: 100
+    thresholdInInterfaces: 100
+
+# https://detekt.github.io/detekt/empty-blocks.html
+empty-blocks:
+  EmptyFunctionBlock:
+    ignoreOverridden: true
+  EmptyKtFile:
+    active: false
+  EmptyDefaultConstructor:
+    active: false
+  EmptyClassBlock:
+    active: false
+
+# https://detekt.github.io/detekt/exceptions.html
+exceptions:
+  SwallowedException:
+    active: false
+  TooGenericExceptionCaught:
+    active: false
+
+# https://detekt.github.io/detekt/naming.html
+naming:
+  FunctionNaming:
+    active: false
+  MatchingDeclarationName:
+    active: false
+  MemberNameEqualsClassName:
+    active: false
+  PackageNaming:
+    active: false
+  TopLevelPropertyNaming:
+    active: false
+  VariableNaming:
+    active: false
+
+# https://detekt.github.io/detekt/performance.html
+performance:
+  SpreadOperator:
+    active: false
+
+# https://detekt.github.io/detekt/style.html
+style:
+  ForbiddenComment:
+    active: false
+  FunctionOnlyReturningConstant:
+    active: false
+  MagicNumber:
+    active: false
+  MaxLineLength:
+    active: false
+  NewLineAtEndOfFile:
+    active: false
+  WildcardImport:
+    active: false
+  ReturnCount:
+    active: false
+  SerialVersionUIDInSerializableClass:
+    active: false
+  ThrowsCount:
+    active: false
+  UnnecessaryAbstractClass:
+    active: false
+  UnusedPrivateMember:
+    active: false
+  UtilityClassWithPublicConstructor:
+    active: false
+  MandatoryBracesLoops:
+    active: true
+  MultilineLambdaItParameter:
+    active: true
+  ObjectLiteralToLambda:
+    active: true
+  PreferToOverPairSyntax:
+    active: true
+  RedundantExplicitType:
+    active: true
+  RedundantHigherOrderMapUsage:
+    active: true
+  RedundantVisibilityModifierRule:
+    active: false
+  SpacingBetweenPackageAndImports:
+    active: false
+  TrailingWhitespace:
+    active: false
+  UnderscoresInNumericLiterals:
+    active: false
+  UnnecessaryAnnotationUseSiteTarget:
+    active: true
+  UnnecessaryFilter:
+    active: true
+  UnnecessaryLet:
+    active: true
+  UnnecessaryParentheses:
+    active: false
+  UntilInsteadOfRangeTo:
+    active: true
+  UnusedImports:
+    active: true
+  UseAnyOrNoneInsteadOfFind:
+    active: true
+  UseCheckNotNull:
+    active: true
+  UseCheckOrError:
+    active: false
+  UseDataClass:
+    active: false
+  UseEmptyCounterpart:
+    active: true
+  UseIfInsteadOfWhen:
+    active: false
+  UseIsNullOrEmpty:
+    active: true
+  UselessCallOnNotNull:
+    active: true
