@@ -2,7 +2,7 @@
 <resources>
 
     <style name="TextStyle.Regular.Primary">
-        <item name="android:textColor">?android:colorPrimary</item>
+        <item name="android:textColor">?colorPrimary</item>
     </style>
 
     <style name="TextStyle.Regular.Primary.22dp">
