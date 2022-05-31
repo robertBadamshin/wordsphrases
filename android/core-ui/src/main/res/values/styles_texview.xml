@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextView" parent="android:Widget.TextView" />
+
+    <style name="TextStyle" parent="Base.TextAppearance.AppCompat" />
+
+    <style name="TextStyle.Medium">
+    </style>
+
+    <style name="TextStyle.Regular">
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="TextStyle.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
