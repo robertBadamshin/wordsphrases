@@ -1,8 +1,8 @@
-package com.app.wordsphrases.stories_impl.presentation
+package com.app.wordsphrases.popup_translator_impl.presentation
 
 import com.app.wordsphrases.add_word_api.EnterWordStarter
 import com.app.wordsphrases.add_word_api.domain.entity.*
-import com.app.wordsphrases.stories_impl.di.PopupTranslatorNavigationQualifier
+import com.app.wordsphrases.popup_translator_impl.di.PopupTranslatorNavigationQualifier
 import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject

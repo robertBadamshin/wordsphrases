@@ -1,10 +1,10 @@
-package com.app.wordsphrases.stories_impl.di
+package com.app.wordsphrases.popup_translator_impl.di
 
 import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.core.di.FeatureScope
-import com.app.wordsphrases.stories_impl.presentation.PopupTranslatorPresenter
+import com.app.wordsphrases.popup_translator_impl.presentation.PopupTranslatorPresenter
 import dagger.*
 import ru.terrakok.cicerone.NavigatorHolder
 

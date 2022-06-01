@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.presentation
+package com.app.wordsphrases.popup_translator_impl.presentation
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.*

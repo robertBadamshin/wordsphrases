@@ -27,7 +27,7 @@
         </activity>
 
         <activity
-            android:name="com.app.wordsphrases.stories_impl.presentation.PopupTranslatorActivity"
+            android:name="com.app.wordsphrases.popup_translator_impl.presentation.PopupTranslatorActivity"
             android:exported="true"
             android:theme="@style/PopupTranslator">
             <intent-filter>

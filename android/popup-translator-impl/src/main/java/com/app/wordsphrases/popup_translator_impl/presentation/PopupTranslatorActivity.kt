@@ -1,4 +1,4 @@
-package com.app.wordsphrases.stories_impl.presentation
+package com.app.wordsphrases.popup_translator_impl.presentation
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.*
 import com.app.wordsphrases.add_word_api.domain.entity.InitialTextWrapper
 import com.app.wordsphrases.popup_translator_impl.R
-import com.app.wordsphrases.stories_impl.di.PopupTranslatorComponent
+import com.app.wordsphrases.popup_translator_impl.di.PopupTranslatorComponent
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import ru.terrakok.cicerone.*
