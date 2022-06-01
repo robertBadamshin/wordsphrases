@@ -9,4 +9,5 @@ dependencies {
     implementation project(':android:stories-api')
     implementation project(':android:email-sender-api')
     implementation project(':android:login-api')
+    implementation project(':android:select-language-api')
 }

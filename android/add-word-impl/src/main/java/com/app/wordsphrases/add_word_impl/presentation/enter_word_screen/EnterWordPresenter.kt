@@ -4,8 +4,8 @@ import com.app.wordsphrases.add_word_api.SelectTranslationStarter
 import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
-import com.app.wordsphrases.add_word_impl.domain.*
 import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyException
+import com.app.wordsphrases.add_word_impl.domain.use_case.*
 import com.app.wordsphrases.entity.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

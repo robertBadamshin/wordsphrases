@@ -4,7 +4,7 @@ import com.app.wordsphrases.add_word_api.WordImage
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
-import com.app.wordsphrases.add_word_impl.domain.*
+import com.app.wordsphrases.add_word_impl.domain.use_case.*
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

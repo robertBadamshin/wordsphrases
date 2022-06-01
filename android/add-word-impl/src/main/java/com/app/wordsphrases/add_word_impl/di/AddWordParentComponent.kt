@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.di
 
-import com.app.wordsphrases.add_word_impl.domain.*
+import com.app.wordsphrases.add_word_impl.domain.use_case.*
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import dagger.Component
