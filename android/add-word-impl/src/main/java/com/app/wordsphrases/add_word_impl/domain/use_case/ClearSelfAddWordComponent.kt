@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.domain
+package com.app.wordsphrases.add_word_impl.domain.use_case
 
 import java.util.*
 import javax.inject.Inject

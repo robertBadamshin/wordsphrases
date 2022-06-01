@@ -1,4 +1,4 @@
-package com.app.wordsphrases.add_word_impl.domain
+package com.app.wordsphrases.add_word_impl.domain.use_case
 
 import com.app.wordsphrases.add_word_impl.data.AddWordComponentsRepository
 import java.util.*
