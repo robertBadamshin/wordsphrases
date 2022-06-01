@@ -4,6 +4,7 @@ private const val defaultId = -1L
 
 data class Word(
     val wordId: Long = defaultId,
+    val languagePairId: Long,
     val createdAt: Long,
     val wordText: String,
     val sortOrder: Long,

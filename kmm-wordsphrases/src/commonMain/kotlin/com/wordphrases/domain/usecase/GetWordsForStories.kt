@@ -6,10 +6,10 @@ import com.wordphrases.domain.entity.Word
 import kotlinx.coroutines.flow.Flow
 
 class GetWordsForStories(
-    private val wordsRepository: WordsRepository = RepositoryProvider.wordsRepository
+    private val wordsRepository: WordsRepository = RepositoryProvider.wordsRepository,
 ) {
 
-    operator fun invoke(): Flow<List<Word>> {
-        return wordsRepository.getWordsForStories()
+    operator fun invoke(languagePairId: Long): Flow<List<Word>> {
+        return wordsRepository.getWordsForStories(languagePairId)
     }
 }

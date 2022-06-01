@@ -18,5 +18,7 @@ object DataSourceProvider {
 
     val authLocalDataSource by lazy { AuthLocalDataSource() }
 
+    val languagePairLocalDataSource by lazy { LanguagePairLocalDataSource() }
+
 
 }

@@ -13,4 +13,6 @@ object QueriesProvider {
     val translationTableQueries by lazy { database.translationTableQueries }
 
     val wordToFolderTableQueries by lazy { database.wordToFolderTableQueries }
+
+    val languagePairTableQueries by lazy { database.languagePairTableQueries }
 }

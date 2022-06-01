@@ -15,6 +15,7 @@ class WordsRepository(
         wordLocalDataSource.executeWordsInTransaction {
             val dbEntity = WordDbEntity(
                 wordId = word.wordId,
+                languagePairId = word.languagePairId,
                 createdAt = word.createdAt,
                 wordText = word.wordText,
                 sortOrder = word.sortOrder,
@@ -44,8 +45,8 @@ class WordsRepository(
         }
     }
 
-    fun getWordsForStories(): Flow<List<Word>> {
-        return wordLocalDataSource.getWordsForStories()
+    fun getWordsForStories(languagePairId: Long): Flow<List<Word>> {
+        return wordLocalDataSource.getWordsForStories(languagePairId)
             .flatMapLatest { words ->
                 val wordsIds = words.map { word -> word.wordId }
 
@@ -62,6 +63,7 @@ class WordsRepository(
 
                             Word(
                                 wordId = word.wordId,
+                                languagePairId = word.languagePairId,
                                 createdAt = word.createdAt,
                                 wordText = word.wordText,
                                 sortOrder = word.sortOrder,
