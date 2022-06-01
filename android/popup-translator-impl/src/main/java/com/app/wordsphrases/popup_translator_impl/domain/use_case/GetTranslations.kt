@@ -1,4 +1,4 @@
-package com.app.wordsphrases.popup_translator_impl.use_case
+package com.app.wordsphrases.popup_translator_impl.domain.use_case
 
 import com.app.wordsphrases.entity.RequestStateWrapper
 import com.app.wordsphrases.popup_translator_impl.data.repository.PopupTranslatorRepository

@@ -3,7 +3,6 @@ package com.app.wordsphrases.stories_impl.presentation
 import com.app.wordsphrases.add_word_api.EnterWordStarter
 import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.email_sender_api.FeedbackEmailSender
-import com.app.wordsphrases.popup_translator_impl.use_case.*
 import com.app.wordsphrases.stories_impl.model.mapper.WordUiMapper
 import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import com.app.wordsphrases.stories_impl.use_case.*
