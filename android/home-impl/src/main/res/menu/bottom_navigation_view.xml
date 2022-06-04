@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/vocabulary_navigation_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_vocabulary_vocabulary_icon"
+        android:title="@string/vocabulary_navigation_item" />
+    <item
+        android:id="@+id/folders_navigation_item"
+        android:enabled="true"
+        android:icon="@drawable/ic_folders_navigation_icon"
+        android:title="@string/folder_navigation_item" />
+</menu>

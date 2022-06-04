@@ -1,0 +1,4 @@
+R_DEF: Internal format may change without notice
+local
+id fragment_container_home
+layout fragment_home
