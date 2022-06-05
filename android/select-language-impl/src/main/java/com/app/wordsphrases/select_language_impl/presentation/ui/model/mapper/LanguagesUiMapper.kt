@@ -3,7 +3,6 @@ package com.app.wordsphrases.select_language_impl.presentation.ui.model.mapper
 import android.content.Context
 import androidx.annotation.UiContext
 import com.app.wordsphrases.select_language_impl.R
-import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageEnvironment
 import com.app.wordsphrases.select_language_impl.presentation.ui.model.LanguageUiModel
 import com.wordphrases.domain.entity.language.Language
 import javax.inject.Inject
@@ -12,8 +11,8 @@ class LanguagesUiMapper @Inject constructor(
     @UiContext private val context: Context,
 ) {
 
-    fun map(selectLanguageEnvironment: SelectLanguageEnvironment): List<LanguageUiModel> {
-        return selectLanguageEnvironment.languages.map { language ->
+    fun map(languages: List<Language>): List<LanguageUiModel> {
+        return languages.map { language ->
             val languageNameRes = when (language) {
                 Language.Arabic -> R.string.arabic_language
                 Language.German -> R.string.german_language
@@ -30,12 +29,9 @@ class LanguagesUiMapper @Inject constructor(
             }
 
             val languageName = context.getString(languageNameRes)
-            val selected = language == selectLanguageEnvironment.selectedLanguage
-
             LanguageUiModel(
                 name = languageName,
                 language = language,
-                selected = selected,
             )
         }
     }

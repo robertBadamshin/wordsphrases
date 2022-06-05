@@ -1,7 +1,8 @@
 package com.app.wordsphrases.select_language_impl.presentation
 
 import com.app.wordsphrases.select_language_impl.R
-import com.app.wordsphrases.select_language_impl.domain.use_case.*
+import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageType
+import com.app.wordsphrases.select_language_impl.domain.use_case.GetLanguages
 import com.app.wordsphrases.select_language_impl.presentation.ui.model.mapper.LanguagesUiMapper
 import com.wordphrases.domain.entity.language.Language
 import kotlinx.coroutines.flow.*
@@ -9,31 +10,40 @@ import moxy.*
 import javax.inject.Inject
 
 class SelectLanguagePresenter @Inject constructor(
-    private val getSelectedLanguageEnvironment: GetSelectedLanguageEnvironment,
+    private val getLanguages: GetLanguages,
     private val languagesUiMapper: LanguagesUiMapper,
-    private val setSelectedLanguage: SetSelectedLanguage,
 ) : MvpPresenter<SelectLanguageView>() {
+
+    private lateinit var selectLanguageType: SelectLanguageType
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        getSelectedLanguageEnvironment()
-            .map { environment -> languagesUiMapper.map(environment) }
+        updateLanguages()
+
+        initTitle()
+    }
+
+    fun init(selectLanguageType: SelectLanguageType) {
+        this.selectLanguageType = selectLanguageType
+    }
+
+    private fun updateLanguages() {
+        getLanguages()
+            .map { languages -> languagesUiMapper.map(languages) }
             .onEach { uiModels -> viewState.showLanguages(uiModels) }
             .launchIn(presenterScope)
     }
 
-    fun onLanguageSelected(language: Language) {
-        setSelectedLanguage(language)
+    private fun initTitle() {
+        val titleResId = when (selectLanguageType) {
+            SelectLanguageType.Learning -> R.string.learning_language_title
+            SelectLanguageType.Native -> R.string.native_language_title
+        }
+        viewState.setTitle(titleResId)
     }
 
-    fun onScrollStateChanged(firstItemVisibleIndex: Int) {
-        val targetColorAttr = if (firstItemVisibleIndex == 0) {
-            R.attr.surface
-        } else {
-            R.attr.rainbow
-        }
-
-        viewState.startHeaderBackgroundAnimation(targetColorAttr)
+    fun onLanguageSelected(language: Language) {
+        // todo pass result
     }
 }

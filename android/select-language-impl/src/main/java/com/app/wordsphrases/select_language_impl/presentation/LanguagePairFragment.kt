@@ -2,7 +2,7 @@ package com.app.wordsphrases.select_language_impl.presentation
 
 import android.os.Bundle
 import android.view.*
-import com.app.wordsphrases.home_impl.R
+import com.app.wordsphrases.select_language_impl.R
 import moxy.MvpAppCompatFragment
 
 // TODO add view interface

@@ -25,7 +25,6 @@ object LanguageAdapterDelegate {
                     }
                 }
 
-                selectRadioButton.isChecked = item.selected
                 nameTextView.text = item.name
             }
         }

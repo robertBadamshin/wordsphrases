@@ -6,7 +6,6 @@ import com.wordphrases.domain.entity.language.Language
 data class LanguageUiModel(
     val name: String,
     val language: Language,
-    val selected: Boolean,
 ) : AnyDiffItem {
 
     override fun isSame(newItem: AnyDiffItem): Boolean {

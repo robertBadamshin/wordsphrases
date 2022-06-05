@@ -6,7 +6,7 @@
     <string name="russian_language">Russian</string>
     <string name="estonian_language">Estonian</string>
     <string name="turkish_language">Turkish</string>
-    <string name="spanish_language">spanish</string>
+    <string name="spanish_language">Spanish</string>
     <string name="french_language">French</string>
     <string name="italian_language">Italian</string>
     <string name="chinese_language">Chinese</string>
@@ -14,4 +14,7 @@
     <string name="arabic_language">Arabic</string>
     <string name="portuguese_language">Portuguese</string>
     <string name="german_language">German</string>
+
+    <string name="native_language_title">Native language</string>
+    <string name="learning_language_title">Learning language</string>
 </resources>
