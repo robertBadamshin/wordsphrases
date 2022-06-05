@@ -61,7 +61,7 @@ class MainPresenter @Inject constructor(
     // todo make on support app screen
     private fun openLoginScreen() {
         val navigationScreen = NavigationScreen(
-            fragment = SelectLanguageFragment.newInstance(SelectLanguageInitParams(SelectLanguageType.Native)) //enterEmailStarter.getScreen().fragment
+            fragment = SelectLanguageFragment.newInstance(SelectLanguageInitParams(SelectLanguageType.Learning)) //enterEmailStarter.getScreen().fragment
         )
         viewState.start(navigationScreen)
     }
