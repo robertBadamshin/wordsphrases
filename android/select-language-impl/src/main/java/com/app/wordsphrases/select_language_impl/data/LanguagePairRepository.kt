@@ -6,9 +6,7 @@ import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 @FeatureScope
-class LanguagePairRepository @Inject constructor(
-
-) {
+class LanguagePairRepository @Inject constructor() {
 
     private val nativeLanguage = MutableStateFlow<Language?>(null)
     private val learningLanguage = MutableStateFlow<Language?>(null)

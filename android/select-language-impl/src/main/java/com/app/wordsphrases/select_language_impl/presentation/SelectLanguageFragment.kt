@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.*
 import com.app.wordsphrases.core_ui.view.configureInsets
 import com.app.wordsphrases.select_language_impl.R
 import com.app.wordsphrases.select_language_impl.di.SelectLanguageComponent
-import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageType
 import com.app.wordsphrases.select_language_impl.navigation.init_params.SelectLanguageInitParams
 import com.app.wordsphrases.select_language_impl.presentation.ui.adapter.LanguagesAdapter
 import com.app.wordsphrases.select_language_impl.presentation.ui.model.LanguageUiModel
