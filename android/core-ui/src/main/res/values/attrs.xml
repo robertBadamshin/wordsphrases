@@ -4,4 +4,5 @@
     <attr name="rainbow_60" format="color|reference" />
     <attr name="rainbow" format="color|reference" />
     <attr name="surface" format="color|reference" />
+    <attr name="border" format="color|reference" />
 </resources>

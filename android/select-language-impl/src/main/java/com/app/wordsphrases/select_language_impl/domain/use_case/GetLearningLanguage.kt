@@ -9,6 +9,6 @@ class GetLearningLanguage(
 ) {
 
     operator fun invoke(): Flow<Language?> {
-        return languagePairRepository.getNativeLanguage()
+        return languagePairRepository.getLearningLanguage()
     }
 }
