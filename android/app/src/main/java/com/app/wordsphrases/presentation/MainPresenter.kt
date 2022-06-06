@@ -9,7 +9,6 @@ import com.wordphrases.domain.usecase.language_pair.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
-import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
