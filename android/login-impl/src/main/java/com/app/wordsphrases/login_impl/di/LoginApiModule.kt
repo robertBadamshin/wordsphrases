@@ -8,5 +8,5 @@ import dagger.*
 interface LoginApiModule {
 
     @Binds
-    fun enterEmailStarter(impl: EnterEmailStarterImpl): EnterEmailStarter
+    fun selectLanguageStarter(impl: EnterEmailStarterImpl): EnterEmailStarter
 }

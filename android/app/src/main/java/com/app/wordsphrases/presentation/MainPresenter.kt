@@ -3,6 +3,7 @@ package com.app.wordsphrases.presentation
 import com.app.wordsphrases.home_api.HomeRouter
 import com.app.wordsphrases.login_api.EnterEmailStarter
 import com.app.wordsphrases.navigation.NavigationScreen
+import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.wordphrases.domain.entity.AuthState
 import com.wordphrases.domain.usecase.auth.*
 import com.wordphrases.domain.usecase.language_pair.*
@@ -13,7 +14,7 @@ import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
-    private val homeRouter: HomeRouter,
+    private val selectLanguageStarter: SelectLanguageStarter,
     private val enterEmailStarter: EnterEmailStarter,
     private val subscribeForAuthState: SubscribeForAuthState,
     private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
@@ -52,7 +53,7 @@ class MainPresenter @Inject constructor(
             createDefaultLanguagePair()
             proceedAfterLogin()
         } else {
-            viewState.start(homeRouter.getScreen())
+            viewState.start(selectLanguageStarter.getScreen())
         }
     }
 

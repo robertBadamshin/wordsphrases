@@ -1,9 +1,8 @@
 package com.app.wordsphrases.select_language_api
 
-import com.app.wordsphrases.navigation.NavigationScreen
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-// TODO add implementation
 interface SelectLanguageStarter {
 
-    fun getScreen(): NavigationScreen
+    fun getScreen(): SupportAppScreen
 }
