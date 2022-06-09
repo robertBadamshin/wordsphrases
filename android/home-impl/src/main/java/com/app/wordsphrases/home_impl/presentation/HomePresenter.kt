@@ -1,12 +1,10 @@
 package com.app.wordsphrases.home_impl.presentation
 
-import android.util.Log
 import com.app.wordsphrases.home_api.HomeNavigationQualifier
+import com.app.wordsphrases.home_impl.domain.entity.HomeScreenTab
 import com.app.wordsphrases.stories_api.StoriesStarter
-import kotlinx.coroutines.launch
-import moxy.*
+import moxy.MvpPresenter
 import ru.terrakok.cicerone.Router
-import java.util.*
 import javax.inject.Inject
 
 class HomePresenter @Inject constructor(
@@ -17,7 +15,15 @@ class HomePresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        val screen = storiesStarter.getScreen()
+        val startScreen = storiesStarter.getScreen()
+        router.newRootScreen(startScreen)
+    }
+
+    fun onSelectTab(homeScreenTab: HomeScreenTab) {
+        val screen = when (homeScreenTab) {
+            HomeScreenTab.Vocabulary -> storiesStarter.getScreen()
+            HomeScreenTab.Folders -> storiesStarter.getScreen()
+        }
         router.newRootScreen(screen)
     }
 }

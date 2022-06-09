@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="vocabulary_navigation_item">Vocabulary</string>
+    <string name="folder_navigation_item">Folders</string>
+</resources>
