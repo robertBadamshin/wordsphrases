@@ -10,6 +10,4 @@ dependencies {
     implementation project(':android:add-word-api')
     implementation project(':android:home-api')
     implementation project(':android:remote-api')
-    implementation project(path: ':android:select-language-impl')
-    implementation project(path: ':android:select-language-impl')
 }

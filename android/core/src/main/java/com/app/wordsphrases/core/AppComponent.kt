@@ -7,7 +7,6 @@ import com.app.wordsphrases.home_api.HomeApi
 import com.app.wordsphrases.login_api.LoginApi
 import com.app.wordsphrases.remote_api.RemoteApi
 import com.app.wordsphrases.select_language_api.SelectLanguageApi
-import com.app.wordsphrases.select_language_impl.di.LanguagePairComponent
 import com.app.wordsphrases.stories_api.StoriesApi
 import com.app.wordsphrases.translation_api.TranslationApi
 

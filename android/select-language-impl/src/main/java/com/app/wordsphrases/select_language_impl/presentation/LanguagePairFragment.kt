@@ -9,7 +9,9 @@ import moxy.ktx.moxyPresenter
 
 class LanguagePairFragment : MvpAppCompatFragment(), LanguagePairView {
 
-    private val storiesPresenter by moxyPresenter { LanguagePairComponent.get().languagePairPresenter }
+    private val languagePairPresenter by moxyPresenter {
+        LanguagePairComponent.get().languagePairPresenter
+    }
 
 
     override fun onCreateView(

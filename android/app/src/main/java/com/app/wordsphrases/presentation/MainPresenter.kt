@@ -1,8 +1,6 @@
 package com.app.wordsphrases.presentation
 
-import com.app.wordsphrases.home_api.HomeRouter
 import com.app.wordsphrases.login_api.EnterEmailStarter
-import com.app.wordsphrases.navigation.NavigationScreen
 import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.wordphrases.domain.entity.AuthState
 import com.wordphrases.domain.usecase.auth.*
@@ -10,7 +8,6 @@ import com.wordphrases.domain.usecase.language_pair.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
-import java.lang.IllegalStateException
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -57,11 +54,7 @@ class MainPresenter @Inject constructor(
         }
     }
 
-    // todo make on support app screen
     private fun openLoginScreen() {
-        val navigationScreen = NavigationScreen(
-            fragment = enterEmailStarter.getScreen().fragment
-        )
-        viewState.start(navigationScreen)
+        viewState.start(enterEmailStarter.getScreen())
     }
 }

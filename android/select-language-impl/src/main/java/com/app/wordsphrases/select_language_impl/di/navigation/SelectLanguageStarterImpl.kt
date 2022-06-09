@@ -1,14 +1,12 @@
 package com.app.wordsphrases.select_language_impl.di.navigation
 
 import androidx.fragment.app.Fragment
-import com.app.wordsphrases.navigation.NavigationScreen
 import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.app.wordsphrases.select_language_impl.presentation.LanguagePairFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
-import java.util.concurrent.ConcurrentLinkedQueue
 import javax.inject.Inject
 
-class LanguagePairStarterImpl@Inject constructor() : SelectLanguageStarter {
+class SelectLanguageStarterImpl@Inject constructor() : SelectLanguageStarter {
 
     override fun getScreen(): SupportAppScreen {
         return object : SupportAppScreen() {

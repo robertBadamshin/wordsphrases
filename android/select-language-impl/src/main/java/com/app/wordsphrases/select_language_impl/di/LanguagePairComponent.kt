@@ -13,8 +13,9 @@ import dagger.Component
 interface LanguagePairComponent {
 
     companion object {
+
         fun get(): LanguagePairComponent {
-            return DaggerSelectLanguageComponent .builder().appComponent(appComponent).build()
+            return DaggerLanguagePairComponent.builder().appComponent(appComponent).build()
         }
     }
 

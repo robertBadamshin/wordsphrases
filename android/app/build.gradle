@@ -86,11 +86,12 @@ dependencies {
     implementation project(':android:popup-translator-impl')
     implementation project(':android:email-sender-impl')
     implementation project(':android:email-sender-api')
+    implementation project(':android:select-language-impl')
+    implementation project(':android:select-language-api')
     implementation project(':android:entity')
     implementation project(':kmm-wordsphrases')
 
     implementation platform('com.google.firebase:firebase-bom:28.4.2')
     implementation 'com.google.firebase:firebase-crashlytics-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation project(path: ':android:select-language-api')
 }
