@@ -18,6 +18,7 @@
         <item name="rainbow">#0B5F6B</item>
         <item name="surface">#FFFFFF</item>
         <item name="rainbow_60">#990B5F6B</item>
+        <item name="border">#ECEDEE</item>
     </style>
 
     <style name="Theme.WordsPhrasesDark" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -37,6 +38,7 @@
         <item name="rainbow">#46B9CA</item>
         <item name="surface">#182325</item>
         <item name="rainbow_60">#9946B9CA</item>
+        <item name="border">#2A3536</item>
     </style>
 
     <style name="PopupTranslator" parent="Theme.WordsPhrasesLight">

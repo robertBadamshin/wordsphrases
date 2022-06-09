@@ -9,7 +9,7 @@ import com.app.wordsphrases.home_impl.di.HomeApiModule
 import com.app.wordsphrases.login_impl.di.LoginApiModule
 import com.app.wordsphrases.presentation.MainPresenter
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
-import com.app.wordsphrases.select_language_impl.di.LanguagePairApiModule
+import com.app.wordsphrases.select_language_impl.di.SelectLanguageApiModule
 import com.app.wordsphrases.stories_impl.di.*
 import com.app.wordsphrases.translation_impl.di.*
 import com.app.wordsphrases.translation_impl.di.oxford.OxfordDictionaryRetrofitModule
@@ -29,7 +29,7 @@ import dagger.*
         EmailSenderApiModule::class,
         LoginApiModule::class,
         MainModule::class,
-        LanguagePairApiModule::class,
+        SelectLanguageApiModule::class,
     ]
 )
 interface AppComponentImpl : AppComponent {

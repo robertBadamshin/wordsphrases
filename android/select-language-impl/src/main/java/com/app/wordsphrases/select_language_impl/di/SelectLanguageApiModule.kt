@@ -5,7 +5,7 @@ import com.app.wordsphrases.select_language_impl.di.navigation.SelectLanguageSta
 import dagger.*
 
 @Module
-interface LanguagePairApiModule {
+interface SelectLanguageApiModule {
 
     @Binds
     fun languagePairStarter (impl: SelectLanguageStarterImpl): SelectLanguageStarter
