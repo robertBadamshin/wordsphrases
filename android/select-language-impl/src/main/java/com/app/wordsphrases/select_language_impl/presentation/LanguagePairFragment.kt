@@ -3,12 +3,16 @@ package com.app.wordsphrases.select_language_impl.presentation
 import android.os.Bundle
 import android.view.*
 import com.app.wordsphrases.select_language_impl.R
+import com.app.wordsphrases.select_language_impl.di.LanguagePairComponent
 import moxy.MvpAppCompatFragment
+import moxy.ktx.moxyPresenter
 
-// TODO add view interface
-class LanguagePairFragment : MvpAppCompatFragment() {
+class LanguagePairFragment : MvpAppCompatFragment(), LanguagePairView {
 
-    // TODO add presenter injection
+    private val languagePairPresenter by moxyPresenter {
+        LanguagePairComponent.get().languagePairPresenter
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

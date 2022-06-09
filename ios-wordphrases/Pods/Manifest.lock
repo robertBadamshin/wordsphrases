@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../kmm-wordsphrases"
 
 SPEC CHECKSUMS:
-  kmm_wordsphrases: c49dd0c1f9ba794c0329ae61336859e8cbed09ab
+  kmm_wordsphrases: 3d5d8fe6af411ebe9190344e804df43747162990
 
 PODFILE CHECKSUM: b39c9276cbedc556d33c151382fa202647a47c9d
 

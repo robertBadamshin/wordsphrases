@@ -6,9 +6,9 @@ import androidx.core.view.WindowCompat
 import com.app.wordsphrases.R
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.di.AppComponentImpl
-import com.app.wordsphrases.navigation.NavigationScreen
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -32,7 +32,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
     }
 
-    override fun start(screen: NavigationScreen) {
+    override fun start(screen: SupportAppScreen) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, screen.fragment)
             .commit()
