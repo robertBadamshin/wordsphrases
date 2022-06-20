@@ -2,6 +2,7 @@ package com.app.wordsphrases.core
 
 import android.content.Context
 import com.app.wordsphrases.add_word_api.di.AddWordApi
+import com.app.wordsphrases.core.di.MainApi
 import com.app.wordsphrases.email_sender_api.EmailSenderApi
 import com.app.wordsphrases.home_api.HomeApi
 import com.app.wordsphrases.login_api.LoginApi
@@ -18,7 +19,8 @@ interface AppComponent :
     StoriesApi,
     SelectLanguageApi,
     EmailSenderApi,
-    LoginApi {
+    LoginApi,
+    MainApi {
 
     fun provideContext(): Context
 }

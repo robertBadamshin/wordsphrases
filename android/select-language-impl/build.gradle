@@ -16,4 +16,6 @@ dependencies {
     implementation project(":kmm-wordsphrases")
 
     implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
+
+    implementation "androidx.fragment:fragment-ktx:1.4.1"
 }

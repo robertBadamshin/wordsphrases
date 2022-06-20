@@ -8,6 +8,7 @@ interface HomeApi {
     val homeRouter: HomeRouter
 
     @get:HomeNavigationQualifier
+    @HomeNavigationQualifier
     val router: Router
 
     @get:HomeNavigationQualifier

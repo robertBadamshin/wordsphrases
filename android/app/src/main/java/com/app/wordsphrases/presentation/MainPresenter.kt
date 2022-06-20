@@ -1,5 +1,6 @@
 package com.app.wordsphrases.presentation
 
+import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.login_api.EnterEmailStarter
 import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.wordphrases.domain.entity.AuthState
@@ -8,6 +9,7 @@ import com.wordphrases.domain.usecase.language_pair.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -16,6 +18,7 @@ class MainPresenter @Inject constructor(
     private val subscribeForAuthState: SubscribeForAuthState,
     private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
     private val createDefaultLanguagePair: CreateDefaultLanguagePair,
+    @MainNavigationQualifier private val router: Router,
 ) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
@@ -50,11 +53,11 @@ class MainPresenter @Inject constructor(
             createDefaultLanguagePair()
             proceedAfterLogin()
         } else {
-            viewState.start(selectLanguageStarter.getScreen())
+            router.replaceScreen(selectLanguageStarter.getLanguagePairScreen())
         }
     }
 
     private fun openLoginScreen() {
-        viewState.start(enterEmailStarter.getScreen())
+        router.replaceScreen(enterEmailStarter.getScreen())
     }
 }

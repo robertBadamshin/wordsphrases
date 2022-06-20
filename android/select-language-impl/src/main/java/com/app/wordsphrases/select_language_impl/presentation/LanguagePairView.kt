@@ -1,5 +1,12 @@
 package com.app.wordsphrases.select_language_impl.presentation
 
 import moxy.MvpView
+import moxy.viewstate.strategy.alias.AddToEndSingle
 
-interface LanguagePairView : MvpView
+@AddToEndSingle
+interface LanguagePairView : MvpView {
+
+    fun startListenForNativeLanguageResult(key: String)
+
+    fun startListenForLearningLanguageResult(key: String)
+}

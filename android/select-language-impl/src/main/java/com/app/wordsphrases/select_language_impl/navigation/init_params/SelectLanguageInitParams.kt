@@ -5,4 +5,5 @@ import java.io.Serializable
 
 data class SelectLanguageInitParams(
     val selectLanguageType: SelectLanguageType,
+    val resultKey: String,
 ) : Serializable
