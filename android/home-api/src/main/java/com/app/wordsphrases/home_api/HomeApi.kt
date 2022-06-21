@@ -5,11 +5,10 @@ import ru.terrakok.cicerone.*
 interface HomeApi {
 
     @HomeNavigationQualifier
-    val homeRouter: HomeRouter
+    val homeStarter: HomeStarter
 
     @get:HomeNavigationQualifier
-    @HomeNavigationQualifier
-    val router: Router
+    val homeRouter: Router
 
     @get:HomeNavigationQualifier
     val navigatorHolder: NavigatorHolder

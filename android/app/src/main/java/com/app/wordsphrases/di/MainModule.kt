@@ -33,7 +33,7 @@ class MainModule {
 
     @Provides
     @MainNavigationQualifier
-    fun router(
+    fun mainRouter(
         @MainNavigationQualifier cicerone: Cicerone<Router>,
     ): Router {
         return cicerone.router
