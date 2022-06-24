@@ -11,6 +11,9 @@ import dagger.Component
     dependencies = [
         AppComponent::class,
     ],
+    modules = [
+        LanguagePairProvidesModule::class,
+    ]
 )
 interface LanguagePairComponent {
 

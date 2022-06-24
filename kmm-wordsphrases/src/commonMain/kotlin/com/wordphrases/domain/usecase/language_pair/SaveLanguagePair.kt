@@ -4,16 +4,11 @@ import com.wordphrases.data.repository.LanguagePairRepository
 import com.wordphrases.di.RepositoryProvider
 import com.wordphrases.domain.entity.LanguagePair
 
-class CreateDefaultLanguagePair(
+class SaveLanguagePair(
     private val languagePairRepository: LanguagePairRepository = RepositoryProvider.languagePairRepository,
 ) {
 
-    operator fun invoke() {
-        val languagePair = LanguagePair(
-            learningLanguageCode = "EN",
-            nativeLanguageCode = "RU",
-            selected = true,
-        )
+    operator fun invoke(languagePair: LanguagePair) {
         languagePairRepository.save(languagePair)
     }
 }

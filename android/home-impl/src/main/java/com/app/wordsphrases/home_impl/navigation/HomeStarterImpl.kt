@@ -1,17 +1,23 @@
 package com.app.wordsphrases.home_impl.navigation
 
+import androidx.fragment.app.Fragment
 import com.app.wordsphrases.home_api.HomeStarter
 import com.app.wordsphrases.home_impl.presentation.HomeFragment
-import com.app.wordsphrases.navigation.NavigationScreen
+import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
 class HomeStarterImpl @Inject constructor() : HomeStarter {
 
-    override fun getScreen(): NavigationScreen {
-        val fragment = HomeFragment()
+    override fun getScreen(): SupportAppScreen {
+        return object : SupportAppScreen() {
 
-        return NavigationScreen(
-            fragment = fragment,
-        )
+            override fun getFragment(): Fragment {
+                return HomeFragment()
+            }
+
+            override fun getScreenKey(): String {
+                return HomeFragment::class.java.simpleName
+            }
+        }
     }
 }

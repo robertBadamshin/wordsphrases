@@ -1,11 +1,12 @@
 package com.app.wordsphrases.presentation
 
 import com.app.wordsphrases.core.di.MainNavigationQualifier
+import com.app.wordsphrases.home_api.HomeStarter
 import com.app.wordsphrases.login_api.EnterEmailStarter
 import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.wordphrases.domain.entity.AuthState
 import com.wordphrases.domain.usecase.auth.*
-import com.wordphrases.domain.usecase.language_pair.*
+import com.wordphrases.domain.usecase.language_pair.GetCurrentSelectedLanguagePair
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
@@ -17,8 +18,8 @@ class MainPresenter @Inject constructor(
     private val enterEmailStarter: EnterEmailStarter,
     private val subscribeForAuthState: SubscribeForAuthState,
     private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
-    private val createDefaultLanguagePair: CreateDefaultLanguagePair,
     @MainNavigationQualifier private val router: Router,
+    private val homeStarter: HomeStarter,
 ) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
@@ -49,11 +50,10 @@ class MainPresenter @Inject constructor(
     private fun proceedAfterLogin() {
         val languagePair = getCurrentSelectedLanguagePair()
         if (languagePair == null) {
-            // TODO HANDLE REAL SELECTION
-            createDefaultLanguagePair()
-            proceedAfterLogin()
-        } else {
             router.replaceScreen(selectLanguageStarter.getLanguagePairScreen())
+        } else {
+            val screen = homeStarter.getScreen()
+            router.replaceScreen(screen)
         }
     }
 

@@ -44,6 +44,8 @@ class LanguagePairFragment : MvpAppCompatFragment(), LanguagePairView {
             languagePairPresenter.onNativeLanguageClick()
         }
 
+        createPairButton.setOnClickListener { languagePairPresenter.onSaveLanguagePairClick() }
+
         view.configureInsets()
     }
 

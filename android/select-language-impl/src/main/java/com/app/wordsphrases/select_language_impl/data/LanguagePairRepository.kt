@@ -19,11 +19,19 @@ class LanguagePairRepository @Inject constructor() {
         return this.nativeLanguage
     }
 
+    fun requireNativeLanguage(): Language {
+        return this.nativeLanguage.value ?: throw IllegalStateException("value shouldn't be null")
+    }
+
     fun setLearningLanguage(language: Language) {
         this.learningLanguage.value = language
     }
 
     fun getLearningLanguage(): Flow<Language?> {
         return this.learningLanguage
+    }
+
+    fun requireLearningLanguage(): Language {
+        return this.learningLanguage.value ?: throw IllegalStateException("value shouldn't be null")
     }
 }
