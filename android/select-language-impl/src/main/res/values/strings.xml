@@ -21,4 +21,6 @@
     <string name="native_language_description">or language you want to translate to</string>
 
     <string name="create_button_text">Create</string>
+
+    <string name="request_language_button_text">Request Language</string>
 </resources>

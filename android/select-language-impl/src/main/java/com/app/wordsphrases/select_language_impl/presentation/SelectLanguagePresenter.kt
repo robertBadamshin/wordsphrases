@@ -1,6 +1,7 @@
 package com.app.wordsphrases.select_language_impl.presentation
 
 import com.app.wordsphrases.core.di.MainNavigationQualifier
+import com.app.wordsphrases.email_sender_api.RequestLanguageEmailSender
 import com.app.wordsphrases.select_language_impl.R
 import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageType
 import com.app.wordsphrases.select_language_impl.domain.use_case.GetLanguages
@@ -16,6 +17,7 @@ class SelectLanguagePresenter @Inject constructor(
     private val getLanguages: GetLanguages,
     private val languagesUiMapper: LanguagesUiMapper,
     @MainNavigationQualifier private val router: Router,
+    private val requestLanguageEmailSender: RequestLanguageEmailSender,
 ) : MvpPresenter<SelectLanguageView>() {
 
     private lateinit var initParams: SelectLanguageInitParams
@@ -50,5 +52,10 @@ class SelectLanguagePresenter @Inject constructor(
     fun onLanguageSelected(language: Language) {
         viewState.setScreenResult(initParams.resultKey, language)
         router.exit()
+    }
+
+    fun onRequestLanguageClick() {
+        val intent = requestLanguageEmailSender()
+        viewState.startIntent(intent)
     }
 }

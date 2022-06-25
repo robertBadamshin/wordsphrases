@@ -1,5 +1,6 @@
 package com.app.wordsphrases.select_language_impl.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -37,6 +38,7 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
     private lateinit var crossImageView: ImageView
     private lateinit var languagesRecyclerView: RecyclerView
     private lateinit var titleTextView: TextView
+    private lateinit var requestLanguageButton: Button
 
     private val languagesAdapter by lazy {
         LanguagesAdapter(
@@ -61,6 +63,7 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
         crossImageView.setOnClickListener { requireActivity().onBackPressed() }
 
         languagesRecyclerView = view.findViewById(R.id.recycler_view_languages_select_language)
+        requestLanguageButton = view.findViewById(R.id.button_request_language)
 
         val layoutManager = LinearLayoutManager(requireContext())
         languagesRecyclerView.layoutManager = layoutManager
@@ -75,6 +78,10 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
         languagesRecyclerView.addItemDecoration(itemDecorator)
 
         titleTextView = view.findViewById(R.id.text_view_title_select_language)
+
+        requestLanguageButton.setOnClickListener {
+            selectLanguagePresenter.onRequestLanguageClick()
+        }
 
         view.configureInsets()
     }
@@ -92,7 +99,11 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
         setFragmentResult(key, bundle)
     }
 
-    fun getFragmentResultBundle(language: Language): Bundle {
+    override fun startIntent(intent: Intent) {
+        requireContext().startActivity(intent)
+    }
+
+    private fun getFragmentResultBundle(language: Language): Bundle {
         val bundle = Bundle()
         bundle.putSerializable(languageResultKey, language as Serializable)
         return bundle
