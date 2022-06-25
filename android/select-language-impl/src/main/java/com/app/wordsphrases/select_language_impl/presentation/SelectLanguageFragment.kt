@@ -1,10 +1,11 @@
 package com.app.wordsphrases.select_language_impl.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.*
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.*
 import androidx.recyclerview.widget.*
 import com.app.wordsphrases.core_ui.view.configureInsets
 import com.app.wordsphrases.select_language_impl.R
@@ -12,30 +13,32 @@ import com.app.wordsphrases.select_language_impl.di.SelectLanguageComponent
 import com.app.wordsphrases.select_language_impl.navigation.init_params.SelectLanguageInitParams
 import com.app.wordsphrases.select_language_impl.presentation.ui.adapter.LanguagesAdapter
 import com.app.wordsphrases.select_language_impl.presentation.ui.model.LanguageUiModel
+import com.wordphrases.domain.entity.language.Language
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
+import java.io.Serializable
 
 private const val selectLanguageInitParamsKey = "selectLanguageFragmentInitParamsKey"
+private const val languageResultKey = "languageResultKey"
 
 class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
 
-    private val selectLanguageType by lazy {
-        val initParams = requireArguments()
+    private val initParams by lazy {
+        requireArguments()
             .getSerializable(selectLanguageInitParamsKey) as? SelectLanguageInitParams
             ?: throw IllegalStateException("initParams should be presented")
-
-        initParams.selectLanguageType
     }
 
     private val selectLanguagePresenter by moxyPresenter {
         SelectLanguageComponent.get().selectLanguagePresenter.apply {
-            init(selectLanguageType)
+            init(initParams)
         }
     }
 
     private lateinit var crossImageView: ImageView
     private lateinit var languagesRecyclerView: RecyclerView
     private lateinit var titleTextView: TextView
+    private lateinit var requestLanguageButton: Button
 
     private val languagesAdapter by lazy {
         LanguagesAdapter(
@@ -60,6 +63,7 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
         crossImageView.setOnClickListener { requireActivity().onBackPressed() }
 
         languagesRecyclerView = view.findViewById(R.id.recycler_view_languages_select_language)
+        requestLanguageButton = view.findViewById(R.id.button_request_language)
 
         val layoutManager = LinearLayoutManager(requireContext())
         languagesRecyclerView.layoutManager = layoutManager
@@ -75,6 +79,10 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
 
         titleTextView = view.findViewById(R.id.text_view_title_select_language)
 
+        requestLanguageButton.setOnClickListener {
+            selectLanguagePresenter.onRequestLanguageClick()
+        }
+
         view.configureInsets()
     }
 
@@ -86,6 +94,21 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
         titleTextView.setText(titleRes)
     }
 
+    override fun setScreenResult(key: String, language: Language) {
+        val bundle = getFragmentResultBundle(language)
+        setFragmentResult(key, bundle)
+    }
+
+    override fun startIntent(intent: Intent) {
+        requireContext().startActivity(intent)
+    }
+
+    private fun getFragmentResultBundle(language: Language): Bundle {
+        val bundle = Bundle()
+        bundle.putSerializable(languageResultKey, language as Serializable)
+        return bundle
+    }
+
     companion object {
 
         fun newInstance(initParams: SelectLanguageInitParams): Fragment {
@@ -95,6 +118,10 @@ class SelectLanguageFragment : MvpAppCompatFragment(), SelectLanguageView {
             }
             fragment.arguments = arguments
             return fragment
+        }
+
+        fun getLanguageResultFromBundle(bundle: Bundle): Language {
+            return bundle.getSerializable(languageResultKey) as Language
         }
     }
 }

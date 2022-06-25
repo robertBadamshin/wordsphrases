@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class SelectLanguageStarterImpl@Inject constructor() : SelectLanguageStarter {
 
-    override fun getScreen(): SupportAppScreen {
+    override fun getLanguagePairScreen(): SupportAppScreen {
         return object : SupportAppScreen() {
 
             override fun getScreenKey(): String {

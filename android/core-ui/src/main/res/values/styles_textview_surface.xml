@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextStyle.Regular.Surface">
+        <item name="android:textColor">?surface</item>
+    </style>
+
+    <style name="TextStyle.Regular.Surface.16dp">
+        <item name="android:textSize">16dp</item>
+    </style>
+</resources>

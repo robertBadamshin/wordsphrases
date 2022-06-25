@@ -7,7 +7,7 @@ import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.email_sender_impl.di.EmailSenderApiModule
 import com.app.wordsphrases.home_impl.di.HomeApiModule
 import com.app.wordsphrases.login_impl.di.LoginApiModule
-import com.app.wordsphrases.presentation.MainPresenter
+import com.app.wordsphrases.presentation.*
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
 import com.app.wordsphrases.select_language_impl.di.SelectLanguageApiModule
 import com.app.wordsphrases.stories_impl.di.*
@@ -41,6 +41,8 @@ interface AppComponentImpl : AppComponent {
             @BindsInstance context: Context,
         ): AppComponentImpl
     }
+
+    fun inject(mainActivity: MainActivity)
 
     val mainPresenter: MainPresenter
 }

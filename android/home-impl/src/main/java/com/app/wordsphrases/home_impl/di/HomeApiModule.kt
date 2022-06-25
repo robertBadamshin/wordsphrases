@@ -2,7 +2,7 @@ package com.app.wordsphrases.home_impl.di
 
 import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.home_api.*
-import com.app.wordsphrases.home_impl.navigation.HomeRouterImpl
+import com.app.wordsphrases.home_impl.navigation.HomeStarterImpl
 import dagger.*
 import ru.terrakok.cicerone.*
 
@@ -10,8 +10,8 @@ import ru.terrakok.cicerone.*
 class HomeApiModule {
 
     @Provides
-    fun homeRouter(): HomeRouter {
-        return HomeRouterImpl()
+    fun homeStarter(): HomeStarter {
+        return HomeStarterImpl()
     }
 
     @Provides
@@ -23,7 +23,7 @@ class HomeApiModule {
 
     @Provides
     @HomeNavigationQualifier
-    fun router(@HomeNavigationQualifier cicerone: Cicerone<Router>): Router {
+    fun homeRouter(@HomeNavigationQualifier cicerone: Cicerone<Router>): Router {
         return cicerone.router
     }
 

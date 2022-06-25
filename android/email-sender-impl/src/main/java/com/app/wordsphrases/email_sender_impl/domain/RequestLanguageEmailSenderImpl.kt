@@ -1,21 +1,21 @@
 package com.app.wordsphrases.email_sender_impl.domain
 
 import android.content.Intent
-import com.app.wordsphrases.email_sender_api.FeedbackEmailSender
+import com.app.wordsphrases.email_sender_api.RequestLanguageEmailSender
 import javax.inject.Inject
 
-class FeedbackEmailSenderImpl @Inject constructor(
+class RequestLanguageEmailSenderImpl @Inject constructor(
     private val createIntentForEmail: CreateIntentForEmail,
     private val getVersionName: GetVersionName,
-) : FeedbackEmailSender {
+) : RequestLanguageEmailSender {
 
     override fun invoke(): Intent {
         val intent = createIntentForEmail()
 
         val versionName = getVersionName()
-        val subject = "Feedback. Version: $versionName"
+        val subject = "Feedback. Version: $versionName. Request language"
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 
-        return Intent.createChooser(intent, "Send feedback")
+        return Intent.createChooser(intent, "Request language")
     }
 }
