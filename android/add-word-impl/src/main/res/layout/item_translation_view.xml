@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EditText xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawablePadding="21dp"
+    android:hint="@string/add_word_translation"
+    android:inputType="text"
+    android:maxLength="40"
+    android:drawableTint="?colorSecondary"
+    android:maxLines="1"
+    android:textAppearance="@style/TextStyle.Regular.Primary.24dp"
+    android:textColorHint="?colorSecondary"
+    android:textSize="24dp" />

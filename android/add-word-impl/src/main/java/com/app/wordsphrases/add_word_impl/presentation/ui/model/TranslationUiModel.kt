@@ -5,7 +5,7 @@ import com.app.wordsphrases.core_ui.ui.adapter.AnyDiffItem
 data class TranslationUiModel(
     val id: Int,
     val text: String,
-    val selected: Boolean,
+    val showDeleteButton: Boolean,
 ): AnyDiffItem {
 
     override fun isSame(newItem: AnyDiffItem): Boolean {

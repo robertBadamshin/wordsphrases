@@ -16,6 +16,7 @@ import java.util.*
 
 private const val addWordComponentUuidKey = "addWordComponentUuid"
 
+// todo delete
 class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView {
 
     private val presenter by moxyPresenter {
@@ -88,27 +89,27 @@ class SelectTranslationFragment : MvpAppCompatFragment(), SelectTranslationView 
         }
     }
 
-    override fun showTranslations(uiModels: List<TranslationUiModel>) {
-        val layoutInflater = LayoutInflater.from(requireContext())
-
-        translationLinearLayout.removeAllViews()
-
-        uiModels.forEach { uiModel ->
-            val translationItemView = layoutInflater.inflate(R.layout.item_translation, translationLinearLayout, false)
-
-            val checkBox = translationItemView.findViewById<CheckBox>(R.id.check_box_translation_item)
-            checkBox.isChecked = uiModel.selected
-
-            checkBox.setOnCheckedChangeListener { _, _ ->
-                presenter.onToggleTranslationSelection(uiModel.id)
-            }
-
-            val translationText = translationItemView.findViewById<TextView>(R.id.text_view_translation_text)
-            translationText.text = uiModel.text
-
-            translationLinearLayout.addView(translationItemView)
-        }
-    }
+//    override fun showTranslations(uiModels: List<TranslationUiModel>) {
+//        val layoutInflater = LayoutInflater.from(requireContext())
+//
+//        translationLinearLayout.removeAllViews()
+//
+//        uiModels.forEach { uiModel ->
+//            val translationItemView = layoutInflater.inflate(R.layout.item_translation, translationLinearLayout, false)
+//
+//            val checkBox = translationItemView.findViewById<CheckBox>(R.id.check_box_translation_item)
+//            //checkBox.isChecked = uiModel.selected
+//
+//            checkBox.setOnCheckedChangeListener { _, _ ->
+//                presenter.onToggleTranslationSelection(uiModel.id)
+//            }
+//
+//            val translationText = translationItemView.findViewById<TextView>(R.id.text_view_translation_text)
+//            translationText.text = uiModel.text
+//
+//            translationLinearLayout.addView(translationItemView)
+//        }
+//    }
 
     override fun showMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()

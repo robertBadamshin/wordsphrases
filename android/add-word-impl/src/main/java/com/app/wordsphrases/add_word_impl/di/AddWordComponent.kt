@@ -2,7 +2,7 @@ package com.app.wordsphrases.add_word_impl.di
 
 import com.app.wordsphrases.add_word_api.domain.entity.AddWordComponentType
 import com.app.wordsphrases.add_word_impl.di.inner.AddWordInnerComponent
-import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordPresenter
+import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.AddWordPresenter
 import com.app.wordsphrases.add_word_impl.presentation.select_translation_fragment.SelectTranslationPresenter
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
@@ -56,5 +56,5 @@ interface AddWordComponent {
 
     val selectTranslationPresenter: SelectTranslationPresenter
 
-    val enterWordPresenter: EnterWordPresenter
+    val addWordPresenter: AddWordPresenter
 }

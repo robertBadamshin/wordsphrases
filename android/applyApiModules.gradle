@@ -5,7 +5,6 @@ dependencies {
     implementation project(':android:add-word-api')
     implementation project(':android:home-api')
     implementation project(':android:remote-api')
-    implementation project(':android:translation-api')
     implementation project(':android:stories-api')
     implementation project(':android:email-sender-api')
     implementation project(':android:login-api')

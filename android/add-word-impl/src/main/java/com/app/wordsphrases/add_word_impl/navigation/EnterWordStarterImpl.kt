@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import com.app.wordsphrases.add_word_api.EnterWordStarter
 import com.app.wordsphrases.add_word_api.domain.entity.*
 import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
-import com.app.wordsphrases.add_word_impl.presentation.enter_word_screen.EnterWordFragment
+import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.AddWordFragment
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import java.util.*
@@ -30,11 +30,11 @@ class EnterWordStarterImpl @Inject constructor() : EnterWordStarter {
         return object : SupportAppScreen() {
 
             override fun getScreenKey(): String {
-                return EnterWordFragment::class.java.simpleName
+                return AddWordFragment::class.java.simpleName
             }
 
             override fun getFragment(): Fragment {
-                return EnterWordFragment.newInstance(uuid)
+                return AddWordFragment.newInstance(uuid)
             }
         }
     }

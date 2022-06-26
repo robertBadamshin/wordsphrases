@@ -9,7 +9,4 @@ interface AddWordApiModule {
 
     @Binds
     fun enterWordStarter(impl: EnterWordStarterImpl): EnterWordStarter
-
-    @Binds
-    fun selectTranslationStarter(impl: SelectTranslationStarterImpl): SelectTranslationStarter
 }
