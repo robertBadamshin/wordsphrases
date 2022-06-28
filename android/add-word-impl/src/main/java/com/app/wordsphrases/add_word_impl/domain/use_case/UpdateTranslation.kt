@@ -1,14 +1,14 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import javax.inject.Inject
 
 class UpdateTranslation @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
 ) {
 
     operator fun invoke(translationId: Int, text: String) {
-        val translations = wordRepository.requireTranslations().toMutableList()
+        val translations = addWordRepository.requireTranslations().toMutableList()
 
         val translationIndex = translations.indexOfFirst { translation ->
             translation.id == translationId
@@ -22,6 +22,6 @@ class UpdateTranslation @Inject constructor(
         val updatedTranslation = targetTranslation.copy(text = text)
         translations[translationIndex] = updatedTranslation
 
-        wordRepository.setTranslations(translations)
+        addWordRepository.setTranslations(translations)
     }
 }

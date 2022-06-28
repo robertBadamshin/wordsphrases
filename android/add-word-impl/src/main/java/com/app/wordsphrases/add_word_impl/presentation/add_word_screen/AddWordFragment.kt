@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.*
 import android.widget.*
@@ -10,6 +11,7 @@ import com.app.wordsphrases.add_word_impl.di.AddWordParentComponent
 import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.view.TranslationsView
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import com.app.wordsphrases.core_ui.view.*
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
@@ -29,8 +31,16 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
 
     private lateinit var arrowCloseImageView: ImageView
     private lateinit var wordTextEditText: EditText
+    private lateinit var commentTextEditText: EditText
     private lateinit var translationsView: TranslationsView
     private lateinit var addWordFab: FloatingActionButton
+
+    private val enabledButtonColor by lazy {
+        MaterialColors.getColor(addWordFab, R.attr.rainbow)
+    }
+    private val disabledButtonColor by lazy {
+        MaterialColors.getColor(addWordFab, R.attr.rainbow_60)
+    }
 
     private val backPressedCallback = object : OnBackPressedCallback(true) {
 
@@ -38,7 +48,6 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
             presenter.onBackPressed()
         }
     }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,6 +93,11 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
             presenter.onWordChanged(editableText.toString())
         }
 
+        commentTextEditText = view.findViewById(R.id.edit_text_enter_comment)
+        commentTextEditText.doAfterTextChanged { editableText ->
+            presenter.onCommentChanged(editableText.toString())
+        }
+
         presenter.onWordChanged(wordTextEditText.text.toString())
 
         view.configureInsets()
@@ -95,10 +109,12 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
     }
 
     override fun setAddWordButtonEnabled() {
+        addWordFab.backgroundTintList = ColorStateList.valueOf(enabledButtonColor)
         addWordFab.isEnabled = true
     }
 
     override fun setAddWordButtonDisabled() {
+        addWordFab.backgroundTintList = ColorStateList.valueOf(disabledButtonColor)
         addWordFab.isEnabled = false
     }
 

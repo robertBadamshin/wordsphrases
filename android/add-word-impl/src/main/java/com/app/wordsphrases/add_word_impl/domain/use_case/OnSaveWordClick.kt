@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.wordphrases.domain.usecase.SaveNewWord
 import com.wordphrases.domain.usecase.language_pair.RequireSelectedLanguagePair
 import javax.inject.Inject
@@ -9,7 +9,7 @@ private const val maxRepeatCount = 4L
 private const val defaultRepeatCount = 0L
 
 class OnSaveWordClick @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
     private val saveNewWord: SaveNewWord,
     private val getCurrentWordText: GetCurrentWordText,
     private val requireSelectedLanguagePair: RequireSelectedLanguagePair,

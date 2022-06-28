@@ -21,6 +21,8 @@ class AddWordPresenter @Inject constructor(
     private val updateTranslation: UpdateTranslation,
     private val createEmptyTranslation: CreateEmptyTranslation,
     private val removeTranslation: RemoveTranslation,
+    private val setCommentText: SetCommentText,
+    private val isWordValid: IsWordValid,
 ) : MvpPresenter<AddWordView>() {
 
     private var focusedTranslation: Int? = null
@@ -63,11 +65,21 @@ class AddWordPresenter @Inject constructor(
     }
 
     fun onWordChanged(text: String) {
-        if (text.isEmpty()) {
-            viewState.setAddWordButtonDisabled()
-        } else {
+        setWordText(text)
+        validateAddWordButtonState()
+    }
+
+    private fun validateAddWordButtonState() {
+        val wordValid = isWordValid()
+        if (wordValid) {
             viewState.setAddWordButtonEnabled()
+        } else {
+            viewState.setAddWordButtonDisabled()
         }
+    }
+
+    fun onCommentChanged(text: String) {
+        setCommentText(text)
     }
 
     fun onLostTranslateFocus() {
@@ -82,10 +94,12 @@ class AddWordPresenter @Inject constructor(
         val translationId = requireFocusedTranslation()
         updateTranslation(translationId, text)
         manageEmptyTranslation()
+        validateAddWordButtonState()
     }
 
     fun onRemoveTranslationClick(translationId: Int) {
         removeTranslation(translationId)
+        validateAddWordButtonState()
     }
 
     fun showKeyboard() {

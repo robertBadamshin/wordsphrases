@@ -1,15 +1,15 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.add_word_impl.domain.entity.Translation
 import javax.inject.Inject
 
 class ManageEmptyTranslation @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
 ) {
 
     operator fun invoke() {
-        val translations = wordRepository.requireTranslations()
+        val translations = addWordRepository.requireTranslations()
 
         val lastNotEmptyTranslationIndex = translations.indexOfLast { translation ->
             translation.text.isNotBlank()
@@ -24,13 +24,13 @@ class ManageEmptyTranslation @Inject constructor(
         }
 
         val emptyTranslation = Translation(
-            id = wordRepository.getNextTranslationId(),
+            id = addWordRepository.getNextTranslationId(),
             text = "",
         )
 
         val newTranslations = translations
             .plus(emptyTranslation)
 
-        wordRepository.setTranslations(newTranslations)
+        addWordRepository.setTranslations(newTranslations)
     }
 }

@@ -8,12 +8,13 @@ import javax.inject.Inject
 
 
 @AddWordComponentScope
-class WordRepository @Inject constructor() {
+class AddWordRepository @Inject constructor() {
 
     private val wordTextFlow = MutableSharedFlow<String?>(
         replay = 1,
         onBufferOverflow = BufferOverflow.DROP_OLDEST,
     )
+    private var commentText: String? = null
     private val translationsFlow = MutableStateFlow(emptyList<Translation>())
     private var translationId = 1
 
@@ -23,6 +24,14 @@ class WordRepository @Inject constructor() {
 
     fun getWordText(): Flow<String?> {
         return wordTextFlow
+    }
+
+    fun setCommentText(text: String) {
+        commentText = text
+    }
+
+    fun getCommentText(): String? {
+        return commentText
     }
 
     fun getCurrentWordText(): String {
@@ -36,6 +45,10 @@ class WordRepository @Inject constructor() {
 
     fun getTranslations(): Flow<List<Translation>> {
         return translationsFlow
+    }
+
+    fun getCurrentTranslations(): List<Translation> {
+        return translationsFlow.value
     }
 
     fun requireTranslations(): List<Translation> {
