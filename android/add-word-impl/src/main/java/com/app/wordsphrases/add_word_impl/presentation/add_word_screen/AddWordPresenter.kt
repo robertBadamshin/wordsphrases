@@ -17,9 +17,18 @@ class AddWordPresenter @Inject constructor(
     private val clearSelfAddWordComponent: ClearSelfAddWordComponent,
     private val getTranslations: GetTranslations,
     private val translationsUiMapper: TranslationsUiMapper,
-    private val validateTranslations: ValidateTranslations,
     private val manageEmptyTranslation: ManageEmptyTranslation,
+    private val updateTranslation: UpdateTranslation,
+    private val createEmptyTranslation: CreateEmptyTranslation,
+    private val removeTranslation: RemoveTranslation,
 ) : MvpPresenter<AddWordView>() {
+
+    private var focusedTranslation: Int? = null
+
+    private fun requireFocusedTranslation(): Int {
+        return focusedTranslation
+            ?: throw IllegalStateException("focusedTranslation should be not null")
+    }
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -37,6 +46,7 @@ class AddWordPresenter @Inject constructor(
             }
         }
 
+        createEmptyTranslation()
         updateTranslations()
     }
 
@@ -60,12 +70,22 @@ class AddWordPresenter @Inject constructor(
         }
     }
 
-    fun onValidateTranslations() {
-        validateTranslations()
+    fun onLostTranslateFocus() {
+        this.focusedTranslation = null
     }
 
-    fun onInputTranslate() {
+    fun onFindTranslateFocus(translationId: Int) {
+        this.focusedTranslation = translationId
+    }
+
+    fun onInputTranslate(text: String) {
+        val translationId = requireFocusedTranslation()
+        updateTranslation(translationId, text)
         manageEmptyTranslation()
+    }
+
+    fun onRemoveTranslationClick(translationId: Int) {
+        removeTranslation(translationId)
     }
 
     fun showKeyboard() {

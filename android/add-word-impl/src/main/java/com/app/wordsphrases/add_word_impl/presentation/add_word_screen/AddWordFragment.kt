@@ -11,7 +11,6 @@ import com.app.wordsphrases.add_word_impl.presentation.add_word_screen.view.Tran
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import com.app.wordsphrases.core_ui.view.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import java.util.*
@@ -63,9 +62,17 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
 
         wordTextEditText = view.findViewById(R.id.edit_text_enter_word)
 
-        translationsView = view.findViewById(R.id.tranlsations_view_word)
-        translationsView.onLostFocus = { presenter.onValidateTranslations() }
-        translationsView.onTextUpdate = { presenter.onInputTranslate() }
+        translationsView = view.findViewById(R.id.translations_view_word)
+        translationsView.onLostFocus = { presenter.onLostTranslateFocus() }
+        translationsView.onFindFocus = { translationId ->
+            presenter.onFindTranslateFocus(translationId)
+        }
+        translationsView.onTextUpdate = { text: String ->
+            presenter.onInputTranslate(text)
+        }
+        translationsView.onRemoveClick = { translationId: Int ->
+            presenter.onRemoveTranslationClick(translationId)
+        }
 
         addWordFab = view.findViewById(R.id.fab_add_word)
         addWordFab.setOnClickListener {

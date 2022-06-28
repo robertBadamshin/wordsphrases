@@ -39,9 +39,8 @@
             android:id="@+id/edit_text_enter_word"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
+            android:layout_marginHorizontal="16dp"
             android:layout_marginTop="86dp"
-            android:layout_marginEnd="21dp"
             android:background="@null"
             android:drawableStart="@drawable/ic_add_word_text"
             android:drawablePadding="21dp"
@@ -49,9 +48,8 @@
             android:inputType="text"
             android:maxLength="40"
             android:maxLines="1"
-            android:textAppearance="@style/TextStyle.Regular.Primary.24dp"
+            android:textAppearance="@style/TextStyle.Regular.Primary.16dp"
             android:textColorHint="?colorSecondary"
-            android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +67,7 @@
             android:id="@+id/image_view_translations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="36dp"
             android:contentDescription="@null"
             android:src="@drawable/ic_add_word_translate"
@@ -77,14 +75,44 @@
             app:layout_constraintTop_toBottomOf="@id/edit_text_enter_word" />
 
         <com.app.wordsphrases.add_word_impl.presentation.add_word_screen.view.TranslationsView
-            android:id="@+id/tranlsations_view_word"
+            android:id="@+id/translations_view_word"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="17dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="27dp"
+            android:divider="@drawable/drawable_translations_items_divider"
+            android:showDividers="middle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/image_view_translations"
             app:layout_constraintTop_toBottomOf="@id/edit_text_enter_word" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/translations_view_word" />
+
+        <EditText
+            android:id="@+id/edit_text_enter_comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="36dp"
+            android:background="@null"
+            android:drawableStart="@drawable/ic_add_word_comment"
+            android:drawablePadding="18dp"
+            android:hint="@string/add_word_comment"
+            android:inputType="textMultiLine"
+            android:maxLength="120"
+            android:maxLines="3"
+            android:textAppearance="@style/TextStyle.Regular.Primary.16dp"
+            android:textColorHint="?colorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/translations_view_word" />
 
         <View
             android:layout_width="0dp"
@@ -93,28 +121,7 @@
             android:background="?border"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tranlsations_view_word" />
-
-        <EditText
-            android:id="@+id/edit_text_enter_comment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="21dp"
-            android:background="@null"
-            android:drawableStart="@drawable/ic_add_word_comment"
-            android:drawablePadding="21dp"
-            android:hint="@string/add_word_comment"
-            android:inputType="text"
-            android:maxLength="80"
-            android:maxLines="1"
-            android:textAppearance="@style/TextStyle.Regular.Primary.24dp"
-            android:textColorHint="?colorSecondary"
-            android:textSize="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tranlsations_view_word" />
+            app:layout_constraintTop_toBottomOf="@id/edit_text_enter_comment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

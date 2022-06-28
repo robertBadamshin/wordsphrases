@@ -4,7 +4,7 @@ import com.app.wordsphrases.add_word_api.domain.entity.*
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 
-interface EnterWordStarter {
+interface AddWordStarter {
 
     fun getScreen(
         type: AddWordComponentType,

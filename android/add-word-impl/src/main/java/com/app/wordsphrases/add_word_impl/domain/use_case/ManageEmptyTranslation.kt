@@ -15,6 +15,10 @@ class ManageEmptyTranslation @Inject constructor(
             translation.text.isNotBlank()
         }
 
+        if (lastNotEmptyTranslationIndex == -1) {
+            return
+        }
+
         if (lastNotEmptyTranslationIndex == translations.lastIndex - 1) {
             return
         }
@@ -25,7 +29,6 @@ class ManageEmptyTranslation @Inject constructor(
         )
 
         val newTranslations = translations
-            .take(lastNotEmptyTranslationIndex + 1)
             .plus(emptyTranslation)
 
         wordRepository.setTranslations(newTranslations)

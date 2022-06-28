@@ -8,5 +8,5 @@ import dagger.*
 interface AddWordApiModule {
 
     @Binds
-    fun enterWordStarter(impl: EnterWordStarterImpl): EnterWordStarter
+    fun enterWordStarter(impl: AddWordStarterImpl): AddWordStarter
 }

@@ -1,10 +1,10 @@
 package com.app.wordsphrases.stories_impl.presentation
 
-import com.app.wordsphrases.add_word_api.EnterWordStarter
+import com.app.wordsphrases.add_word_api.AddWordStarter
 import com.app.wordsphrases.add_word_api.domain.entity.*
+import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.email_sender_api.FeedbackEmailSender
 import com.app.wordsphrases.stories_impl.model.mapper.WordUiMapper
-import com.app.wordsphrases.stories_api.StoriesNavigationQualifier
 import com.app.wordsphrases.stories_impl.use_case.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,8 +18,8 @@ class StoriesPresenter @Inject constructor(
     private val wordUiMapper: WordUiMapper,
     private val subscribeForWords: SubscribeForWords,
     private val moveToNextWord: MoveToNextWord,
-    private val enterWordStarter: EnterWordStarter,
-    @StoriesNavigationQualifier private val router: Router,
+    private val addWordStarter: AddWordStarter,
+    @MainNavigationQualifier private val router: Router,
     private val feedbackEmailSender: FeedbackEmailSender,
 ) : MvpPresenter<StoriesView>() {
 
@@ -41,7 +41,7 @@ class StoriesPresenter @Inject constructor(
     }
 
     fun openEnterWord() {
-        val screen = enterWordStarter.getScreen(
+        val screen = addWordStarter.getScreen(
             type = AddWordComponentType.Regular,
             router = router,
             initialTextWrapper = InitialTextWrapper(null),

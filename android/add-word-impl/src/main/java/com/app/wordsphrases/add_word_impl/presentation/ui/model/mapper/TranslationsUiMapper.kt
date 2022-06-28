@@ -7,9 +7,9 @@ import javax.inject.Inject
 class TranslationsUiMapper @Inject constructor() {
 
     fun map(translations: List<Translation>): List<TranslationUiModel> {
-        val showDeleteButton = translations.size > 1
+        return translations.mapIndexed { index, translation ->
+            val showDeleteButton = translations.size > 1 && index != translations.lastIndex
 
-        return translations.map { translation ->
             TranslationUiModel(
                 id = translation.id,
                 text = translation.text,

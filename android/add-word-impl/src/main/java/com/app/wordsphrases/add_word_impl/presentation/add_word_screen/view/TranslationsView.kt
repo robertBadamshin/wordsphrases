@@ -2,12 +2,11 @@ package com.app.wordsphrases.add_word_impl.presentation.add_word_screen.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.*
-import android.widget.*
-import androidx.core.content.ContextCompat
-import androidx.core.widget.doAfterTextChanged
+import android.view.View
+import android.widget.LinearLayout
 import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
+import com.app.wordsphrases.core_ui.view.showKeyboard
 
 class TranslationsView @JvmOverloads constructor(
     context: Context,
@@ -15,10 +14,10 @@ class TranslationsView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val crossDrawable by lazy { ContextCompat.getDrawable(context, R.drawable.ic_cross) }
-
     var onLostFocus: (() -> Unit)? = null
-    var onTextUpdate: ((String) -> Unit)? = null
+    var onFindFocus: ((translationId: Int) -> Unit)? = null
+    var onTextUpdate: ((text: String) -> Unit)? = null
+    var onRemoveClick: ((translationId: Int) -> Unit)? = null
 
     init {
         orientation = VERTICAL
@@ -35,46 +34,51 @@ class TranslationsView @JvmOverloads constructor(
         }
 
         uiModels.forEachIndexed { index, uiModel ->
-            var view = getChildAt(index)
+            var view: TranslationView? = getChildAt(index) as TranslationView?
             if (view == null) {
-                view = inflate(context, R.layout.item_translation_view, null)
-                val layoutParams = getLayoutParams(view)
+                view = View.inflate(
+                    context,
+                    R.layout.item_translation_view,
+                    null
+                ) as TranslationView
+
+                initView(view)
+
+                val layoutParams = generateDefaultLayoutParams()
                 addViewInLayout(view, index, layoutParams, true)
             }
 
-            val castedView = view as? EditText
-            if (castedView == null) {
-                throw IllegalStateException("view in container has wrong type. View: $castedView")
-            }
-
-            bindView(castedView, uiModel)
+            view.bind(uiModel)
         }
 
         requestLayout()
     }
 
-    private fun getLayoutParams(view: View): ViewGroup.LayoutParams? {
-        return if (view.layoutParams != null) {
-            view.layoutParams
-        } else {
-            generateDefaultLayoutParams()
-        }
-    }
+    private fun initView(view: TranslationView) {
+        view.onLostFocus = onLostFocus
+        view.onFindFocus = onFindFocus
+        view.onTextUpdate = onTextUpdate
+        view.onRemoveClick = onRemoveClick
 
-    private fun bindView(editText: EditText, uiModel: TranslationUiModel) {
-        val drawableEnd = if (uiModel.showDeleteButton) {
-            crossDrawable
-        } else {
-            null
-        }
-        editText.setCompoundDrawables(null, null, drawableEnd, null)
+        view.removeSelfFromParent = { viewToRemove ->
+            if (viewToRemove.isInputFocused()) {
+                val indexOfChild = indexOfChild(viewToRemove)
+                if (indexOfChild == -1) {
+                    throw IllegalStateException("child not presented in parent")
+                }
 
-        editText.setOnFocusChangeListener { _, hasFocus ->
-            if (!hasFocus) {
-                onLostFocus?.invoke()
+                val childIndexToFocus = if (indexOfChild > 0) {
+                    indexOfChild - 1
+                } else {
+                    indexOfChild + 1
+                }
+
+                val childToFocus = getChildAt(childIndexToFocus) as TranslationView
+                childToFocus.requestFocus()
+                childToFocus.showKeyboard()
             }
-        }
 
-        editText.doAfterTextChanged { text -> onTextUpdate?.invoke(text.toString()) }
+            removeView(viewToRemove)
+        }
     }
 }
