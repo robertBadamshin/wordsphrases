@@ -98,17 +98,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
         feedBackImageView = view.findViewById(R.id.image_view_feedback)
         feedBackImageView.setOnClickListener { storiesPresenter.onSendFeedbackClick() }
 
-//        ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-//            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            addWordButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-//                bottomMargin = insets.bottom + 16.dpToPx()
-//            }
-//            feedBackImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-//                topMargin = insets.top + 16.dpToPx()
-//            }
-//            return@setOnApplyWindowInsetsListener windowInsets
-//        }
-//
         view.configureTopInsets()
     }
 
