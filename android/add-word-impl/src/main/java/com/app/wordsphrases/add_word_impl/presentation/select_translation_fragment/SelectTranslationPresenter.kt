@@ -13,7 +13,6 @@ import javax.inject.Inject
 class SelectTranslationPresenter @Inject constructor(
     @AddWordNavigationQualifier private val router: Router,
     private val getCurrentWordText: GetCurrentWordText,
-    private val onSaveWordClick: OnSaveWordClick,
     private val addWordComponentType: AddWordComponentType,
     private val wordTopMarginUiMapper: WordTopMarginUiMapper
 ) : MvpPresenter<SelectTranslationView>() {
@@ -45,7 +44,6 @@ class SelectTranslationPresenter @Inject constructor(
 
     fun onAddWordClicked() {
         presenterScope.launch {
-            onSaveWordClick()
             viewState.showToastMessage(R.string.word_added)
             router.newRootChain()
         }

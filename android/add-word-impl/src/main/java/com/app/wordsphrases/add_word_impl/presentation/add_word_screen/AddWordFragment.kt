@@ -85,8 +85,7 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
 
         addWordFab = view.findViewById(R.id.fab_add_word)
         addWordFab.setOnClickListener {
-            //val textToTranslate = wordTextEditText.text.toString()
-            //presenter.onAddWordClick(textToTranslate)
+            presenter.onAddWordClick()
         }
 
         wordTextEditText.doAfterTextChanged { editableText ->
@@ -128,6 +127,10 @@ class AddWordFragment : MvpAppCompatFragment(), AddWordView {
 
     override fun showTranslations(uiModels: List<TranslationUiModel>) {
         translationsView.bind(uiModels)
+    }
+
+    override fun showToastMessage(messageRes: Int) {
+        Toast.makeText(requireContext(), messageRes, Toast.LENGTH_SHORT).show()
     }
 
     companion object {

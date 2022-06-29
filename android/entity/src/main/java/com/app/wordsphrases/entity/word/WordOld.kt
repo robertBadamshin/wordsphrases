@@ -1,6 +1,7 @@
 package com.app.wordsphrases.entity.word
 
-data class Word(
+// todo remove
+data class WordOld(
     val id: Int,
     val createdAt: Long,
     val word: String,

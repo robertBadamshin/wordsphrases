@@ -11,4 +11,5 @@ data class Word(
     val maxRepeatCount: Long,
     val repeatCount: Long,
     val translations: List<String>,
+    val comment: String?,
 )

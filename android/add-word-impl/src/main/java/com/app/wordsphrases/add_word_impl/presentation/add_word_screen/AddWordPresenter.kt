@@ -1,16 +1,16 @@
 package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
 import com.app.wordsphrases.add_word_api.domain.entity.*
-import com.app.wordsphrases.add_word_impl.di.AddWordNavigationQualifier
+import com.app.wordsphrases.add_word_impl.R
 import com.app.wordsphrases.add_word_impl.domain.use_case.*
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
+import com.app.wordsphrases.core.di.MainNavigationQualifier
 import kotlinx.coroutines.flow.*
 import moxy.*
 import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class AddWordPresenter @Inject constructor(
-    @AddWordNavigationQualifier private val router: Router,
     private val setWordText: SetWordText,
     private val addWordComponentType: AddWordComponentType,
     private val initialTextWrapper: InitialTextWrapper,
@@ -23,6 +23,8 @@ class AddWordPresenter @Inject constructor(
     private val removeTranslation: RemoveTranslation,
     private val setCommentText: SetCommentText,
     private val isWordValid: IsWordValid,
+    private val onSaveWord: OnSaveWord,
+    @MainNavigationQualifier private val router: Router,
 ) : MvpPresenter<AddWordView>() {
 
     private var focusedTranslation: Int? = null
@@ -59,9 +61,10 @@ class AddWordPresenter @Inject constructor(
             .launchIn(presenterScope)
     }
 
-    fun onAddWordClick(wordText: String, comment: String?) {
-//        val word = Word()
-//        setWordText(wordText)
+    fun onAddWordClick() {
+        onSaveWord()
+        viewState.showToastMessage(R.string.word_added)
+        router.newRootChain()
     }
 
     fun onWordChanged(text: String) {

@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.core.view.*
 import androidx.fragment.app.*
 import com.app.wordsphrases.core.BaseWordsPhrasesApp
-import com.app.wordsphrases.core_ui.view.dpToPx
+import com.app.wordsphrases.core_ui.view.*
 import com.app.wordsphrases.stories_impl.di.StoriesComponent
 import com.app.wordsphrases.stories_impl.model.WordUiModel
 import com.app.wordsphrases.stories_impl.R
@@ -31,7 +31,11 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
 
     private val navigatorHolder: NavigatorHolder by lazy { BaseWordsPhrasesApp.appComponent.storiesNavigatorHolder }
     private val navigator: Navigator by lazy {
-        object : SupportAppNavigator(requireActivity(), childFragmentManager, R.id.fragment_container_stories) {
+        object : SupportAppNavigator(
+            requireActivity(),
+            childFragmentManager,
+            R.id.fragment_container_stories
+        ) {
 
             override fun setupFragmentTransaction(
                 command: Command?,
@@ -63,7 +67,10 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        requireActivity().onBackPressedDispatcher.addCallback(this, backPressedNestedNavigationCallback)
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this,
+            backPressedNestedNavigationCallback
+        )
 
         childFragmentManager.addOnBackStackChangedListener {
             storiesPresenter.onBackStackChanged(childFragmentManager.backStackEntryCount)
@@ -91,16 +98,18 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
         feedBackImageView = view.findViewById(R.id.image_view_feedback)
         feedBackImageView.setOnClickListener { storiesPresenter.onSendFeedbackClick() }
 
-        ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
-            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
-            addWordButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                bottomMargin = insets.bottom + 16.dpToPx()
-            }
-            feedBackImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                topMargin = insets.top + 16.dpToPx()
-            }
-            return@setOnApplyWindowInsetsListener windowInsets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(view) { _, windowInsets ->
+//            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            addWordButton.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+//                bottomMargin = insets.bottom + 16.dpToPx()
+//            }
+//            feedBackImageView.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+//                topMargin = insets.top + 16.dpToPx()
+//            }
+//            return@setOnApplyWindowInsetsListener windowInsets
+//        }
+//
+        view.configureTopInsets()
     }
 
     override fun onResume() {

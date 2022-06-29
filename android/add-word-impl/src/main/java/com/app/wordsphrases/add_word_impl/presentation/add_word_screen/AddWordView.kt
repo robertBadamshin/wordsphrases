@@ -1,5 +1,6 @@
 package com.app.wordsphrases.add_word_impl.presentation.add_word_screen
 
+import androidx.annotation.StringRes
 import com.app.wordsphrases.add_word_impl.presentation.ui.model.TranslationUiModel
 import moxy.MvpView
 import moxy.viewstate.strategy.*
@@ -23,4 +24,6 @@ interface AddWordView : MvpView {
     fun setInitialText(text: String)
 
     fun showTranslations(uiModels: List<TranslationUiModel>)
+
+    fun showToastMessage(@StringRes messageRes: Int)
 }
