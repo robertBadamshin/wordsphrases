@@ -7,6 +7,7 @@ CREATE TABLE wordDbEntity(
     maxRepeatCount INTEGER NOT NULL,
     repeatCount INTEGER NOT NULL,
     synced INTEGER NOT NULL,
+    comment TEXT,
     FOREIGN KEY (languagePairId)
         REFERENCES languagePairDbEntity (pairId)
         ON DELETE CASCADE
@@ -20,8 +21,10 @@ INSERT INTO wordDbEntity(
     sortOrder,
     maxRepeatCount,
     repeatCount,
-    synced
+    synced,
+    comment
 ) VALUES (
+    ?,
     ?,
     ?,
     ?,
@@ -35,7 +38,7 @@ selectAllForSync:
 SELECT * FROM wordDbEntity
     WHERE synced == 0;
 
-selectAllForStories:
+getAllWordsForDictionary:
 SELECT * FROM wordDbEntity
     WHERE languagePairId == ?;
 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextStyle.Regular.Tertiary">
+        <item name="android:textColor">?tertiary</item>
+    </style>
+
+    <style name="TextStyle.Regular.Tertiary.14dp">
+        <item name="android:textSize">14dp</item>
+    </style>
+</resources>

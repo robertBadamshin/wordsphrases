@@ -6,9 +6,7 @@ import com.app.wordsphrases.dictionary_impl.presentation.DictionaryFragment
 import ru.terrakok.cicerone.android.support.SupportAppScreen
 import javax.inject.Inject
 
-class DictionaryStarterImpl @Inject constructor(
-
-) : DictionaryStarter {
+class DictionaryStarterImpl @Inject constructor() : DictionaryStarter {
 
     override fun getScreen(): SupportAppScreen {
         return object : SupportAppScreen() {

@@ -5,10 +5,13 @@ import android.view.View
 import androidx.core.view.WindowCompat
 import com.app.wordsphrases.R
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
+import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.di.AppComponentImpl
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
-import ru.terrakok.cicerone.android.support.SupportAppScreen
+import ru.terrakok.cicerone.NavigatorHolder
+import ru.terrakok.cicerone.android.support.SupportAppNavigator
+import javax.inject.Inject
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
@@ -18,9 +21,20 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     private lateinit var mainContainer: View
 
+    @Inject
+    @MainNavigationQualifier
+    lateinit var navigatorHolder: NavigatorHolder
+
+    private val navigator by lazy {
+        SupportAppNavigator(this, supportFragmentManager, R.id.fragment_container)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        (appComponent as AppComponentImpl).inject(this)
+
 
         mainContainer = findViewById(R.id.main_container)
 
@@ -32,9 +46,13 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
     }
 
-    override fun start(screen: SupportAppScreen) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, screen.fragment)
-            .commit()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
+    }
+
+    override fun onPause() {
+        navigatorHolder.removeNavigator()
+        super.onPause()
     }
 }

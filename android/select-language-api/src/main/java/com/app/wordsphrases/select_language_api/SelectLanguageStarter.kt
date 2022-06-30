@@ -4,5 +4,5 @@ import ru.terrakok.cicerone.android.support.SupportAppScreen
 
 interface SelectLanguageStarter {
 
-    fun getScreen(): SupportAppScreen
+    fun getLanguagePairScreen(): SupportAppScreen
 }

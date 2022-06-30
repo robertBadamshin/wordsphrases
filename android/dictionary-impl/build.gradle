@@ -5,6 +5,7 @@ apply from: '../commonDaggerModule.gradle'
 apply from: '../commonMoxyModule.gradle'
 apply from: '../commonUiModule.gradle'
 apply from: '../applyApiModules.gradle'
+apply from: '../commonRetrofitModule.gradle'
 
 apply plugin: 'kotlin-kapt'
 

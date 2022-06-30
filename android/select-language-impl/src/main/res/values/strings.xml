@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="select_language_title">Language</string>
+    <string name="language_pair_title">Vocabulary</string>
 
     <string name="english_language">English</string>
     <string name="russian_language">Russian</string>
@@ -17,4 +18,9 @@
 
     <string name="native_language_title">Native language</string>
     <string name="learning_language_title">Learning language</string>
+    <string name="native_language_description">or language you want to translate to</string>
+
+    <string name="create_button_text">Create</string>
+
+    <string name="request_language_button_text">Request Language</string>
 </resources>

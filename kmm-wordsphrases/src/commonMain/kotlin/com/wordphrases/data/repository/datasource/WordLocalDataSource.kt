@@ -19,6 +19,7 @@ class WordLocalDataSource(
             maxRepeatCount = entity.maxRepeatCount,
             repeatCount = entity.maxRepeatCount,
             synced = entity.synced,
+            comment = entity.comment,
         )
     }
 

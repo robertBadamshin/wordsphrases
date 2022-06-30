@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.WordsPhrasesLight" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.WordsPhrasesLight" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#152426</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -21,7 +21,7 @@
         <item name="border">#ECEDEE</item>
     </style>
 
-    <style name="Theme.WordsPhrasesDark" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.WordsPhrasesDark" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#ECEDEE</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

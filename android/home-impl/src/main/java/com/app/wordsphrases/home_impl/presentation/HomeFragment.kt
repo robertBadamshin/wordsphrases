@@ -20,7 +20,7 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
 
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    private val nestedPagesRouter: Router by lazy { appComponent.router }
+    private val nestedPagesRouter: Router by lazy { appComponent.homeRouter }
     private val navigatorHolder: NavigatorHolder by lazy { appComponent.navigatorHolder }
     private val navigator: Navigator by lazy {
         object : SupportAppNavigator(

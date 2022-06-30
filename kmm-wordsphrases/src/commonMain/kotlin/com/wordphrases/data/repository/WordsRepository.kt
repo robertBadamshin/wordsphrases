@@ -22,6 +22,7 @@ class WordsRepository(
                 maxRepeatCount = word.maxRepeatCount,
                 repeatCount = word.maxRepeatCount,
                 synced = 0,
+                comment = word.comment,
             )
 
             wordLocalDataSource.insert(entity = dbEntity)
@@ -70,6 +71,7 @@ class WordsRepository(
                                 maxRepeatCount = word.maxRepeatCount,
                                 repeatCount = word.repeatCount,
                                 translations = translationsDomain,
+                                comment = word.comment,
                             )
                         }
                     }

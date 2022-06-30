@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="enter_word_or_phrase">Word or phrase</string>
+    <string name="add_word_translation">Add translation</string>
+    <string name="add_word_comment">Add optional comment</string>
     <string name="word_added">Word added</string>
+
+    <string name="add_word_title">New</string>
+
 </resources>

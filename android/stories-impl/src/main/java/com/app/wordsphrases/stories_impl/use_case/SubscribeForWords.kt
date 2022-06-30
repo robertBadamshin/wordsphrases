@@ -1,6 +1,6 @@
 package com.app.wordsphrases.stories_impl.use_case
 
-import com.app.wordsphrases.entity.word.Word
+import com.app.wordsphrases.entity.word.WordOld
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
 import com.wordphrases.domain.usecase.GetAllWordsForDictionary
 import com.wordphrases.domain.usecase.language_pair.*
@@ -19,7 +19,7 @@ class SubscribeForWords @Inject constructor(
                 getAllWordsForDictionary(languagePair.pairId)
                     .map { words ->
                         words.map { word ->
-                            Word(
+                            WordOld(
                                 id = word.wordId.toInt(),
                                 createdAt = word.createdAt,
                                 word = word.wordText,
