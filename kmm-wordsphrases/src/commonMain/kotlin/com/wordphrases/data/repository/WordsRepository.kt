@@ -46,8 +46,8 @@ class WordsRepository(
         }
     }
 
-    fun getWordsForStories(languagePairId: Long): Flow<List<Word>> {
-        return wordLocalDataSource.getWordsForStories(languagePairId)
+    fun getAllWordsForDictionary(languagePairId: Long): Flow<List<Word>> {
+        return wordLocalDataSource.getAllWordsForDictionary(languagePairId)
             .flatMapLatest { words ->
                 val wordsIds = words.map { word -> word.wordId }
 

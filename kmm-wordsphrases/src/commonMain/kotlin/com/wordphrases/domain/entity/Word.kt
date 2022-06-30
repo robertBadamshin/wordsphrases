@@ -3,7 +3,7 @@ package com.wordphrases.domain.entity
 private const val defaultId = -1L
 
 data class Word(
-    val wordId: Long = defaultId,
+    val wordId: WordId = defaultId,
     val languagePairId: Long,
     val createdAt: Long,
     val wordText: String,

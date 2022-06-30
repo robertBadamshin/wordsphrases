@@ -4,6 +4,7 @@ import android.content.Context
 import com.app.wordsphrases.add_word_impl.di.AddWordApiModule
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.di.AppScope
+import com.app.wordsphrases.dictionary_impl.di.DictionaryApiModule
 import com.app.wordsphrases.email_sender_impl.di.EmailSenderApiModule
 import com.app.wordsphrases.home_impl.di.HomeApiModule
 import com.app.wordsphrases.login_impl.di.LoginApiModule
@@ -25,6 +26,7 @@ import dagger.*
         LoginApiModule::class,
         MainModule::class,
         SelectLanguageApiModule::class,
+        DictionaryApiModule::class,
     ]
 )
 interface AppComponentImpl : AppComponent {

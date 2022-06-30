@@ -38,7 +38,7 @@ selectAllForSync:
 SELECT * FROM wordDbEntity
     WHERE synced == 0;
 
-selectAllForStories:
+getAllWordsForDictionary:
 SELECT * FROM wordDbEntity
     WHERE languagePairId == ?;
 

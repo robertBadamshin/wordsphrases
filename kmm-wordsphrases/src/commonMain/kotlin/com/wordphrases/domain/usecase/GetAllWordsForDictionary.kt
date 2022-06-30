@@ -5,11 +5,11 @@ import com.wordphrases.di.RepositoryProvider
 import com.wordphrases.domain.entity.Word
 import kotlinx.coroutines.flow.Flow
 
-class GetWordsForStories(
+class GetAllWordsForDictionary(
     private val wordsRepository: WordsRepository = RepositoryProvider.wordsRepository,
 ) {
 
     operator fun invoke(languagePairId: Long): Flow<List<Word>> {
-        return wordsRepository.getWordsForStories(languagePairId)
+        return wordsRepository.getAllWordsForDictionary(languagePairId)
     }
 }
