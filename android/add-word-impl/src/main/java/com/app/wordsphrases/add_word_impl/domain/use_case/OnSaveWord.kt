@@ -7,10 +7,11 @@ import javax.inject.Inject
 class OnSaveWord @Inject constructor(
     private val addWordRepository: AddWordRepository,
     private val saveNewWord: SaveNewWord,
+    private val getCurrentWordText: GetCurrentWordText,
 ) {
 
     operator fun invoke() {
-        val wordText = addWordRepository.getCurrentWordText()
+        val wordText = getCurrentWordText()
 
         val translations = addWordRepository.getCurrentTranslations()
             .filter { translation -> translation.text.isNotBlank() }
