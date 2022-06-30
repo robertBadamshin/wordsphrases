@@ -1,10 +1,10 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import javax.inject.Inject
 
 class ToggleTranslationSelection @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
     private val requireSelectedTranslationsIds: RequireSelectedTranslationsIds,
 ) {
 
@@ -18,6 +18,6 @@ class ToggleTranslationSelection @Inject constructor(
             ids.add(id)
 
         }
-        wordRepository.setSelectedTranslationsIds(ids)
+        addWordRepository.setSelectedTranslationsIds(ids)
     }
 }

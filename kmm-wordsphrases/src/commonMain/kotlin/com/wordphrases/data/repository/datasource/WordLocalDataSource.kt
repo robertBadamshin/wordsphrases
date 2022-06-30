@@ -22,8 +22,8 @@ class WordLocalDataSource(
         )
     }
 
-    fun getWordsForStories(languagePairId: Long): Flow<List<WordDbEntity>> {
-        return queries.selectAllForStories(languagePairId).asFlow().mapToList()
+    fun getAllWordsForDictionary(languagePairId: Long): Flow<List<WordDbEntity>> {
+        return queries.getAllWordsForDictionary(languagePairId).asFlow().mapToList()
     }
 
     fun getWordsForSync(): List<WordDbEntity> {

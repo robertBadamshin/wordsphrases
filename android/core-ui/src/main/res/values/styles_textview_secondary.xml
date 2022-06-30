@@ -13,5 +13,9 @@
         <item name="android:textSize">16dp</item>
     </style>
 
+    <style name="TextStyle.Regular.Secondary.14dp">
+        <item name="android:textSize">14dp</item>
+    </style>
+
 
 </resources>

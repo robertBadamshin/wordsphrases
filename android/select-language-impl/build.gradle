@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+
 apply from: '../commonBase.gradle'
 apply from: '../commonDaggerModule.gradle'
 apply from: '../commonMoxyModule.gradle'

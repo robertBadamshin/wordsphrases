@@ -1,6 +1,6 @@
 package com.app.wordsphrases.stories_impl.di
 
-import com.wordphrases.domain.usecase.GetWordsForStories
+import com.wordphrases.domain.usecase.GetAllWordsForDictionary
 import com.wordphrases.domain.usecase.language_pair.GetSelectedLanguagePair
 import dagger.*
 
@@ -8,8 +8,8 @@ import dagger.*
 class StoriesProvidesModule {
 
     @Provides
-    fun getWordsForStories(): GetWordsForStories {
-        return GetWordsForStories()
+    fun getWordsForStories(): GetAllWordsForDictionary {
+        return GetAllWordsForDictionary()
     }
 
     @Provides

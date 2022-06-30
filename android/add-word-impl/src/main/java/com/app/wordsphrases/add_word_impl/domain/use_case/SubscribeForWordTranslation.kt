@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.add_word_impl.domain.exception.TranslationsEmptyException
 import com.app.wordsphrases.entity.*
 import com.app.wordsphrases.translation_api.TranslateText
@@ -11,18 +11,18 @@ import javax.inject.Inject
 
 class SubscribeForWordTranslation @Inject constructor(
     private val translateText: TranslateText,
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
 ) {
 
     suspend operator fun invoke() {
-        wordRepository.getWordText()
+        addWordRepository.getWordText()
             .mapLatest { word ->
                 if (word.isNullOrBlank()) {
                     return@mapLatest null
                 }
 
-                wordRepository.setSelectedTranslationsIds(emptySet())
-                wordRepository.setTranslations(RequestLoadingStateWrapper())
+                addWordRepository.setSelectedTranslationsIds(emptySet())
+                addWordRepository.setTranslations(RequestLoadingStateWrapper())
                 val resultWrapper = translateText(text = word)
 
                 return@mapLatest if (resultWrapper.isSuccess) {
@@ -33,7 +33,7 @@ class SubscribeForWordTranslation @Inject constructor(
                 }
             }
             .collect { wrapper ->
-                wordRepository.setTranslations(wrapper)
+                addWordRepository.setTranslations(wrapper)
             }
     }
 

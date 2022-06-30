@@ -1,13 +1,13 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import javax.inject.Inject
 
 class RequireSelectedTranslationsIds @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
 ) {
 
     operator fun invoke(): Set<Int> {
-        return wordRepository.requireSelectedTranslationsIds()
+        return addWordRepository.requireSelectedTranslationsIds()
     }
 }

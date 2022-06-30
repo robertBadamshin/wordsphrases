@@ -88,6 +88,7 @@ dependencies {
     implementation project(':android:email-sender-api')
     implementation project(':android:select-language-impl')
     implementation project(':android:select-language-api')
+    implementation project(':android:dictionary-impl')
     implementation project(':android:entity')
     implementation project(':kmm-wordsphrases')
 

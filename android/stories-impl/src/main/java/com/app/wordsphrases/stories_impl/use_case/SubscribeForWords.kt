@@ -2,13 +2,13 @@ package com.app.wordsphrases.stories_impl.use_case
 
 import com.app.wordsphrases.entity.word.Word
 import com.app.wordsphrases.stories_impl.data.repository.StoriesRepository
-import com.wordphrases.domain.usecase.GetWordsForStories
+import com.wordphrases.domain.usecase.GetAllWordsForDictionary
 import com.wordphrases.domain.usecase.language_pair.*
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
 
 class SubscribeForWords @Inject constructor(
-    private val getWordsForStories: GetWordsForStories,
+    private val getAllWordsForDictionary: GetAllWordsForDictionary,
     private val repository: StoriesRepository,
     private val getSelectedLanguagePair: GetSelectedLanguagePair,
 ) {
@@ -16,7 +16,7 @@ class SubscribeForWords @Inject constructor(
     suspend operator fun invoke() {
         getSelectedLanguagePair()
             .flatMapLatest { languagePair ->
-                getWordsForStories(languagePair.pairId)
+                getAllWordsForDictionary(languagePair.pairId)
                     .map { words ->
                         words.map { word ->
                             Word(

@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+
+apply from: '../commonBase.gradle'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonMoxyModule.gradle'
+apply from: '../commonUiModule.gradle'
+apply from: '../applyApiModules.gradle'
+
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+
+    implementation project(":android:core")
+    implementation project(":android:core-ui")
+    implementation project(":android:navigation")
+    implementation project(":kmm-wordsphrases")
+
+    implementation 'ru.terrakok.cicerone:cicerone:5.0.0'
+
+}

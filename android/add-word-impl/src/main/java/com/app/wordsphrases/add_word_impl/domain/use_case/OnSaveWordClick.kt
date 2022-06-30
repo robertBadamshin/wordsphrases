@@ -1,6 +1,6 @@
 package com.app.wordsphrases.add_word_impl.domain.use_case
 
-import com.app.wordsphrases.add_word_impl.data.WordRepository
+import com.app.wordsphrases.add_word_impl.data.AddWordRepository
 import com.app.wordsphrases.entity.RequestSuccessStateWrapper
 import com.wordphrases.domain.entity.Word
 import com.wordphrases.domain.usecase.SaveNewWord
@@ -12,7 +12,7 @@ private const val maxRepeatCount = 4L
 private const val defaultRepeatCount = 0L
 
 class OnSaveWordClick @Inject constructor(
-    private val wordRepository: WordRepository,
+    private val addWordRepository: AddWordRepository,
     private val saveNewWord: SaveNewWord,
     private val getCurrentImage: GetCurrentImage,
     private val getCurrentWordText: GetCurrentWordText,
@@ -37,6 +37,6 @@ class OnSaveWordClick @Inject constructor(
         )
 
         saveNewWord(word)
-        wordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))
+        addWordRepository.setCreationResult(RequestSuccessStateWrapper(data = Unit))
     }
 }
