@@ -6,8 +6,8 @@ import androidx.core.view.*
 
 fun View.configureInsets() {
     ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsets ->
-        val screenInsets =
-            windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+        val insetsMask = WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime()
+        val screenInsets = windowInsets.getInsets(insetsMask)
         this.updatePadding(top = screenInsets.top, bottom = screenInsets.bottom)
 
         return@setOnApplyWindowInsetsListener windowInsets
@@ -26,6 +26,15 @@ fun View.configureInsets() {
     }
 
     ViewCompat.setWindowInsetsAnimationCallback(this, insetsCallback)
+}
+
+fun View.configureTopInsets() {
+    ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsets ->
+        val screenInsets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+        this.updatePadding(top = screenInsets.top)
+
+        return@setOnApplyWindowInsetsListener windowInsets
+    }
 }
 
 private fun getScreenInsets(insets: WindowInsetsCompat): Insets {

@@ -11,8 +11,6 @@ import com.app.wordsphrases.presentation.*
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
 import com.app.wordsphrases.select_language_impl.di.SelectLanguageApiModule
 import com.app.wordsphrases.stories_impl.di.*
-import com.app.wordsphrases.translation_impl.di.*
-import com.app.wordsphrases.translation_impl.di.oxford.OxfordDictionaryRetrofitModule
 import dagger.*
 
 @AppScope
@@ -21,9 +19,6 @@ import dagger.*
         AddWordApiModule::class,
         HomeApiModule::class,
         RemoteApiModule::class,
-        OxfordDictionaryRetrofitModule::class,
-        TranslationApiModule::class,
-        TranslationApiBindsModule::class,
         StoriesApiModule::class,
         StoriesApiProvidesModule::class,
         EmailSenderApiModule::class,
