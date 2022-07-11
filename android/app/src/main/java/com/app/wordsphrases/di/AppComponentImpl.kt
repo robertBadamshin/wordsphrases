@@ -1,7 +1,7 @@
 package com.app.wordsphrases.di
 
 import android.content.Context
-import com.app.wordsphrases.add_word_impl.di.AddWordApiModule
+import com.app.wordsphrases.edit_word_impl.di.EditWordApiModule
 import com.app.wordsphrases.core.AppComponent
 import com.app.wordsphrases.core.di.AppScope
 import com.app.wordsphrases.dictionary_impl.di.DictionaryApiModule
@@ -29,7 +29,7 @@ import dagger.*
         SelectLanguageApiModule::class,
         DictionaryApiModule::class,
         WordDetailApiModule::class,
-        AddWordApiModule::class,
+        EditWordApiModule::class,
     ]
 )
 interface AppComponentImpl : AppComponent {

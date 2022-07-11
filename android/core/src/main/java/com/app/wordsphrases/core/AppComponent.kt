@@ -1,7 +1,7 @@
 package com.app.wordsphrases.core
 
 import android.content.Context
-import com.app.wordsphrases.add_word_api.di.AddWordApi
+import com.app.wordsphrases.edit_word_api.di.EditWordApi
 import com.app.wordsphrases.core.di.MainApi
 import com.app.wordsphrases.dictionary_api.DictionaryApi
 import com.app.wordsphrases.email_sender_api.EmailSenderApi
@@ -13,7 +13,7 @@ import com.app.wordsphrases.stories_api.StoriesApi
 import com.app.wordsphrases.word_detail_api.di.WordDetailApi
 
 interface AppComponent :
-    AddWordApi,
+    EditWordApi,
     HomeApi,
     RemoteApi,
     StoriesApi,

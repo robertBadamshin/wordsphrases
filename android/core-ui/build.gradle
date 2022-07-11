@@ -4,7 +4,7 @@ apply from: '../commonUiModule.gradle'
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation project(':android:edit-word-api')
 
-    implementation project(':android:add-word-api')
     implementation project(':android:home-api')
 }

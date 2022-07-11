@@ -6,8 +6,8 @@ apply from: '../applyApiModules.gradle'
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation project(':android:edit-word-api')
 
-    implementation project(':android:add-word-api')
     implementation project(':android:home-api')
     implementation project(':android:remote-api')
 }
