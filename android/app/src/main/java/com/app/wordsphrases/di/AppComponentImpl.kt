@@ -12,12 +12,13 @@ import com.app.wordsphrases.presentation.*
 import com.app.wordsphrases.remote_impl.di.RemoteApiModule
 import com.app.wordsphrases.select_language_impl.di.SelectLanguageApiModule
 import com.app.wordsphrases.stories_impl.di.*
+import com.app.wordsphrases.word_detail_impl.di.WordDetailApiModule
 import dagger.*
 
 @AppScope
 @Component(
     modules = [
-        AddWordApiModule::class,
+        WordDetailApiModule::class,
         HomeApiModule::class,
         RemoteApiModule::class,
         StoriesApiModule::class,
@@ -27,6 +28,8 @@ import dagger.*
         MainModule::class,
         SelectLanguageApiModule::class,
         DictionaryApiModule::class,
+        WordDetailApiModule::class,
+        AddWordApiModule::class,
     ]
 )
 interface AppComponentImpl : AppComponent {

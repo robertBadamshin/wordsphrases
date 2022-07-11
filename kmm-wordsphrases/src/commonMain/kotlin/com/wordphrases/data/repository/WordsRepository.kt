@@ -3,7 +3,7 @@ package com.wordphrases.data.repository
 import com.wordphrases.data.repository.datasource.*
 import com.wordphrases.db.*
 import com.wordphrases.di.DataSourceProvider
-import com.wordphrases.domain.entity.Word
+import com.wordphrases.domain.entity.*
 import kotlinx.coroutines.flow.*
 
 class WordsRepository(
@@ -76,5 +76,25 @@ class WordsRepository(
                         }
                     }
             }
+    }
+
+    fun getWordById(wordId: WordId): Word {
+        val word = wordLocalDataSource.getWordById(wordId)
+
+        val translations = translationLocalDataSource.getTranslationsForWord(wordId)
+        val translationsDomain = translations
+            .map { translation -> translation.transaltionText }
+
+        return Word(
+            wordId = word.wordId,
+            languagePairId = word.languagePairId,
+            createdAt = word.createdAt,
+            wordText = word.wordText,
+            sortOrder = word.sortOrder,
+            maxRepeatCount = word.maxRepeatCount,
+            repeatCount = word.repeatCount,
+            translations = translationsDomain,
+            comment = word.comment,
+        )
     }
 }

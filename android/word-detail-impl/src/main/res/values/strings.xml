@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="english_language_short">Eng</string>
+    <string name="russian_language_short">Rus</string>
+    <string name="estonian_language_short">Est</string>
+    <string name="turkish_language_short">Tur</string>
+    <string name="spanish_language_short">Spa</string>
+    <string name="french_language_short">Fre</string>
+    <string name="italian_language_short">Ita</string>
+    <string name="chinese_language_short">Chi</string>
+    <string name="japanese_language_short">Jpn</string>
+    <string name="arabic_language_short">Ara</string>
+    <string name="portuguese_language_short">Por</string>
+    <string name="german_language_short">Ger</string>
+</resources>

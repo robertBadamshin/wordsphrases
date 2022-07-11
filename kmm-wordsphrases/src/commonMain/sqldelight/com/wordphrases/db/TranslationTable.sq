@@ -19,3 +19,7 @@ INSERT INTO translationDbEntity(
 selectAll:
 SELECT * FROM translationDbEntity
     WHERE wordId IN ?;
+
+selectAllForWord:
+SELECT * FROM translationDbEntity
+    WHERE wordId == ?;

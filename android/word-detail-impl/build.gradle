@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+apply from: '../commonBase.gradle'
+apply from: '../commonDaggerModule.gradle'
+apply from: '../commonMoxyModule.gradle'
+apply from: '../applyApiModules.gradle'
+apply from: '../commonUiModule.gradle'
+apply from: '../commonRoomModule.gradle'
+apply from: '../commonRetrofitModule.gradle'
+
+apply plugin: 'kotlin-kapt'
+
+
+dependencies {
+
+    implementation project(":android:navigation")
+    implementation project(":android:core-ui")
+    implementation project(":android:core")
+    implementation project(":android:entity")
+    implementation project(":kmm-wordsphrases")
+}

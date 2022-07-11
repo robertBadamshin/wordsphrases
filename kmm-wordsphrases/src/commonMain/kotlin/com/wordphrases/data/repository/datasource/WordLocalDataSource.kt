@@ -4,6 +4,7 @@ import com.squareup.sqldelight.TransactionWithoutReturn
 import com.squareup.sqldelight.runtime.coroutines.*
 import com.wordphrases.db.*
 import com.wordphrases.di.QueriesProvider
+import com.wordphrases.domain.entity.WordId
 import kotlinx.coroutines.flow.Flow
 
 class WordLocalDataSource(
@@ -25,6 +26,10 @@ class WordLocalDataSource(
 
     fun getAllWordsForDictionary(languagePairId: Long): Flow<List<WordDbEntity>> {
         return queries.getAllWordsForDictionary(languagePairId).asFlow().mapToList()
+    }
+
+    fun getWordById(wordId: WordId): WordDbEntity {
+        return queries.getWordById(wordId).executeAsOne()
     }
 
     fun getWordsForSync(): List<WordDbEntity> {
