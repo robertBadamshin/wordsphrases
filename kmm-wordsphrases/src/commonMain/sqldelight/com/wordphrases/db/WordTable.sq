@@ -38,6 +38,10 @@ selectAllForSync:
 SELECT * FROM wordDbEntity
     WHERE synced == 0;
 
+getWordById:
+SELECT * FROM wordDbEntity
+    WHERE wordId == ?;
+
 getAllWordsForDictionary:
 SELECT * FROM wordDbEntity
     WHERE languagePairId == ?;

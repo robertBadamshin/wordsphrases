@@ -4,6 +4,7 @@ import com.squareup.sqldelight.TransactionWithoutReturn
 import com.squareup.sqldelight.runtime.coroutines.*
 import com.wordphrases.db.*
 import com.wordphrases.di.QueriesProvider
+import com.wordphrases.domain.entity.WordId
 import kotlinx.coroutines.flow.Flow
 
 class TranslationLocalDataSource(
@@ -17,8 +18,12 @@ class TranslationLocalDataSource(
         )
     }
 
-    fun getTranslationsForWords(wordsIds: List<Long>): Flow<List<TranslationDbEntity>> {
+    fun getTranslationsForWords(wordsIds: List<WordId>): Flow<List<TranslationDbEntity>> {
         return queries.selectAll(wordsIds).asFlow().mapToList()
+    }
+
+    fun getTranslationsForWord(wordId: WordId): List<TranslationDbEntity> {
+        return queries.selectAllForWord(wordId).executeAsList()
     }
 
     fun executeTranslationsInTransaction(insertItems: TransactionWithoutReturn.() -> Unit) {

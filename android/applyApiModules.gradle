@@ -10,4 +10,5 @@ dependencies {
     implementation project(':android:login-api')
     implementation project(':android:select-language-api')
     implementation project(':android:dictionary-api')
+    implementation project(':android:word-detail-api')
 }

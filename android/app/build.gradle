@@ -73,6 +73,8 @@ dependencies {
     implementation project(':android:navigation')
     implementation project(':android:add-word-impl')
     implementation project(':android:add-word-api')
+    implementation project(':android:word-detail-impl')
+    implementation project(':android:word-detail-api')
     implementation project(':android:home-impl')
     implementation project(':android:home-api')
     implementation project(':android:remote-api')
