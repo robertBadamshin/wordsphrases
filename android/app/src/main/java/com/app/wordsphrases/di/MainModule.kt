@@ -1,7 +1,7 @@
 package com.app.wordsphrases.di
 
 import com.app.wordsphrases.core.di.*
-import com.wordphrases.domain.usecase.auth.SubscribeForAuthState
+import com.wordphrases.domain.usecase.auth.*
 import com.wordphrases.domain.usecase.language_pair.GetCurrentSelectedLanguagePair
 import dagger.*
 import ru.terrakok.cicerone.*
@@ -17,6 +17,11 @@ class MainModule {
     @Provides
     fun getCurrentSelectedLanguagePair(): GetCurrentSelectedLanguagePair {
         return GetCurrentSelectedLanguagePair()
+    }
+
+    @Provides
+    fun authenticateUser(): AuthenticateUser {
+        return AuthenticateUser()
     }
 
     @Provides

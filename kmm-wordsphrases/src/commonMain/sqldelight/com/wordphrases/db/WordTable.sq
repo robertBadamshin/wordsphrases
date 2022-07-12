@@ -14,7 +14,8 @@ CREATE TABLE wordDbEntity(
 );
 
 insertItem:
-INSERT INTO wordDbEntity(
+INSERT OR REPLACE INTO wordDbEntity(
+    wordId,
     languagePairId,
     createdAt,
     wordText,
@@ -24,6 +25,7 @@ INSERT INTO wordDbEntity(
     synced,
     comment
 ) VALUES (
+    ?,
     ?,
     ?,
     ?,

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Words&amp;Phrases</string>
+    <string name="login_was_unsuccessful">Login unsuccessful</string>
 </resources>
