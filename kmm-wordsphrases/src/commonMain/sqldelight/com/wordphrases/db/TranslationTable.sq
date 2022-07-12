@@ -2,7 +2,8 @@ CREATE TABLE translationDbEntity(
     transaltionId INTEGER NOT NULL PRIMARY KEY,
     wordId INTEGER NOT NULL,
     transaltionText TEXT NOT NULL,
-    FOREIGN KEY (wordId)
+    CONSTRAINT fkWordId
+        FOREIGN KEY (wordId)
         REFERENCES wordDbEntity (wordId)
         ON DELETE CASCADE
 );

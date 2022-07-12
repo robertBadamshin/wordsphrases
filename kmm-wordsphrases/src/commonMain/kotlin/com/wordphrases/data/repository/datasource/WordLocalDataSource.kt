@@ -13,6 +13,21 @@ class WordLocalDataSource(
 
     fun insert(entity: WordDbEntity) {
         queries.insertItem(
+            wordId = null,
+            languagePairId = entity.languagePairId,
+            createdAt = entity.createdAt,
+            wordText = entity.wordText,
+            sortOrder = entity.sortOrder,
+            maxRepeatCount = entity.maxRepeatCount,
+            repeatCount = entity.maxRepeatCount,
+            synced = entity.synced,
+            comment = entity.comment,
+        )
+    }
+
+    fun update(entity: WordDbEntity) {
+        queries.insertItem(
+            wordId = entity.wordId,
             languagePairId = entity.languagePairId,
             createdAt = entity.createdAt,
             wordText = entity.wordText,

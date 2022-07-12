@@ -9,6 +9,7 @@ import com.app.wordsphrases.dictionary_impl.R
 import com.app.wordsphrases.dictionary_impl.di.DictionaryComponent
 import com.app.wordsphrases.dictionary_impl.presentation.adapter.WordsAdapter
 import com.app.wordsphrases.dictionary_impl.presentation.ui.WordUiModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -19,6 +20,7 @@ class DictionaryFragment : MvpAppCompatFragment(), DictionaryView {
     }
 
     private lateinit var wordsRecyclerView: RecyclerView
+    private lateinit var addWordButton: FloatingActionButton
 
     private val wordsAdapter by lazy {
         WordsAdapter(
@@ -52,6 +54,9 @@ class DictionaryFragment : MvpAppCompatFragment(), DictionaryView {
         )!!
         itemDecorator.setDrawable(decoratorDrawable)
         wordsRecyclerView.addItemDecoration(itemDecorator)
+
+        addWordButton = view.findViewById(R.id.floating_button_add_word)
+        addWordButton.setOnClickListener { dictionaryPresenter.openEnterWord() }
 
         view.configureTopInsets()
     }

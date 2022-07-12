@@ -1,10 +1,11 @@
 package com.app.wordsphrases.edit_word_impl.presentation.add_word_screen
 
-import com.app.wordsphrases.edit_word_api.domain.entity.EditWordComponentType
+import com.app.wordsphrases.edit_word_api.domain.entity.EditWordType
 import com.app.wordsphrases.edit_word_impl.R
 import com.app.wordsphrases.edit_word_impl.domain.use_case.*
 import com.app.wordsphrases.edit_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
 import com.app.wordsphrases.core.di.MainNavigationQualifier
+import com.wordphrases.domain.usecase.word.GetWordById
 import kotlinx.coroutines.flow.*
 import moxy.*
 import ru.terrakok.cicerone.Router
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class EditWordPresenter @Inject constructor(
     private val setWordText: SetWordText,
-    private val editWordComponentType: EditWordComponentType,
+    private val editWordType: EditWordType,
     private val getTranslations: GetTranslations,
     private val translationsUiMapper: TranslationsUiMapper,
     private val manageEmptyTranslation: ManageEmptyTranslation,
@@ -23,6 +24,9 @@ class EditWordPresenter @Inject constructor(
     private val isWordValid: IsWordValid,
     private val onSaveWord: OnSaveWord,
     @MainNavigationQualifier private val router: Router,
+    private val getWordById: GetWordById,
+    private val fillTranslationsFromWord: FillTranslationsFromWord,
+    private val setExistingWord: SetExistingWord,
 ) : MvpPresenter<EditWordView>() {
 
     private var focusedTranslation: Int? = null
@@ -37,18 +41,28 @@ class EditWordPresenter @Inject constructor(
 
         viewState.showKeyboard()
 
-        when (editWordComponentType) {
-            is EditWordComponentType.EditWord -> {
-               //
-               // setWordText(initialText)
-                // viewState.setInitialText(initialText)
+        when (editWordType) {
+            is EditWordType.EditWord -> {
+                val wordId = editWordType.wordId
+                val word = getWordById(wordId)
+
+                setExistingWord(word)
+
+                setWordText(word.wordText)
+                viewState.setInitialText(word.wordText)
+
+                setCommentText(word.comment)
+                viewState.setCommentText(word.comment)
+
+                fillTranslationsFromWord(word)
+
+                validateAddWordButtonState()
             }
-            is EditWordComponentType.AddWord -> {
-                // do nothing
+            is EditWordType.AddWord -> {
+                createEmptyTranslation()
             }
         }
 
-        createEmptyTranslation()
         updateTranslations()
     }
 

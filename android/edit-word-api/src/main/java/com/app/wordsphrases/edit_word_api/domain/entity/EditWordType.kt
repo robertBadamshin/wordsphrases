@@ -3,11 +3,11 @@ package com.app.wordsphrases.edit_word_api.domain.entity
 import com.wordphrases.domain.entity.WordId
 import java.io.Serializable
 
-sealed class EditWordComponentType: Serializable {
+sealed class EditWordType: Serializable {
 
-    object AddWord : EditWordComponentType()
+    object AddWord : EditWordType()
 
     data class EditWord(
         val wordId: WordId,
-    ) : EditWordComponentType()
+    ) : EditWordType()
 }
