@@ -40,7 +40,9 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
                 fragmentTransaction.setCustomAnimations(
                     com.app.wordsphrases.home_impl.R.anim.push_left_in_no_alpha,
-                    com.app.wordsphrases.home_impl.R.anim.push_right_out_no_alpha,
+                    0,
+                    0,
+                    com.app.wordsphrases.home_impl.R.anim.push_right_out_no_alpha
                 )
 
                 fragmentTransaction.setReorderingAllowed(true)

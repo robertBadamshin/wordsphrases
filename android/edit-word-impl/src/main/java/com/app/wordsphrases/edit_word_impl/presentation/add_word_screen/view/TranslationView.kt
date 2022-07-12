@@ -48,11 +48,6 @@ class TranslationView @JvmOverloads constructor(
 
         translationEditText = findViewById(R.id.edit_text_translation)
         removeTranslationImageView = findViewById(R.id.image_view_remove_translation)
-
-        translationEditText.addTextChangedListener(textWatcher)
-//        translationEditText.doAfterTextChanged { editable ->
-//             onTextUpdate?.invoke(editable.toString())
-//        }
     }
 
     fun bind(uiModel: TranslationUiModel) {
