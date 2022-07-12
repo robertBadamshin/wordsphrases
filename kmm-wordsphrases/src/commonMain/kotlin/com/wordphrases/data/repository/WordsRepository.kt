@@ -13,17 +13,7 @@ class WordsRepository(
 
     fun save(word: Word) {
         wordLocalDataSource.executeWordsInTransaction {
-            val dbEntity = WordDbEntity(
-                wordId = word.wordId,
-                languagePairId = word.languagePairId,
-                createdAt = word.createdAt,
-                wordText = word.wordText,
-                sortOrder = word.sortOrder,
-                maxRepeatCount = word.maxRepeatCount,
-                repeatCount = word.maxRepeatCount,
-                synced = 0,
-                comment = word.comment,
-            )
+            val dbEntity = mapDbEntity(word)
 
             wordLocalDataSource.insert(entity = dbEntity)
             val newWordId = wordLocalDataSource.lastInsertedRowId()
@@ -34,16 +24,51 @@ class WordsRepository(
                     this@executeWordsInTransaction.rollback()
                 }
 
-                word.translations.map { translation ->
-                    val translationDbEntity = TranslationDbEntity(
-                        transaltionId = -1,
-                        wordId = newWordId,
-                        transaltionText = translation
-                    )
-                    translationLocalDataSource.insert(translationDbEntity)
-                }
+                insertTranslations(word, newWordId)
             }
         }
+    }
+
+    fun update(word: Word) {
+        wordLocalDataSource.executeWordsInTransaction {
+            val dbEntity = mapDbEntity(word)
+
+            wordLocalDataSource.update(entity = dbEntity)
+
+            translationLocalDataSource.executeTranslationsInTransaction {
+
+                afterRollback {
+                    this@executeWordsInTransaction.rollback()
+                }
+
+                insertTranslations(word, word.wordId)
+            }
+        }
+    }
+
+    private fun insertTranslations(word: Word, newWordId: Long) {
+        word.translations.map { translation ->
+            val translationDbEntity = TranslationDbEntity(
+                transaltionId = -1,
+                wordId = newWordId,
+                transaltionText = translation
+            )
+            translationLocalDataSource.insert(translationDbEntity)
+        }
+    }
+
+    private fun mapDbEntity(word: Word): WordDbEntity {
+        return WordDbEntity(
+            wordId = word.wordId,
+            languagePairId = word.languagePairId,
+            createdAt = word.createdAt,
+            wordText = word.wordText,
+            sortOrder = word.sortOrder,
+            maxRepeatCount = word.maxRepeatCount,
+            repeatCount = word.maxRepeatCount,
+            synced = 0,
+            comment = word.comment,
+        )
     }
 
     fun getAllWordsForDictionary(languagePairId: Long): Flow<List<Word>> {

@@ -1,25 +1,18 @@
 package com.app.wordsphrases.stories_impl.presentation
 
-import com.app.wordsphrases.edit_word_api.*
-import com.app.wordsphrases.edit_word_api.domain.entity.EditWordComponentType
-import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.email_sender_api.FeedbackEmailSender
 import com.app.wordsphrases.stories_impl.model.mapper.WordUiMapper
 import com.app.wordsphrases.stories_impl.use_case.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import moxy.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
-
 
 class StoriesPresenter @Inject constructor(
     private val getCurrentWord: GetCurrentWord,
     private val wordUiMapper: WordUiMapper,
     private val subscribeForWords: SubscribeForWords,
     private val moveToNextWord: MoveToNextWord,
-    private val editWordStarter: EditWordStarter,
-    @MainNavigationQualifier private val router: Router,
     private val feedbackEmailSender: FeedbackEmailSender,
 ) : MvpPresenter<StoriesView>() {
 
@@ -38,20 +31,6 @@ class StoriesPresenter @Inject constructor(
 
     fun onNextWordClick() {
         moveToNextWord()
-    }
-
-    fun openEnterWord() {
-        val initParams = EditWordInitParams(EditWordComponentType.AddWord)
-        val screen = editWordStarter.getScreen(initParams = initParams)
-        router.navigateTo(screen)
-    }
-
-    fun onBackStackChanged(entriesCount: Int) {
-        val hasEntries = entriesCount > 0
-        viewState.updateBackPressedNestedNavigationEnabled(hasEntries)
-
-        val visible = !hasEntries
-        viewState.updateAddWordButtonVisible(visible)
     }
 
     fun onSendFeedbackClick() {

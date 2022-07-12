@@ -2,6 +2,7 @@ package com.app.wordsphrases.edit_word_impl.data
 
 import com.app.wordsphrases.edit_word_impl.di.EditWordComponentScope
 import com.app.wordsphrases.edit_word_impl.domain.entity.Translation
+import com.wordphrases.domain.entity.Word
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.*
 import javax.inject.Inject
@@ -18,6 +19,8 @@ class EditWordRepository @Inject constructor() {
     private val translationsFlow = MutableStateFlow(emptyList<Translation>())
     private var translationId = 1
 
+    private var existingWord: Word? = null
+
     fun setWordText(text: String) {
         wordTextFlow.tryEmit(text)
     }
@@ -26,7 +29,7 @@ class EditWordRepository @Inject constructor() {
         return wordTextFlow
     }
 
-    fun setCommentText(text: String) {
+    fun setCommentText(text: String?) {
         commentText = text
     }
 
@@ -57,5 +60,13 @@ class EditWordRepository @Inject constructor() {
 
     fun getNextTranslationId(): Int {
         return ++translationId
+    }
+
+    fun setExistingWord(word: Word) {
+        existingWord = word
+    }
+
+    fun requireExistingWord(): Word {
+        return existingWord ?: throw IllegalStateException("existing word should be presented")
     }
 }

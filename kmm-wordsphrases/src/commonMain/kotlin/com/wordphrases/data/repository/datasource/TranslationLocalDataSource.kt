@@ -26,6 +26,10 @@ class TranslationLocalDataSource(
         return queries.selectAllForWord(wordId).executeAsList()
     }
 
+//    fun deleteTranslationsForWord(wordId: WordId) {
+//        return queries.deleteTranslationsForWord(wordId)
+//    }
+
     fun executeTranslationsInTransaction(insertItems: TransactionWithoutReturn.() -> Unit) {
         queries.transaction {
             insertItems()

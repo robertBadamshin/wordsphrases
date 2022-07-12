@@ -26,7 +26,12 @@ class AuthDataSource {
     }
 
     suspend fun signIn(email: String, link: String): ResultWrapper<FirebaseUser> {
-        val authResult = Firebase.auth.signInWithEmailLink(email, link)
+        val authResult = try {
+            Firebase.auth.signInWithEmailLink(email, link)
+        } catch (exception: Exception) {
+            return ResultWrapper.createFailure(exception)
+        }
+
         val user = authResult.user
         return if (user != null) {
             ResultWrapper.createSuccess(user)

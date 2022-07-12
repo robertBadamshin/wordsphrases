@@ -48,16 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/text_view_word_text_stories"
         tools:text="Text" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_button_add_word"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_add_icon"
-        app:tint="@android:color/white" />
-
     <FrameLayout
         android:id="@+id/fragment_container_stories"
         android:layout_width="match_parent"

@@ -26,7 +26,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     private lateinit var wordTextView: TextView
     private lateinit var translationTextView: TextView
     private lateinit var containerView: View
-    private lateinit var addWordButton: FloatingActionButton
     private lateinit var feedBackImageView: ImageView
 
     private val navigatorHolder: NavigatorHolder by lazy { BaseWordsPhrasesApp.appComponent.storiesNavigatorHolder }
@@ -71,10 +70,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
             this,
             backPressedNestedNavigationCallback
         )
-
-        childFragmentManager.addOnBackStackChangedListener {
-            storiesPresenter.onBackStackChanged(childFragmentManager.backStackEntryCount)
-        }
     }
 
     override fun onCreateView(
@@ -91,9 +86,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
         translationTextView = view.findViewById(R.id.text_view_translation_text_stories)
         containerView = view.findViewById(R.id.container_stories)
         containerView.setOnClickListener { storiesPresenter.onNextWordClick() }
-
-        addWordButton = view.findViewById(R.id.floating_button_add_word)
-        addWordButton.setOnClickListener { storiesPresenter.openEnterWord() }
 
         feedBackImageView = view.findViewById(R.id.image_view_feedback)
         feedBackImageView.setOnClickListener { storiesPresenter.onSendFeedbackClick() }
@@ -118,10 +110,6 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
 
     override fun updateBackPressedNestedNavigationEnabled(enabled: Boolean) {
         backPressedNestedNavigationCallback.isEnabled = enabled
-    }
-
-    override fun updateAddWordButtonVisible(visible: Boolean) {
-        addWordButton.isVisible = visible
     }
 
     override fun startEmailActivity(intent: Intent) {

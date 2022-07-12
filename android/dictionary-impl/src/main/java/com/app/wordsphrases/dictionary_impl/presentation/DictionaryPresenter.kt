@@ -2,6 +2,8 @@ package com.app.wordsphrases.dictionary_impl.presentation
 
 import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.dictionary_impl.presentation.ui.mapper.WordUiMapper
+import com.app.wordsphrases.edit_word_api.*
+import com.app.wordsphrases.edit_word_api.domain.entity.EditWordType
 import com.app.wordsphrases.word_detail_api.WordDetailStarter
 import com.wordphrases.domain.entity.WordId
 import com.wordphrases.domain.usecase.GetAllWordsForDictionary
@@ -17,6 +19,7 @@ class DictionaryPresenter @Inject constructor(
     private val getSelectedLanguagePair: GetSelectedLanguagePair,
     private val wordDetailStarter: WordDetailStarter,
     @MainNavigationQualifier private val router: Router,
+    private val editWordStarter: EditWordStarter,
 ) : MvpPresenter<DictionaryView>() {
 
     override fun onFirstViewAttach() {
@@ -35,6 +38,12 @@ class DictionaryPresenter @Inject constructor(
 
     fun onWordClick(wordId: WordId) {
         val screen = wordDetailStarter.getScreen(wordId)
+        router.navigateTo(screen)
+    }
+
+    fun openEnterWord() {
+        val initParams = EditWordInitParams(EditWordType.AddWord)
+        val screen = editWordStarter.getScreen(initParams = initParams)
         router.navigateTo(screen)
     }
 }
