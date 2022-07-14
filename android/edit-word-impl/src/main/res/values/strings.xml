@@ -6,5 +6,6 @@
     <string name="word_added">Word added</string>
 
     <string name="add_word_title">New</string>
+    <string name="edit_word_title">Editing</string>
 
 </resources>

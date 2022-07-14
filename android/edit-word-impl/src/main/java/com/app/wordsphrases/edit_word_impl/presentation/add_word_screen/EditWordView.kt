@@ -29,4 +29,6 @@ interface EditWordView : MvpView {
 
     @OneExecution
     fun setCommentText(text: String?)
+
+    fun setTitle(@StringRes titleRes: Int)
 }

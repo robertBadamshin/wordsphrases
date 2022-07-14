@@ -25,7 +25,7 @@
             app:tint="?colorPrimary" />
 
         <TextView
-            android:id="@+id/text_view_title_new_word"
+            android:id="@+id/text_view_title_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
