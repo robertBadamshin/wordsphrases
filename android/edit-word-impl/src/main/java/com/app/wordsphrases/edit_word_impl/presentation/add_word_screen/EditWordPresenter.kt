@@ -1,10 +1,10 @@
 package com.app.wordsphrases.edit_word_impl.presentation.add_word_screen
 
+import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.edit_word_api.domain.entity.EditWordType
 import com.app.wordsphrases.edit_word_impl.R
 import com.app.wordsphrases.edit_word_impl.domain.use_case.*
 import com.app.wordsphrases.edit_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
-import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.wordphrases.domain.usecase.word.GetWordById
 import kotlinx.coroutines.flow.*
 import moxy.*
@@ -43,6 +43,8 @@ class EditWordPresenter @Inject constructor(
 
         when (editWordType) {
             is EditWordType.EditWord -> {
+                viewState.setTitle(R.string.edit_word_title)
+
                 val wordId = editWordType.wordId
                 val word = getWordById(wordId)
 
@@ -59,6 +61,8 @@ class EditWordPresenter @Inject constructor(
                 validateAddWordButtonState()
             }
             is EditWordType.AddWord -> {
+                viewState.setTitle(R.string.add_word_title)
+
                 createEmptyTranslation()
             }
         }
