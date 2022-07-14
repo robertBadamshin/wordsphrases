@@ -32,6 +32,7 @@ class EditWordFragment : MvpAppCompatFragment(), EditWordView {
     }
 
     private lateinit var arrowCloseImageView: ImageView
+    private lateinit var titleTextView: TextView
     private lateinit var wordTextEditText: EditText
     private lateinit var commentTextEditText: EditText
     private lateinit var translationsView: TranslationsView
@@ -62,7 +63,7 @@ class EditWordFragment : MvpAppCompatFragment(), EditWordView {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        return inflater.inflate(R.layout.fragment_add_word, container, false)
+        return inflater.inflate(R.layout.fragment_edit_word, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,6 +71,8 @@ class EditWordFragment : MvpAppCompatFragment(), EditWordView {
 
         arrowCloseImageView = view.findViewById(R.id.image_view_close_enter_word)
         arrowCloseImageView.setOnClickListener { requireActivity().onBackPressed() }
+
+        titleTextView = view.findViewById(R.id.text_view_title_word)
 
         wordTextEditText = view.findViewById(R.id.edit_text_enter_word)
 
@@ -137,6 +140,10 @@ class EditWordFragment : MvpAppCompatFragment(), EditWordView {
 
     override fun setCommentText(text: String?) {
         commentTextEditText.setText(text)
+    }
+
+    override fun setTitle(titleRes: Int) {
+        titleTextView.setText(titleRes)
     }
 
     companion object {
