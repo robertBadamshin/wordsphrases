@@ -135,6 +135,10 @@ class EditWordFragment : MvpAppCompatFragment(), EditWordView {
         Toast.makeText(requireContext(), messageRes, Toast.LENGTH_SHORT).show()
     }
 
+    override fun setCommentText(text: String?) {
+        commentTextEditText.setText(text)
+    }
+
     companion object {
 
         fun newInstance(initParams: EditWordInitParams): EditWordFragment {

@@ -37,9 +37,9 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
             ) {
                 fragmentTransaction.setCustomAnimations(
                     R.anim.push_left_in_no_alpha,
+                    0,
+                    0,
                     R.anim.push_right_out_no_alpha,
-                    R.anim.push_left_in_no_alpha,
-                    R.anim.push_right_out_no_alpha
                 )
 
                 fragmentTransaction.setReorderingAllowed(true)

@@ -1,5 +1,6 @@
 package com.app.wordsphrases.presentation
 
+import com.app.wordsphrases.R
 import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.home_api.HomeStarter
 import com.app.wordsphrases.login_api.EnterEmailStarter
@@ -20,6 +21,7 @@ class MainPresenter @Inject constructor(
     private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
     @MainNavigationQualifier private val router: Router,
     private val homeStarter: HomeStarter,
+    private val authenticateUser: AuthenticateUser,
 ) : MvpPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
@@ -38,10 +40,11 @@ class MainPresenter @Inject constructor(
 
     fun startEmailLogin(emailLink: String) {
         presenterScope.launch {
-            val result = AuthenticateUser().invoke(emailLink)
+            val result = authenticateUser(emailLink)
             if (result.isSuccess) {
                 proceedAfterLogin()
             } else {
+                viewState.showToast(R.string.login_was_unsuccessful)
                 openLoginScreen()
             }
         }

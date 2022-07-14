@@ -12,8 +12,6 @@ interface StoriesView : MvpView {
 
     fun updateBackPressedNestedNavigationEnabled(enabled: Boolean)
 
-    fun updateAddWordButtonVisible(visible: Boolean)
-
     @OneExecution
     fun startEmailActivity(intent: Intent)
 }

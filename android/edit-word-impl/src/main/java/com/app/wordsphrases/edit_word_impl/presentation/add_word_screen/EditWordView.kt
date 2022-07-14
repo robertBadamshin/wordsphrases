@@ -26,4 +26,7 @@ interface EditWordView : MvpView {
     fun showTranslations(uiModels: List<TranslationUiModel>)
 
     fun showToastMessage(@StringRes messageRes: Int)
+
+    @OneExecution
+    fun setCommentText(text: String?)
 }
