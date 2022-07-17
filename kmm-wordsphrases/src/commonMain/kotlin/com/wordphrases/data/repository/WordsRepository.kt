@@ -74,6 +74,7 @@ class WordsRepository(
     fun getAllWordsForDictionary(languagePairId: Long): Flow<List<Word>> {
         return wordLocalDataSource.getAllWordsForDictionary(languagePairId)
             .flatMapLatest { words ->
+
                 val wordsIds = words.map { word -> word.wordId }
 
                 translationLocalDataSource.getTranslationsForWords(wordsIds)
