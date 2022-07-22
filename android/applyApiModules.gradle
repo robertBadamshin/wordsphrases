@@ -12,4 +12,6 @@ dependencies {
     implementation project(':android:dictionary-api')
     implementation project(':android:word-detail-api')
     implementation project(':android:words-stories-api')
+
+    implementation project(":android:navigation")
 }

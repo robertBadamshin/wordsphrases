@@ -8,6 +8,7 @@ data class WordUiModel(
     val text: String,
     val translations: List<String>,
     val comment: String?,
+    val colorSchemaUiModel: WordColorSchemaUiModel,
 ) : AnyDiffItem {
 
     override fun isSame(newItem: AnyDiffItem): Boolean {

@@ -5,4 +5,17 @@
 
     <color name="white">#fff</color>
     <color name="gray">#8affffff</color>
+
+    <color name="lime">#E1F396</color>
+    <color name="stories_blackberry">#2D3A67</color>
+    <color name="stories_surface">#ffffff</color>
+    <color name="stories_pink">#FBC3C2</color>
+    <color name="stories_juniper">#0B5F6B</color>
+    <color name="stories_juniper_16">#290B5F6B</color>
+    <color name="stories_cyan">#36AADD</color>
+    <color name="stories_cyan_16">#2936AADD</color>
+    <color name="stories_lime">#E1F396</color>
+    <color name="stories_lime_16">#29E1F396</color>
+    <color name="stories_raspberry">#E54E6D</color>
+    <color name="stories_raspberry_16">#29E54E6D</color>
 </resources>

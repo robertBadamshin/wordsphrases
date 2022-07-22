@@ -12,4 +12,5 @@ data class Word(
     val repeatCount: Long,
     val translations: List<String>,
     val comment: String?,
+    val colorSchema: WordColorSchema,
 )

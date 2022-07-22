@@ -8,6 +8,7 @@ CREATE TABLE wordDbEntity(
     repeatCount INTEGER NOT NULL,
     synced INTEGER NOT NULL,
     comment TEXT,
+    colorSchema INTEGER NOT NULL,
     FOREIGN KEY (languagePairId)
         REFERENCES languagePairDbEntity (pairId)
         ON DELETE CASCADE
@@ -23,8 +24,10 @@ INSERT OR REPLACE INTO wordDbEntity(
     maxRepeatCount,
     repeatCount,
     synced,
-    comment
+    comment,
+    colorSchema
 ) VALUES (
+    ?,
     ?,
     ?,
     ?,

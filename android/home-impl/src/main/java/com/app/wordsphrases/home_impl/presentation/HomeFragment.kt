@@ -2,17 +2,15 @@ package com.app.wordsphrases.home_impl.presentation
 
 import android.os.Bundle
 import android.view.*
-import androidx.fragment.app.*
 import com.app.wordsphrases.core.BaseWordsPhrasesApp.Companion.appComponent
 import com.app.wordsphrases.home_impl.R
 import com.app.wordsphrases.home_impl.di.HomeComponent
 import com.app.wordsphrases.home_impl.domain.entity.HomeScreenTab
+import com.app.wordsphrases.navigation.WordsPhrasesAppNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.terrakok.cicerone.*
-import ru.terrakok.cicerone.android.support.SupportAppNavigator
-import ru.terrakok.cicerone.commands.Command
 
 class HomeFragment : MvpAppCompatFragment(), HomeView {
 
@@ -23,28 +21,11 @@ class HomeFragment : MvpAppCompatFragment(), HomeView {
     private val nestedPagesRouter: Router by lazy { appComponent.homeRouter }
     private val navigatorHolder: NavigatorHolder by lazy { appComponent.navigatorHolder }
     private val navigator: Navigator by lazy {
-        object : SupportAppNavigator(
+        WordsPhrasesAppNavigator(
             requireActivity(),
             childFragmentManager,
             R.id.fragment_container_home
-        ) {
-
-            override fun setupFragmentTransaction(
-                command: Command?,
-                currentFragment: Fragment?,
-                nextFragment: Fragment?,
-                fragmentTransaction: FragmentTransaction
-            ) {
-                fragmentTransaction.setCustomAnimations(
-                    R.anim.push_left_in_no_alpha,
-                    0,
-                    0,
-                    R.anim.push_right_out_no_alpha,
-                )
-
-                fragmentTransaction.setReorderingAllowed(true)
-            }
-        }
+        )
     }
 
     override fun onCreateView(

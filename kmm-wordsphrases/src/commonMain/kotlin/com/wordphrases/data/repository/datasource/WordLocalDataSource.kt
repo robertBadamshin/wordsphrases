@@ -22,6 +22,7 @@ class WordLocalDataSource(
             repeatCount = entity.maxRepeatCount,
             synced = entity.synced,
             comment = entity.comment,
+            colorSchema = entity.colorSchema,
         )
     }
 
@@ -36,6 +37,7 @@ class WordLocalDataSource(
             repeatCount = entity.maxRepeatCount,
             synced = entity.synced,
             comment = entity.comment,
+            colorSchema = entity.colorSchema,
         )
     }
 
