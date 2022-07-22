@@ -6,8 +6,6 @@ import com.app.wordsphrases.home_impl.presentation.HomePresenter
 import dagger.Component
 
 @Component(
-    modules = [
-    ],
     dependencies = [
         AppComponent::class,
     ]

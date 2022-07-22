@@ -12,7 +12,6 @@ import com.app.wordsphrases.core_ui.view.*
 import com.app.wordsphrases.stories_impl.di.StoriesComponent
 import com.app.wordsphrases.stories_impl.model.WordUiModel
 import com.app.wordsphrases.stories_impl.R
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 import ru.terrakok.cicerone.*
@@ -28,7 +27,10 @@ class StoriesFragment : MvpAppCompatFragment(), StoriesView {
     private lateinit var containerView: View
     private lateinit var feedBackImageView: ImageView
 
-    private val navigatorHolder: NavigatorHolder by lazy { BaseWordsPhrasesApp.appComponent.storiesNavigatorHolder }
+    private val navigatorHolder: NavigatorHolder by lazy {
+        BaseWordsPhrasesApp.appComponent.storiesNavigatorHolder
+    }
+
     private val navigator: Navigator by lazy {
         object : SupportAppNavigator(
             requireActivity(),

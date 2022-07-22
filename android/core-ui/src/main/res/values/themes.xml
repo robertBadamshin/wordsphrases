@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.WordsPhrasesLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.WordsPhrasesLight" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#152426</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -17,11 +17,12 @@
         <item name="tertiary">#AEB3B4</item>
         <item name="rainbow">#0B5F6B</item>
         <item name="surface">#FFFFFF</item>
+        <item name="surface_32">#52FFFFFF</item>
         <item name="rainbow_60">#990B5F6B</item>
         <item name="border">#ECEDEE</item>
     </style>
 
-    <style name="Theme.WordsPhrasesDark" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.WordsPhrasesDark" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#ECEDEE</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -37,6 +38,7 @@
         <item name="tertiary">#62696B</item>
         <item name="rainbow">#46B9CA</item>
         <item name="surface">#182325</item>
+        <item name="surface_32">#52182325</item>
         <item name="rainbow_60">#9946B9CA</item>
         <item name="border">#2A3536</item>
     </style>

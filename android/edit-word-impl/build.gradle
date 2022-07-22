@@ -9,10 +9,8 @@ apply from: '../commonRetrofitModule.gradle'
 
 apply plugin: 'kotlin-kapt'
 
-
 dependencies {
 
-    implementation project(":android:navigation")
     implementation project(":android:core-ui")
     implementation project(":android:core")
     implementation project(":android:entity")

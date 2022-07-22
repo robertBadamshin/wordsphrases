@@ -5,10 +5,10 @@ import com.app.wordsphrases.edit_word_api.domain.entity.EditWordType
 import com.app.wordsphrases.edit_word_impl.R
 import com.app.wordsphrases.edit_word_impl.domain.use_case.*
 import com.app.wordsphrases.edit_word_impl.presentation.ui.model.mapper.TranslationsUiMapper
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
 import com.wordphrases.domain.usecase.word.GetWordById
 import kotlinx.coroutines.flow.*
 import moxy.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class EditWordPresenter @Inject constructor(
@@ -23,7 +23,7 @@ class EditWordPresenter @Inject constructor(
     private val setCommentText: SetCommentText,
     private val isWordValid: IsWordValid,
     private val onSaveWord: OnSaveWord,
-    @MainNavigationQualifier private val router: Router,
+    @MainNavigationQualifier private val router: WordsPhrasesRouter,
     private val getWordById: GetWordById,
     private val fillTranslationsFromWord: FillTranslationsFromWord,
     private val setExistingWord: SetExistingWord,

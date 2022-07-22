@@ -1,6 +1,7 @@
 package com.app.wordsphrases.di
 
 import com.app.wordsphrases.core.di.*
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
 import com.wordphrases.domain.usecase.auth.*
 import com.wordphrases.domain.usecase.language_pair.GetCurrentSelectedLanguagePair
 import dagger.*
@@ -27,22 +28,22 @@ class MainModule {
     @Provides
     @MainNavigationQualifier
     @AppScope
-    fun cicerone(): Cicerone<Router> {
-        return Cicerone.create(Router())
+    fun cicerone(): Cicerone<WordsPhrasesRouter> {
+        return Cicerone.create(WordsPhrasesRouter())
     }
 
     @Provides
     @MainNavigationQualifier
     fun mainRouter(
-        @MainNavigationQualifier cicerone: Cicerone<Router>,
-    ): Router {
+        @MainNavigationQualifier cicerone: Cicerone<WordsPhrasesRouter>,
+    ): WordsPhrasesRouter {
         return cicerone.router
     }
 
     @Provides
     @MainNavigationQualifier
     fun navigationHolder(
-        @MainNavigationQualifier cicerone: Cicerone<Router>
+        @MainNavigationQualifier cicerone: Cicerone<WordsPhrasesRouter>
     ): NavigatorHolder {
         return cicerone.navigatorHolder
     }

@@ -9,7 +9,7 @@ import com.app.wordsphrases.dictionary_impl.R
 import com.app.wordsphrases.dictionary_impl.di.DictionaryComponent
 import com.app.wordsphrases.dictionary_impl.presentation.adapter.WordsAdapter
 import com.app.wordsphrases.dictionary_impl.presentation.ui.WordUiModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.floatingactionbutton.*
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -21,6 +21,7 @@ class DictionaryFragment : MvpAppCompatFragment(), DictionaryView {
 
     private lateinit var wordsRecyclerView: RecyclerView
     private lateinit var addWordButton: FloatingActionButton
+    private lateinit var shuffleButton: ExtendedFloatingActionButton
 
     private val wordsAdapter by lazy {
         WordsAdapter(
@@ -57,6 +58,9 @@ class DictionaryFragment : MvpAppCompatFragment(), DictionaryView {
 
         addWordButton = view.findViewById(R.id.floating_button_add_word)
         addWordButton.setOnClickListener { dictionaryPresenter.openEnterWord() }
+
+        shuffleButton = view.findViewById(R.id.floating_button_shuffle)
+        shuffleButton.setOnClickListener { dictionaryPresenter.onShuffleClick() }
 
         view.configureTopInsets()
     }

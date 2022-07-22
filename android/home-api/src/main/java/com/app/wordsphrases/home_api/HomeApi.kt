@@ -1,6 +1,7 @@
 package com.app.wordsphrases.home_api
 
-import ru.terrakok.cicerone.*
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
+import ru.terrakok.cicerone.NavigatorHolder
 
 interface HomeApi {
 
@@ -8,7 +9,7 @@ interface HomeApi {
     val homeStarter: HomeStarter
 
     @get:HomeNavigationQualifier
-    val homeRouter: Router
+    val homeRouter: WordsPhrasesRouter
 
     @get:HomeNavigationQualifier
     val navigatorHolder: NavigatorHolder

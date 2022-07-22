@@ -68,12 +68,14 @@ class WordsRepository(
             repeatCount = word.maxRepeatCount,
             synced = 0,
             comment = word.comment,
+            colorSchema = word.colorSchema.ordinal.toLong(),
         )
     }
 
     fun getAllWordsForDictionary(languagePairId: Long): Flow<List<Word>> {
         return wordLocalDataSource.getAllWordsForDictionary(languagePairId)
             .flatMapLatest { words ->
+
                 val wordsIds = words.map { word -> word.wordId }
 
                 translationLocalDataSource.getTranslationsForWords(wordsIds)
@@ -87,6 +89,7 @@ class WordsRepository(
                                 ?.map { translation -> translation.transaltionText }
                                 .orEmpty()
 
+                            val wordColorSchema = getDomainWordColorSchema(word)
                             Word(
                                 wordId = word.wordId,
                                 languagePairId = word.languagePairId,
@@ -97,10 +100,16 @@ class WordsRepository(
                                 repeatCount = word.repeatCount,
                                 translations = translationsDomain,
                                 comment = word.comment,
+                                colorSchema = wordColorSchema,
                             )
                         }
                     }
             }
+    }
+
+    // TODO improve logic
+    private fun getDomainWordColorSchema(word: WordDbEntity): WordColorSchema {
+        return WordColorSchema.values()[word.colorSchema.toInt()]
     }
 
     fun getWordById(wordId: WordId): Word {
@@ -110,6 +119,7 @@ class WordsRepository(
         val translationsDomain = translations
             .map { translation -> translation.transaltionText }
 
+        val wordColorSchema = getDomainWordColorSchema(word)
         return Word(
             wordId = word.wordId,
             languagePairId = word.languagePairId,
@@ -120,6 +130,7 @@ class WordsRepository(
             repeatCount = word.repeatCount,
             translations = translationsDomain,
             comment = word.comment,
+            colorSchema = wordColorSchema,
         )
     }
 }

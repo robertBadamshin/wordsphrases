@@ -24,6 +24,7 @@ class UpdateWord(
             maxRepeatCount = existingWord.maxRepeatCount,
             translations = translations,
             comment = comment,
+            colorSchema = existingWord.colorSchema,
         )
 
         wordsRepository.update(word)

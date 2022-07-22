@@ -4,6 +4,7 @@ import com.app.wordsphrases.R
 import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.home_api.HomeStarter
 import com.app.wordsphrases.login_api.EnterEmailStarter
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
 import com.app.wordsphrases.select_language_api.SelectLanguageStarter
 import com.wordphrases.domain.entity.AuthState
 import com.wordphrases.domain.usecase.auth.*
@@ -11,7 +12,6 @@ import com.wordphrases.domain.usecase.language_pair.GetCurrentSelectedLanguagePa
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import moxy.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -19,7 +19,7 @@ class MainPresenter @Inject constructor(
     private val enterEmailStarter: EnterEmailStarter,
     private val subscribeForAuthState: SubscribeForAuthState,
     private val getCurrentSelectedLanguagePair: GetCurrentSelectedLanguagePair,
-    @MainNavigationQualifier private val router: Router,
+    @MainNavigationQualifier private val router: WordsPhrasesRouter,
     private val homeStarter: HomeStarter,
     private val authenticateUser: AuthenticateUser,
 ) : MvpPresenter<MainView>() {
