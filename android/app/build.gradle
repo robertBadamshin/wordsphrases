@@ -81,6 +81,8 @@ dependencies {
     implementation project(':android:remote-impl')
     implementation project(':android:stories-impl')
     implementation project(':android:stories-api')
+    implementation project(':android:words-stories-api')
+    implementation project(':android:words-stories-impl')
     implementation project(':android:login-api')
     implementation project(':android:login-impl')
     implementation project(':android:email-sender-impl')

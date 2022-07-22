@@ -14,15 +14,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/floating_button_shuffle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="?rainbow"
+        android:text="@string/shuffle_action"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextStyle.Regular.Surface.16dp"
+        android:textColor="?surface"
+        app:layout_constraintBottom_toBottomOf="@id/floating_button_add_word"
+        app:layout_constraintEnd_toStartOf="@id/floating_button_add_word"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/floating_button_add_word" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_button_add_word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="?rainbow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_add_icon"
-        app:tint="@android:color/white" />
+        app:tint="?surface" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package com.app.wordsphrases.select_language_impl.presentation
 
 import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.home_api.HomeStarter
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
 import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageType
 import com.app.wordsphrases.select_language_impl.domain.use_case.*
 import com.app.wordsphrases.select_language_impl.navigation.SelectLanguageFeatureRouter
@@ -11,7 +12,6 @@ import com.wordphrases.domain.entity.language.Language
 import com.wordphrases.domain.usecase.language_pair.SaveLanguagePair
 import kotlinx.coroutines.flow.*
 import moxy.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 private const val selectNativeLanguageKey = "selectNativeLanguageKey"
@@ -25,7 +25,7 @@ class LanguagePairPresenter @Inject constructor(
     private val setNativeLanguage: SetNativeLanguage,
     private val saveLanguagePair: SaveLanguagePair,
     private val requireLanguagePair: RequireLanguagePair,
-    @MainNavigationQualifier private val router: Router,
+    @MainNavigationQualifier private val router: WordsPhrasesRouter,
     private val homeStarter: HomeStarter,
 ) : MvpPresenter<LanguagePairView>() {
 

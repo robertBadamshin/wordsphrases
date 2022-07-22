@@ -11,6 +11,7 @@ import com.app.wordsphrases.remote_api.RemoteApi
 import com.app.wordsphrases.select_language_api.SelectLanguageApi
 import com.app.wordsphrases.stories_api.StoriesApi
 import com.app.wordsphrases.word_detail_api.di.WordDetailApi
+import com.app.wordsphrases.words_stories_api.WordsStoriesApi
 
 interface AppComponent :
     EditWordApi,
@@ -22,7 +23,8 @@ interface AppComponent :
     LoginApi,
     MainApi,
     DictionaryApi,
-    WordDetailApi {
+    WordDetailApi,
+    WordsStoriesApi {
 
     fun provideContext(): Context
 }

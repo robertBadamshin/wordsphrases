@@ -13,7 +13,6 @@ dependencies {
 
     implementation project(":android:core")
     implementation project(":android:core-ui")
-    implementation project(":android:navigation")
     implementation project(":android:entity")
     implementation project(":kmm-wordsphrases")
 }

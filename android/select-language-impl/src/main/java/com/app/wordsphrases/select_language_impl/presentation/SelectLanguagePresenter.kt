@@ -2,6 +2,7 @@ package com.app.wordsphrases.select_language_impl.presentation
 
 import com.app.wordsphrases.core.di.MainNavigationQualifier
 import com.app.wordsphrases.email_sender_api.RequestLanguageEmailSender
+import com.app.wordsphrases.navigation.WordsPhrasesRouter
 import com.app.wordsphrases.select_language_impl.R
 import com.app.wordsphrases.select_language_impl.domain.entity.SelectLanguageType
 import com.app.wordsphrases.select_language_impl.domain.use_case.GetLanguages
@@ -10,13 +11,12 @@ import com.app.wordsphrases.select_language_impl.presentation.ui.model.mapper.La
 import com.wordphrases.domain.entity.language.Language
 import kotlinx.coroutines.flow.*
 import moxy.*
-import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 class SelectLanguagePresenter @Inject constructor(
     private val getLanguages: GetLanguages,
     private val languagesUiMapper: LanguagesUiMapper,
-    @MainNavigationQualifier private val router: Router,
+    @MainNavigationQualifier private val router: WordsPhrasesRouter,
     private val requestLanguageEmailSender: RequestLanguageEmailSender,
 ) : MvpPresenter<SelectLanguageView>() {
 
